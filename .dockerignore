@@ -9,6 +9,6 @@ docker-compose*
 
 # PROJECT
 .vscode
-LICENSE.md
+LICENSE*
 node_modules
 README.md
