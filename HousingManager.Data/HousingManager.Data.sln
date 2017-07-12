@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousingManager.Data.Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousingManager.Data.Library", "HousingManager.Data.Library\HousingManager.Data.Library.csproj", "{FF2EA43C-E758-4A24-913B-5C7B5819399E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousingManager.Data.Tests", "HousingManager.Data.Tests\HousingManager.Data.Tests.csproj", "{C44A8AD7-6EC0-4D72-AF59-31B37ECC47A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FF2EA43C-E758-4A24-913B-5C7B5819399E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF2EA43C-E758-4A24-913B-5C7B5819399E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF2EA43C-E758-4A24-913B-5C7B5819399E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C44A8AD7-6EC0-4D72-AF59-31B37ECC47A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44A8AD7-6EC0-4D72-AF59-31B37ECC47A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44A8AD7-6EC0-4D72-AF59-31B37ECC47A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44A8AD7-6EC0-4D72-AF59-31B37ECC47A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
