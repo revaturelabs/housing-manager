@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousingManager.Business.Service", "HousingManager.Business.Service\HousingManager.Business.Service.csproj", "{2FB686F5-273E-4832-98C8-21402A6CBFCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HousingManager.Business.Library", "HousingManager.Business.Library\HousingManager.Business.Library.csproj", "{385E6528-3F02-45A7-8562-B447E38946D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2FB686F5-273E-4832-98C8-21402A6CBFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FB686F5-273E-4832-98C8-21402A6CBFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FB686F5-273E-4832-98C8-21402A6CBFCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{385E6528-3F02-45A7-8562-B447E38946D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{385E6528-3F02-45A7-8562-B447E38946D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{385E6528-3F02-45A7-8562-B447E38946D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{385E6528-3F02-45A7-8562-B447E38946D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
