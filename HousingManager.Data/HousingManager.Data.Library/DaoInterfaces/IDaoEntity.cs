@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HousingManager.Data.Library.DaoInterfaces
 {
-    interface IDataAccessObject<T>
+    interface IDaoEntity<T>
     {
         T Create(T obj);
         List<T> Read();
