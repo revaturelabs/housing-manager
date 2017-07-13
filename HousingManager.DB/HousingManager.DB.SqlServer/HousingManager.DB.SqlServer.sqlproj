@@ -45,7 +45,8 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -57,5 +58,17 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Schema" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schema\Person.sql" />
+    <Build Include="Schema\Batch.sql" />
+    <Build Include="Schema\Apartment.sql" />
+    <Build Include="Schema\Request.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestRun.sql" />
+    <None Include="HousingManager.DB.SqlServer.publish.xml" />
+    <None Include="HousingManager_1.DB.SqlServer.publish.xml" />
   </ItemGroup>
 </Project>
