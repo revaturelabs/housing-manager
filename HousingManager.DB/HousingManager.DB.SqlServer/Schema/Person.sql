@@ -1,4 +1,2 @@
-﻿
--- testing
-CREATE SCHEMA [Person]
+﻿CREATE SCHEMA [Person]
 GO
