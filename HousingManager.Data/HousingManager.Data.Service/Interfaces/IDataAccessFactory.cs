@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace HousingManager.Data.Service.Interfaces
 {
-    public interface IDataFactory
+    public interface IDataAccessFactory
     {
-        IDataAccess<Address> GetAddressDataAccessEntity();
+        IDataAccess<Address> GetAddressDAO();
     }
 }
