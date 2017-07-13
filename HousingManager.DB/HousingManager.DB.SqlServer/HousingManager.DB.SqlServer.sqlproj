@@ -87,5 +87,6 @@
     <Build Include="Request\ApartmentRequest.sql" />
     <Build Include="Request\SupplyRequest.sql" />
     <Build Include="Request\Supply.sql" />
+    <Build Include="Request\MaintenanceRequest.sql" />
   </ItemGroup>
 </Project>
