@@ -1,1 +1,2 @@
 ﻿CREATE SCHEMA [Person]
+GO

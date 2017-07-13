@@ -65,9 +65,6 @@
     <Folder Include="Request" />
   </ItemGroup>
   <ItemGroup>
-    <PreDeploy Include="pre-deployment-script.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <Build Include="Person\Person.sql" />
     <Build Include="Person\TenantInfo.sql" />
     <Build Include="Person\PersonContactInfo.sql" />
