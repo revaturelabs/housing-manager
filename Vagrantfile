@@ -12,4 +12,7 @@ Vagrant.configure("2") do |config|
     vb.gui = false
     vb.memory = "1024"
   end
+
+  # provision configuration.
+  config.vm.provision "shell", path: "vagrant.sh"
 end
