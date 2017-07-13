@@ -75,5 +75,6 @@
     <Build Include="Schema\Request.sql" />
     <Build Include="Person\ContactInfo.sql" />
     <Build Include="Apartment\ApartmentComplex.sql" />
+    <Build Include="Apartment\ApartmentUnit.sql" />
   </ItemGroup>
 </Project>
