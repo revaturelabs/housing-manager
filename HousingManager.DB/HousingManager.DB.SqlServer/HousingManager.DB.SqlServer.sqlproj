@@ -76,5 +76,6 @@
     <Build Include="Person\ContactInfo.sql" />
     <Build Include="Apartment\ApartmentComplex.sql" />
     <Build Include="Apartment\ApartmentUnit.sql" />
+    <Build Include="Apartment\ApartmentAddress.sql" />
   </ItemGroup>
 </Project>
