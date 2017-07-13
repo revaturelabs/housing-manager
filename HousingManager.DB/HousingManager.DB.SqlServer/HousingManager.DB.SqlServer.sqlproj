@@ -64,5 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Person\Person.sql" />
+    <Build Include="Person\TenantInfo.sql" />
   </ItemGroup>
 </Project>
