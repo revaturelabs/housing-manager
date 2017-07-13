@@ -12,6 +12,17 @@
 use master; 
 go
 
+create database HousingManagerDB2;
+go
+
+use HousingManagerDB2;
+go 
+
+--select * from sys.schemas;
+--select * from person;
+
+
+
 create schema Batch;
 go
 
@@ -23,3 +34,11 @@ go
 
 create schema Person;
 go
+
+--select * from BatchType;
+
+--create table Batch.BatchType(
+--    BatchTypeId int IDENTITY(1,1) not null,
+--    Type nvarchar(50) not null,
+--	constraint PK_Batch_BatchType_BatchTypeId primary key clustered (BatchTypeId),
+--);

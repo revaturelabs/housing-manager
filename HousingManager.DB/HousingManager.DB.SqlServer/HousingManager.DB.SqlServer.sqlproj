@@ -45,7 +45,8 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -65,5 +66,6 @@
   <ItemGroup>
     <Build Include="Person\Person.sql" />
     <Build Include="Person\TenantInfo.sql" />
+    <Build Include="Person\PersonContactInfo.sql" />
   </ItemGroup>
 </Project>
