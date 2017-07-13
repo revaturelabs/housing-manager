@@ -6,8 +6,6 @@
 	Beds int not null
 		constraint PK_Request_ApartmentRequest_ApartmentRequestId primary key clustered (ApartmentRequestId),
 		CONSTRAINT FK_Request_ApartmentRequest_ManagerId FOREIGN KEY (ManagerId) REFERENCES Person.Person(PersonId),
-		CONSTRAINT FK_Request_ApartmentRequest_ManagerId FOREIGN KEY (ProviderId) REFERENCES Person.Provider(ProviderId),
-	
-			
+		CONSTRAINT FK_Request_ApartmentRequest_ProviderId FOREIGN KEY (ProviderId) REFERENCES Person.Provider(ProviderId),
 
 );

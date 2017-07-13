@@ -89,5 +89,6 @@
     <Build Include="Request\Supply.sql" />
     <Build Include="Request\MaintenanceRequest.sql" />
     <Build Include="Request\MaintenanceType.sql" />
+    <Build Include="Request\MaintenanceSupplyRequest.sql" />
   </ItemGroup>
 </Project>
