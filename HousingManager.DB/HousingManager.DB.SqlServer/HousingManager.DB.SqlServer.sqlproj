@@ -84,5 +84,6 @@
     <Build Include="Batch\BatchType.sql" />
     <Build Include="Person\ProviderContactInfo.sql" />
     <Build Include="Apartment\HouseKeeping.sql" />
+    <Build Include="Request\ApartmentRequest.sql" />
   </ItemGroup>
 </Project>
