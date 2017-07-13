@@ -71,5 +71,6 @@
   <ItemGroup>
     <None Include="TestRun.sql" />
     <None Include="HousingManager.DB.SqlServer.publish.xml" />
+    <None Include="HousingManager_1.DB.SqlServer.publish.xml" />
   </ItemGroup>
 </Project>
