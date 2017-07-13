@@ -59,16 +59,17 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Schema" />
+    <Folder Include="Apartment" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Person.sql" />
     <Build Include="Schema\Batch.sql" />
     <Build Include="Schema\Apartment.sql" />
     <Build Include="Schema\Request.sql" />
+    <Build Include="Apartment\Address.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TestRun.sql" />
     <None Include="HousingManager.DB.SqlServer.publish.xml" />
-    <None Include="HousingManager_1.DB.SqlServer.publish.xml" />
   </ItemGroup>
 </Project>
