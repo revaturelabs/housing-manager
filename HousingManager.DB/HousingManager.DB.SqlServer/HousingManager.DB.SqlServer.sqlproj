@@ -61,6 +61,7 @@
     <Folder Include="Person" />
     <Folder Include="Schema" />
     <Folder Include="Apartment" />
+    <Folder Include="Batch" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="pre-deployment-script.sql" />
@@ -78,5 +79,6 @@
     <Build Include="Apartment\ApartmentUnit.sql" />
     <Build Include="Apartment\ApartmentAddress.sql" />
     <Build Include="Person\Provider.sql" />
+    <Build Include="Batch\Batch.sql" />
   </ItemGroup>
 </Project>
