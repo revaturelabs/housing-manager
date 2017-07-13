@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en" data-ng-app="Housing-Manager">
 <head>
@@ -7,7 +7,11 @@
   <meta name="viewport" content="width=width-device, initial-scale=1.0" />
 </head>
 
-<body>
+<body ng-controller="addressController">
+  <button type="submit" ng-click="">Display Address.</button>
+
+  <div>{{model}}</div>
+
   <div data-ng-view></div>
 
   <script src="public/script.bundle.js"></script>
