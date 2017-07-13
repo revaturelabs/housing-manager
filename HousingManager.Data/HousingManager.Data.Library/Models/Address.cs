@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HousingManager.Data.Library
 {
-    class Address
+    public class Address
     {
         public string Street { get; set; }
         public int AptNum { get; set; }
