@@ -28,7 +28,7 @@ namespace HousingManager.Data.Service
 
         public List<T> Read()
         {
-            throw new NotImplementedException();
+            return _Context.Set<T>().ToList();
         }
 
         public T Update(T model)
