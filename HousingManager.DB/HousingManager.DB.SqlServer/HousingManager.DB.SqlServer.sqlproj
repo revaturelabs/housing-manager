@@ -80,5 +80,6 @@
     <Build Include="Apartment\ApartmentAddress.sql" />
     <Build Include="Person\Provider.sql" />
     <Build Include="Batch\Batch.sql" />
+    <Build Include="Batch\BatchType.sql" />
   </ItemGroup>
 </Project>
