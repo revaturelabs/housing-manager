@@ -8,8 +8,18 @@ namespace HousingManager.Business.Library.Models
   {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public Address PersonAddress { get; set; }
+    public Address PersonAddress = new Address();
     public char Gender { get; set; }
-    public ContactInfo ContactInformation { get; set; }
+    public ContactInfo ContactInformation = new ContactInfo();
+
+    public string GetPhoneNumber()
+    {
+      return ContactInformation.GetPhoneNumber();
+    }
+
+    public string GetEmail()
+    {
+      return ContactInformation.GetEmail();
+    }
   }
 }
