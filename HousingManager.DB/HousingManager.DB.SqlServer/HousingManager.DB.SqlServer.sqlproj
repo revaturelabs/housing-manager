@@ -61,6 +61,7 @@
     <Folder Include="Schema" />
     <Folder Include="Apartment" />
     <Folder Include="Batch" />
+    <Folder Include="Person" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Person.sql" />
