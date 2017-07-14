@@ -10,7 +10,7 @@ namespace HousingManager.Business.Library
         public Address AddAddress()
         {
             var a = new Address();
-            a.AptNumber = "112";
+            a.AptNum = "112";
             a.StreetName = "111 Maple Dr";
             a.State = "Texas";
             a.City = "Houston";
