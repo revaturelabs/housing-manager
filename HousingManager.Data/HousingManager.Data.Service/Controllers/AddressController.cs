@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using HousingManager.Data.Service.Interfaces;
+using HousingManager.Data.Library.EFModels;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace HousingManager.Data.Service.Controllers
 {
@@ -11,11 +15,32 @@ namespace HousingManager.Data.Service.Controllers
     [Route("api/Address")]
     public class AddressController : Controller
     {
+        private IDataAccess<Address> _AdrData = new DataAccessEntityFactory().GetAddressDAO();
+
         // GET: api/Address
         [HttpGet]
-        public IEnumerable<string> Get()
+        public HttpResponseMessage Get()
         {
-            return new string[] { "value1", "value2" };
+            var res = new HttpResponseMessage();
+            try
+            {
+                var aList = _AdrData.Read();
+                if (aList.Count > 0)
+                {
+                    res.Content = new StringContent(JsonConvert.SerializeObject(aList), System.Text.Encoding.UTF8, "application/json");
+                    res.StatusCode = System.Net.HttpStatusCode.OK;
+                }
+                else
+                {
+                    res.StatusCode = System.Net.HttpStatusCode.NoContent;
+                }
+            }
+            catch
+            {
+                res.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+                return res;
+            }
+            return res;
         }
 
         // GET: api/Address/5
