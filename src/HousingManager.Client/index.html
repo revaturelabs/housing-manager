@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" data-ng-app="ng-displayAddress">
+
+<head>
+  <title>Housing Manager</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=width-device, initial-scale=1.0" />
+</head>
+
+<body ng-controller="addressController">
+  <button type="submit" ng-click="getAddresses()">Display All Addresses</button>
+  <p>{{model}}</p>
+  <!-- <table>
+    <tr data-ng-repeat="address in model.addresses">
+      <td>
+        {{address.streetName}}
+      </td>
+    </tr>
+  </table> -->
+
+  <div data-ng-view></div>
+
+  <script src="public/script.bundle.js"></script>
+</body>
+
+</html>
