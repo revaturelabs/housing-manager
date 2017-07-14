@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+//using 
 namespace HousingManager.Data.Library.Model1
 {
     public partial class Address
