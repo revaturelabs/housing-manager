@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HousingManager.Business.Library.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HousingManager.Business.Service.Brokers
 {
-    public class DataBroker<T> where T: class
+    public class DataBroker
     {
         private static string _Url = "";
 
@@ -26,16 +27,18 @@ namespace HousingManager.Business.Service.Brokers
             }
         }
 
-        public List<T> Get(string ctrlName)
+        public List<Address> GetAddresses()
         {
-            var res = _Client.GetAsync(_Url + ctrlName).Result;
+            var res = _Client.GetAsync(_Url + "/api/address").Result;
             if (res.IsSuccessStatusCode)
             {
                 var content = res.Content.ReadAsStringAsync().Result;
-                var r = JsonConvert.DeserializeObject<List<T>>(content);
-                return r;
+                return JsonConvert.DeserializeObject<List<Address>>(content);
             }
-            return null;
+            else
+            {
+                return null;
+            }
         }
     }
 }
