@@ -21,11 +21,7 @@ namespace HousingManager.Business.Library
         public Address AddAddress2()
         {
             var a = new Address();
-            a.AptNumber = "112";
-            a.StreetName = "111 Maple Dr";
-            a.State = "Texas";
-            a.City = "Houston";
-            a.ZipCode = "78363";
+            a = null;
             return a;
         }
   }
