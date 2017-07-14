@@ -49,5 +49,14 @@ namespace HousingManager.Business.Tests
 
           Assert.IsNotNull(email);
         }
+
+        [Test]
+        public void ContactInfoGetEmailNegative()
+        {
+          var c = new ContactInfo();
+          c.PhoneNumber = "xxx-xxx-xxxx";
+          var email = c.GetEmail();
+          Assert.IsNull(email);
+        }
   }
 }
