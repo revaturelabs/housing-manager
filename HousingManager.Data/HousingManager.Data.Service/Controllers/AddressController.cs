@@ -19,28 +19,29 @@ namespace HousingManager.Data.Service.Controllers
 
         // GET: api/Address
         [HttpGet]
-        public HttpResponseMessage Get()
+        public List<Address> Get()
         {
-            var res = new HttpResponseMessage();
-            try
-            {
-                var aList = _AdrData.Read();
-                if (aList.Count > 0)
-                {
-                    res.Content = new StringContent(JsonConvert.SerializeObject(aList), System.Text.Encoding.UTF8, "application/json");
-                    res.StatusCode = System.Net.HttpStatusCode.OK;
-                }
-                else
-                {
-                    res.StatusCode = System.Net.HttpStatusCode.NoContent;
-                }
-            }
-            catch
-            {
-                res.StatusCode = System.Net.HttpStatusCode.InternalServerError;
-                return res;
-            }
-            return res;
+            return _AdrData.Read();
+            //var res = new HttpResponseMessage();
+            //try
+            //{
+            //    var aList = _AdrData.Read();
+            //    if (aList.Count > 0)
+            //    {
+            //        res.Content = new StringContent(JsonConvert.SerializeObject(aList), System.Text.Encoding.UTF8, "application/json");
+            //        res.StatusCode = System.Net.HttpStatusCode.OK;
+            //    }
+            //    else
+            //    {
+            //        res.StatusCode = System.Net.HttpStatusCode.NoContent;
+            //    }
+            //}
+            //catch
+            //{
+            //    res.StatusCode = System.Net.HttpStatusCode.InternalServerError;
+            //    return res;
+            //}
+            //return res;
         }
 
         // GET: api/Address/5
