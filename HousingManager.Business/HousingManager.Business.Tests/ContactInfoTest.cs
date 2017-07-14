@@ -58,5 +58,15 @@ namespace HousingManager.Business.Tests
           var email = c.GetEmail();
           Assert.IsNull(email);
         }
+
+        [Test]
+        public void ContactInfoGetPhoneNumberPositive()
+        {
+           var c = new ContactInfo();
+           c.EmailAddress = "aballard513@yahoo.com";
+           c.PhoneNumber = "xxx-xxx-xxxx";
+           var phone = c.GetPhoneNumber();
+           Assert.IsNotNull(phone);
+        }
   }
 }
