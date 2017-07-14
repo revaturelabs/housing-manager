@@ -68,6 +68,7 @@
     <Build Include="Schema\Apartment.sql" />
     <Build Include="Schema\Request.sql" />
     <Build Include="Apartment\Address.sql" />
+    <Build Include="Batch\BatchType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TestRun.sql" />
