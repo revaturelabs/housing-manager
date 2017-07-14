@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using HousingManager.Business.Service.Brokers;
 
 namespace HousingManager.Business.Service.Controllers
 {
@@ -11,9 +12,9 @@ namespace HousingManager.Business.Service.Controllers
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
-            return new string[] { "value1", "value2" };
+            return new DataBroker().GetValues();
         }
 
         // GET api/values/5
