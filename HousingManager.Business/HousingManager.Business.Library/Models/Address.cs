@@ -7,7 +7,7 @@ namespace HousingManager.Business.Library.Models
   public class Address
   { 
     public string StreetName { get; set; }
-    public string AptNumber { get; set; }
+    public string AptNum { get; set; }
     public string City { get; set; }
     public string State { get; set; }
     public string ZipCode { get; set; }
@@ -21,12 +21,12 @@ namespace HousingManager.Business.Library.Models
 
       var o = obj as Address;
 
-      return (o.AptNumber == AptNumber && o.StreetName == StreetName && o.City == City && o.State == State && o.ZipCode == ZipCode);
+      return (o.AptNum == AptNum && o.StreetName == StreetName && o.City == City && o.State == State && o.ZipCode == ZipCode);
     }
 
     public override int GetHashCode()
     {
-      return (AptNumber.GetHashCode() + StreetName.GetHashCode());
+      return (AptNum.GetHashCode() + StreetName.GetHashCode());
     }
 
   }

@@ -21,5 +21,15 @@ namespace HousingManager.Business.Library.Models
     {
       return ContactInformation.GetEmail();
     }
+
+    public bool Compare(ContactInfo c)
+    {
+      return ContactInformation.Equals(c);
+    }
+
+    public bool Compare(Address a)
+    {
+      return PersonAddress.Equals(a);
+    }
   }
 }

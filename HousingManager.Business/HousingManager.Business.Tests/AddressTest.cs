@@ -30,14 +30,14 @@ namespace HousingManager.Business.Tests
     public void ContactInfoIsEqualPositive()
     {
       var c = new Address();
-      c.AptNumber = "112";
+      c.AptNum = "112";
       c.StreetName = "222 somewhere else";
       c.City = "Houston";
       c.State = "Texas";
       c.ZipCode = "11111";
 
       var c1 = new Address();
-      c1.AptNumber = "112";
+      c1.AptNum = "112";
       c1.StreetName = "222 somewhere else";
       c1.City = "Houston";
       c1.State = "Texas";
@@ -53,14 +53,14 @@ namespace HousingManager.Business.Tests
     public void ContactInfoIsEqualNegative()
     {
       var c = new Address();
-      c.AptNumber = "112";
+      c.AptNum = "112";
       c.StreetName = "222 somewhere else";
       c.City = "Houston";
       c.State = "Texas";
       c.ZipCode = "11111";
 
       var c1 = new Address();
-      c1.AptNumber = "112";
+      c1.AptNum = "112";
       c1.StreetName = "222 somewhere else";
       c1.City = "Kingsville";
       c1.State = "Texas";
