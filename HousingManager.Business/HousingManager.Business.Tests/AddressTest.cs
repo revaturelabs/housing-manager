@@ -70,6 +70,6 @@ namespace HousingManager.Business.Tests
       var c1hash = c1.GetHashCode();
 
       Assert.IsFalse(c.Equals(c1) && chash == c1hash);
-    }
+    } 
   }
 }
