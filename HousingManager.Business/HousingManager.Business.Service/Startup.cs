@@ -28,6 +28,7 @@ namespace HousingManager.Business.Service
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddCors(o => o.AddPolicy("default", b => b.AllowAnyOrigin()));
             services.AddMvc();
         }
 
@@ -37,6 +38,7 @@ namespace HousingManager.Business.Service
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseCors("default");
             app.UseMvc();
         }
     }
