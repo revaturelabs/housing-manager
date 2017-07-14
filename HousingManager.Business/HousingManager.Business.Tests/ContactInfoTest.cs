@@ -23,6 +23,20 @@ namespace HousingManager.Business.Tests
       
             Assert.IsTrue(c.Equals(c1)&&chash==c1hash);
         }
-        
+
+        [Test]
+        public void ContactInfoIsEqualNegative()
+        {
+            var c = new ContactInfo();
+            c.EmailAddress = "aballard513@yahoo.com";
+            c.PhoneNumber = "xxx-xxx-xxx";
+            var c1 = new ContactInfo();
+            c1.EmailAddress = "aballard513@yahoo.com";
+            c1.PhoneNumber = "xxx-xxx-xxxx";
+            var chash = c.GetHashCode();
+            var c1hash = c1.GetHashCode();
+
+            Assert.IsFalse(c.Equals(c1) && chash == c1hash);
+        }
     }
 }
