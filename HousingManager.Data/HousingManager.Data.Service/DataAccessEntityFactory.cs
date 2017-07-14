@@ -10,11 +10,11 @@ namespace HousingManager.Data.Service
 {
     public class DataAccessEntityFactory : IDataAccessFactory
     {
-        private static DbContext _Context = new HousingManager_DB_SqlServerContext();
+        private static HousingManager_DB_SqlServerContext _Context = new HousingManager_DB_SqlServerContext();
 
         public IDataAccess<Address> GetAddressDAO()
         {
-            return new DataAccessEntity<Address>(_Context.Address);
+            return new DataAccessEntity<Address>(_Context);
         }
     }
 }
