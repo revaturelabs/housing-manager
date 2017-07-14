@@ -68,7 +68,7 @@ namespace HousingManager.Business.Tests
            var phone = c.GetPhoneNumber();
            Assert.IsNotNull(phone);
         }
-
+     
         [Test]
         public void ContactInfoGetPhoneNumberNegative()
         {
