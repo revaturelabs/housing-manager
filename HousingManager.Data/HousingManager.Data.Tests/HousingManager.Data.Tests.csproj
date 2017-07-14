@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HousingManager.Data.Library\HousingManager.Data.Library.csproj" />
+    <ProjectReference Include="..\HousingManager.Data.Service\HousingManager.Data.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>

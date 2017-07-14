@@ -1,8 +1,9 @@
-﻿using System;
+﻿using HousingManager.Data.Service.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HousingManager.Data.Library
+namespace HousingManager.Data.Service
 {
     public class Broker
     {

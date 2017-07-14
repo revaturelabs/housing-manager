@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HousingManager.Data.Library
+namespace HousingManager.Data.Service.Models
 {
     public class Address
     {
