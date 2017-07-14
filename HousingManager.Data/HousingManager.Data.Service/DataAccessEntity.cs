@@ -1,4 +1,5 @@
-﻿using HousingManager.Data.Service.Interfaces;
+﻿using HousingManager.Data.Library.EFModels;
+using HousingManager.Data.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace HousingManager.Data.Service
     {
         private DbContext _Context;
 
-        public DataAccessEntity(DbContext context)
+        public DataAccessEntity(HousingManager_DB_SqlServerContext context)
         {
             _Context = context;
         }
