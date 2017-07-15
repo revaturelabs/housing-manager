@@ -61,6 +61,7 @@
     <Folder Include="Schema" />
     <Folder Include="Apartment" />
     <Folder Include="Batch" />
+    <Folder Include="Person" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Person.sql" />
@@ -71,6 +72,7 @@
     <Build Include="Batch\BatchType.sql" />
     <Build Include="Batch\Batch.sql" />
     <Build Include="Apartment\ApartmentUnit.sql" />
+    <Build Include="Person\Person.sql" />
     <Build Include="Apartment\HouseKeeping.sql" />
     <Build Include="Apartment\ApartmentComplex.sql" />
   </ItemGroup>
