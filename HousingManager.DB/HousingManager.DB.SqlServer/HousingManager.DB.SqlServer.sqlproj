@@ -71,6 +71,7 @@
     <Build Include="Batch\BatchType.sql" />
     <Build Include="Batch\Batch.sql" />
     <Build Include="Apartment\ApartmentUnit.sql" />
+    <Build Include="Apartment\HouseKeeping.sql" />
     <Build Include="Apartment\ApartmentComplex.sql" />
   </ItemGroup>
   <ItemGroup>
