@@ -53,8 +53,9 @@ namespace HousingManager.Data.Service.Controllers
         
         // POST: api/Address
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Address adr)
         {
+            _AdrData.Create(adr);
         }
         
         // PUT: api/Address/5
