@@ -60,15 +60,17 @@ namespace HousingManager.Data.Service.Controllers
         }
         
         // PUT: api/Address/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public void Put([FromBody]Address adr)
         {
+            _AdrData.Update(adr);
         }
         
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public void Delete([FromBody]Address adr)
         {
+            _AdrData.Delete(adr);
         }
     }
 }
