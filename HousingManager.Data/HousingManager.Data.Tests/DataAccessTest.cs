@@ -12,20 +12,30 @@ namespace HousingManager.Data.Tests
     [TestFixture]
     public class DataAccessTest
     {
-        private static string _ConString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=HousingManager.DB.SqlServer;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+        private static string _ConString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=HousingManager.DB.SqlServer;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         private IDataAccess<Address> _AdrData = new DataAccessEntityFactory().GetAddressDAO();
 
         [SetUp]
         public void SetUp()
         {
-            new SqlCommand("test_Setup", new SqlConnection(_ConString)).ExecuteNonQuery();
+            using (var con = new SqlConnection(_ConString))
+            {
+                con.Open();
+                new SqlCommand("testSetup", con).ExecuteNonQuery();
+                con.Close();
+            }
         }
 
         [TearDown]
         public void TearDown()
         {
-            new SqlCommand("test_Teardown", new SqlConnection(_ConString)).ExecuteNonQuery();
+            using (var con = new SqlConnection(_ConString))
+            {
+                con.Open();
+                new SqlCommand("testTeardown", con).ExecuteNonQuery();
+                con.Close();
+            }
         }
 
         [Test]
