@@ -19,7 +19,9 @@ namespace HousingManager.Data.Service
 
         public T Create(T model)
         {
-            return _Context.Set<T>().Add(model).Entity;
+            var e = _Context.Set<T>().Add(model).Entity;
+            _Context.SaveChanges();
+            return e;
         }
 
         public bool Delete(T model)
