@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HousingManager.Data.Service.DAOs
 {
-    public class DataAccessEntity<T> : IDataAccess<T> where T: class
+    public abstract class DataAccessEntity<T> : IDataAccess<T> where T: class
     {
         private DbContext _Context;
 
@@ -23,20 +23,16 @@ namespace HousingManager.Data.Service.DAOs
             _Context.SaveChanges();
             return e;
         }
-
-        public bool Delete(T model)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public List<T> Read()
         {
             return _Context.Set<T>().ToList();
         }
 
-        public T Update(T model)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract T Get(T model);
+
+        public abstract T Update(T model);
+
+        public abstract bool Delete(T model);
     }
 }

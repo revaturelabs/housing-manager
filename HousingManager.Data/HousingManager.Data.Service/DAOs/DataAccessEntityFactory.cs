@@ -14,7 +14,7 @@ namespace HousingManager.Data.Service.DAOs
 
         public static IDataAccess<Address> GetAddressDAO()
         {
-            return new DataAccessEntity<Address>(_Context);
+            return new AddressDataAccess(_Context);
         }
     }
 }
