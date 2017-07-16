@@ -16,7 +16,7 @@ namespace HousingManager.Data.Service.Controllers
     [Route("api/Address")]
     public class AddressController : Controller
     {
-        private IDataAccess<Address> _AdrData = new DataAccessEntityFactory().GetAddressDAO();
+        private IDataAccess<Address> _AdrData = DataAccessEntityFactory.GetAddressDAO();
 
         // GET: api/Address
         [HttpGet]

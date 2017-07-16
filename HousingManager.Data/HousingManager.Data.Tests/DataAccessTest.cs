@@ -14,7 +14,7 @@ namespace HousingManager.Data.Tests
     {
         private static string _ConString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=HousingManager.DB.SqlServer;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        private IDataAccess<Address> _AdrData = new DataAccessEntityFactory().GetAddressDAO();
+        private IDataAccess<Address> _AdrData = DataAccessEntityFactory.GetAddressDAO();
 
         [SetUp]
         public void SetUp()
