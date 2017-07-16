@@ -29,7 +29,8 @@ namespace HousingManager.Data.Service.DAOs
 
         public override Address Update(Address model)
         {
-            throw new NotImplementedException();
+            Delete(model);
+            return base.Create(model);
         }
     }
 }
