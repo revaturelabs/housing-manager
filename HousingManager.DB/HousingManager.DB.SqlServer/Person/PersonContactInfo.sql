@@ -1,9 +1,8 @@
-﻿Create table Person.ProviderContactInfo(
-	ProviderId int not null, 
+﻿Create table Person.PersonContactInfo(
+	PersonId int not null, 
 	ContactInfoId int not null,
-
-	constraint PK_Person_ProviderContactInfo_ProviderId_ContactInfoId primary key clustered (ProviderId, ContactInfoId),
-	CONSTRAINT FK_Person_ProviderContactInfo_ProviderId FOREIGN KEY (ProviderId) REFERENCES Person.Provider(ProviderId),
-	CONSTRAINT FK_Person_ProviderContactInfo_ContactInfoId FOREIGN KEY (ContactInfoId) REFERENCES Person.ContactInfo(ContactInfoId)
+	constraint PK_Person_PersonContactInfo_PersonId_ContactInfoId primary key clustered (PersonId, ContactInfoId),
+	CONSTRAINT FK_Person_PersonContactInfo_PersonId FOREIGN KEY (PersonId) REFERENCES Person.Person(PersonId),
+	CONSTRAINT FK_Person_PersonContactInfo_ContactInfoId FOREIGN KEY (ContactInfoId) REFERENCES Person.ContactInfo(ContactInfoId)
 
 );
