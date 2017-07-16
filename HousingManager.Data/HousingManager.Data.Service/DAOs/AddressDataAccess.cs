@@ -12,7 +12,10 @@ namespace HousingManager.Data.Service.DAOs
 
         public override bool Delete(Address model)
         {
-            throw new NotImplementedException();
+            var adr = Get(model);
+            var e = _Context.Set<Address>().Remove(adr);
+            _Context.SaveChanges();
+            return e != null;
         }
 
         public override Address Get(Address model)
