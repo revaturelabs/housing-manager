@@ -19,7 +19,7 @@ namespace HousingManager.Data.Service
 
         public T Create(T model)
         {
-            throw new NotImplementedException();
+            return _Context.Set<T>().Add(model).Entity;
         }
 
         public bool Delete(T model)
