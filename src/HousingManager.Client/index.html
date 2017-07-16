@@ -6,20 +6,20 @@
   <title>Housing Manager</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=width-device, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 </head>
 
 <body ng-controller="addressController">
   <button type="submit" ng-click="getAddresses()">Display All Addresses</button>
-  <p>{{model}}</p>
-  <!-- <table>
-    <tr data-ng-repeat="address in model.addresses">
-      <td>
-        {{address.streetName}}
-      </td>
-    </tr>
-  </table> -->
+   <ul class="list-unstyled" data-ng-repeat="address in addresses">
+     <li>ADDRESS {{address.spot}}</li> 
+     <li>Street: {{address.streetName}} Apt {{address.aptNum}} </li>
+     <li>City: {{address.city}}</li>
+     <li>State: {{address.state}}</li>
+     <li>ZipCode: {{address.zipCode}}</li>
+   </ul>
 
-  <div data-ng-view></div>
+  <!-- <div data-ng-view></div> -->
 
   <script src="public/script.bundle.js"></script>
 </body>
