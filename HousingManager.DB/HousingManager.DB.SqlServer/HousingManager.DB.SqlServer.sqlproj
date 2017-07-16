@@ -76,10 +76,9 @@
     <Build Include="Apartment\HouseKeeping.sql" />
     <Build Include="Apartment\ApartmentComplex.sql" />
     <Build Include="Person\TenantInfo.sql" />
+    <Build Include="Person\PersonContactInfo.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TestRun.sql" />
-    <None Include="HousingManager.DB.SqlServer.publish.xml" />
-    <None Include="HousingManager_1.DB.SqlServer.publish.xml" />
   </ItemGroup>
 </Project>
