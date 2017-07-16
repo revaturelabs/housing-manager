@@ -1,4 +1,4 @@
-﻿create procedure Apartment.testSetup
+﻿create procedure testSetup
 as
 begin
 	begin transaction
@@ -13,7 +13,7 @@ begin
 end;
 go
 
-create procedure Apartment.testTeardown
+create procedure testTeardown
 as
 begin
 	begin transaction
