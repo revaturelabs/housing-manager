@@ -39,6 +39,25 @@ namespace HousingManager.Data.Tests
         }
 
         [Test]
+        public void CreateTest()
+        {
+            var adr = new Address
+            {
+                StreetName = "500 Test Street",
+                AptNum = "500",
+                City = "TestVille",
+                State = "Test",
+                ZipCode = 12345
+            };
+            var entity = _AdrData.Create(adr);
+            Assert.IsTrue(adr.StreetName == entity.StreetName &&
+                adr.AptNum == entity.AptNum &&
+                adr.City == entity.City &&
+                adr.State == entity.State &&
+                adr.ZipCode == entity.ZipCode);
+        }
+
+        [Test]
         public void ReadTest()
         {
             Assert.IsTrue(_AdrData.Read().Count >= 1);
