@@ -7,8 +7,8 @@ namespace HousingManager.Data.Service.Models
 {
     public class ApartmentUnit
     {
-        public Provider Provider { get; set; }
-        public Address Address { get; set; }
+        public Provider Provider = new Provider();
+        public Address Address = new Address();
         public int Capacity { get; set; }
 
         public override bool Equals(object obj)
@@ -68,6 +68,11 @@ namespace HousingManager.Data.Service.Models
         public int GetAddressZipCode()
         {
             return Address.ZipCode;
+        }
+
+        public int GetCapacity()
+        {
+            return Capacity;
         }
     }
 }
