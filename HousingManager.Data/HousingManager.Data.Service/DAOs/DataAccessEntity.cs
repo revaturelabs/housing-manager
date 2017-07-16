@@ -10,7 +10,7 @@ namespace HousingManager.Data.Service.DAOs
 {
     public abstract class DataAccessEntity<T> : IDataAccess<T> where T: class
     {
-        private DbContext _Context;
+        protected DbContext _Context;
 
         public DataAccessEntity(HousingManager_DB_SqlServerContext context)
         {

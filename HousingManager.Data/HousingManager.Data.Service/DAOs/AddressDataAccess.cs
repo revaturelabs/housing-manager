@@ -17,7 +17,11 @@ namespace HousingManager.Data.Service.DAOs
 
         public override Address Get(Address model)
         {
-            throw new NotImplementedException();
+            return _Context.Set<Address>().FirstOrDefault(a => a.StreetName == model.StreetName && 
+                                                            a.AptNum == model.AptNum && 
+                                                            a.City == model.City && 
+                                                            a.State == model.State && 
+                                                            a.ZipCode == model.ZipCode);
         }
 
         public override Address Update(Address model)
