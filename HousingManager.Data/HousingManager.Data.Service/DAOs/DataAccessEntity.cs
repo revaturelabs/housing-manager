@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HousingManager.Data.Service
+namespace HousingManager.Data.Service.DAOs
 {
     public class DataAccessEntity<T> : IDataAccess<T> where T: class
     {

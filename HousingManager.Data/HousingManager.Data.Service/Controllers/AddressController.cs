@@ -8,6 +8,7 @@ using HousingManager.Data.Service.Interfaces;
 using HousingManager.Data.Library.EFModels;
 using System.Net.Http;
 using Newtonsoft.Json;
+using HousingManager.Data.Service.DAOs;
 
 namespace HousingManager.Data.Service.Controllers
 {

@@ -1,5 +1,5 @@
 ﻿using HousingManager.Data.Library.EFModels;
-using HousingManager.Data.Service;
+using HousingManager.Data.Service.DAOs;
 using HousingManager.Data.Service.Interfaces;
 using NUnit.Framework;
 using System;

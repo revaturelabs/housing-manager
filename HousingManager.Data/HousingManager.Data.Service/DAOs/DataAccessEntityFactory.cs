@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HousingManager.Data.Library.EFModels;
 
-namespace HousingManager.Data.Service
+namespace HousingManager.Data.Service.DAOs
 {
     public class DataAccessEntityFactory : IDataAccessFactory
     {
