@@ -29,10 +29,19 @@ namespace HousingManager.Data.Service.DAOs
             return _Context.Set<T>().ToList();
         }
 
+        public T Update(T model)
+        {
+            Delete(model);
+            return Create(model);
+        }
+
+        public bool Delete(T model)
+        {
+            var e = _Context.Set<T>().Remove(Get(model));
+            _Context.SaveChanges();
+            return e != null;
+        }
+
         public abstract T Get(T model);
-
-        public abstract T Update(T model);
-
-        public abstract bool Delete(T model);
     }
 }
