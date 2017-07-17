@@ -10,7 +10,7 @@ namespace HousingManager.Business.Service.Brokers
 {
     public class PersonBroker : DataBroker
     {
-        private string _PUrl = _Url + "api/person";
+        private string _PUrl = _Url + "/api/person";
 
         public List<Person> GetPeople()
         {
