@@ -4,13 +4,285 @@
 
 <head>
   <title>Housing Manager</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=width-device, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+  <meta name="theme-color" content="#f26925">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="google-site-verification" content="A0i0krB-VnvmjPiNA9uE8KzDZbh6BixU3jF0KvFqrqM">
+  <link href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/favicon.ico" rel="icon"
+    type="image/x-icon">
+  <link rel="icon" href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/favicon_192.png">
+  <link rel="apple-touch-icon" href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/favicon_192.png">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"> -->
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/gtm/js?id=GTM-WLSHBRM&amp;cid=252259738.1500302860"></script>
+  <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+  <script src="https://use.fontawesome.com/webfontloader/1.6.24/webfontloader.js"></script>
+  <script src="https://use.typekit.net/pvo4jdm.js"></script>
+  <style type="text/css">
+    .tk-adobe-garamond-pro {
+      font-family: "adobe-garamond-pro", sans-serif;
+    }
+
+    .tk-futura-pt,
+    body {
+      font-family: "futura-pt", arial;
+    }
+  </style>
+  <style type="text/css">
+    @font-face {
+      font-family: tk-adobe-garamond-pro-n7;
+      src: url(https://use.typekit.net/af/1660d0/00000000000000003b9b00c5/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff2"), url(https://use.typekit.net/af/1660d0/00000000000000003b9b00c5/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff"), url(https://use.typekit.net/af/1660d0/00000000000000003b9b00c5/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("opentype");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: tk-adobe-garamond-pro-i7;
+      src: url(https://use.typekit.net/af/0dad0b/00000000000000003b9b00c6/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff2"), url(https://use.typekit.net/af/0dad0b/00000000000000003b9b00c6/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff"), url(https://use.typekit.net/af/0dad0b/00000000000000003b9b00c6/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("opentype");
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    @font-face {
+      font-family: tk-adobe-garamond-pro-i4;
+      src: url(https://use.typekit.net/af/86bdd6/00000000000000003b9b00c2/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff2"), url(https://use.typekit.net/af/86bdd6/00000000000000003b9b00c2/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff"), url(https://use.typekit.net/af/86bdd6/00000000000000003b9b00c2/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("opentype");
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    @font-face {
+      font-family: tk-adobe-garamond-pro-n4;
+      src: url(https://use.typekit.net/af/f18930/00000000000000003b9b00c1/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"), url(https://use.typekit.net/af/f18930/00000000000000003b9b00c1/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"), url(https://use.typekit.net/af/f18930/00000000000000003b9b00c1/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: tk-futura-pt-n7;
+      src: url(https://use.typekit.net/af/c1ce99/000000000000000000010091/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff2"), url(https://use.typekit.net/af/c1ce99/000000000000000000010091/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff"), url(https://use.typekit.net/af/c1ce99/000000000000000000010091/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("opentype");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: tk-futura-pt-i7;
+      src: url(https://use.typekit.net/af/854039/000000000000000000010092/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff2"), url(https://use.typekit.net/af/854039/000000000000000000010092/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff"), url(https://use.typekit.net/af/854039/000000000000000000010092/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("opentype");
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    @font-face {
+      font-family: tk-futura-pt-n4;
+      src: url(https://use.typekit.net/af/257da3/000000000000000000013365/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"), url(https://use.typekit.net/af/257da3/000000000000000000013365/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"), url(https://use.typekit.net/af/257da3/000000000000000000013365/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: tk-futura-pt-i4;
+      src: url(https://use.typekit.net/af/db80fe/000000000000000000010095/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff2"), url(https://use.typekit.net/af/db80fe/000000000000000000010095/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff"), url(https://use.typekit.net/af/db80fe/000000000000000000010095/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("opentype");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <script>
+    try { Typekit.load({ async: true }); } catch (e) { }
+  </script>
+  <style type="text/css">
+    .wf-loading {
+      visibility: hidden;
+    }
+  </style>
+  <script src="https://use.fontawesome.com/8d8fa1da46.js"></script>
+  <script>
+    (function (html) { html.className = html.className.replace(/\bno-js\b/, 'js') })(document.documentElement);
+  </script>
+  <link type="text/css" media="all" href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/cache/autoptimize/1/css/autoptimize_2827639f6bb420d1b8f65659450a9535.css"
+    rel="stylesheet">
+  <link type="text/css" media="screen" href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/cache/autoptimize/1/css/autoptimize_bf0dffd3bc2440f535d4cfbc2556223a.css"
+    rel="stylesheet">
+  <title>Technology Talent Development | Technology Solutions | Revature</title>
+  <meta name="description" content="Revature is changing the way the world Hires. We recruit, develop, and deploy the next generation of technology talent. Contact us today">
+  <meta name="robots" content="noodp">
+  <link rel="canonical" href="https://revature.com/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Technology Talent Development | Technology Solutions | Revature">
+  <meta property="og:description" content="Revature is changing the way the world Hires. We recruit, develop, and deploy the next generation of technology talent. Contact us today">
+  <meta property="og:url" content="https://revature.com/">
+  <meta property="og:site_name" content="Revature">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:description" content="Revature is changing the way the world Hires. We recruit, develop, and deploy the next generation of technology talent. Contact us today">
+  <meta name="twitter:title" content="Technology Talent Development | Technology Solutions | Revature">
+  <script type="application/ld+json">
+    {"@context":"http:\/\/schema.org","@type":"WebSite","@id":"#website","url":"https:\/\/revature.com\/","name":"Revature","potentialAction":{"@type":"SearchAction","target":"https:\/\/revature.com\/?s={search_term_string}","query-input":"required name=search_term_string"}}
+  </script>
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//s.w.org">
+  <link rel="alternate" type="application/rss+xml" title="Revature » Feed" href="https://revature.com/feed/">
+  <link rel="alternate" type="application/rss+xml" title="Revature » Comments Feed" href="https://revature.com/comments/feed/">
+  <script type="text/javascript">
+    window._wpemojiSettings = { "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/", "ext": ".png", "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/", "svgExt": ".svg", "source": { "concatemoji": "https:\/\/revature.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.5" } };
+    !function (a, b, c) { function d(a) { var b, c, d, e, f = String.fromCharCode; if (!k || !k.fillText) return !1; switch (k.clearRect(0, 0, j.width, j.height), k.textBaseline = "top", k.font = "600 32px Arial", a) { case "flag": return k.fillText(f(55356, 56826, 55356, 56819), 0, 0), !(j.toDataURL().length < 3e3) && (k.clearRect(0, 0, j.width, j.height), k.fillText(f(55356, 57331, 65039, 8205, 55356, 57096), 0, 0), b = j.toDataURL(), k.clearRect(0, 0, j.width, j.height), k.fillText(f(55356, 57331, 55356, 57096), 0, 0), c = j.toDataURL(), b !== c); case "emoji4": return k.fillText(f(55357, 56425, 55356, 57341, 8205, 55357, 56507), 0, 0), d = j.toDataURL(), k.clearRect(0, 0, j.width, j.height), k.fillText(f(55357, 56425, 55356, 57341, 55357, 56507), 0, 0), e = j.toDataURL(), d !== e }return !1 } function e(a) { var c = b.createElement("script"); c.src = a, c.defer = c.type = "text/javascript", b.getElementsByTagName("head")[0].appendChild(c) } var f, g, h, i, j = b.createElement("canvas"), k = j.getContext && j.getContext("2d"); for (i = Array("flag", "emoji4"), c.supports = { everything: !0, everythingExceptFlag: !0 }, h = 0; h < i.length; h++)c.supports[i[h]] = d(i[h]), c.supports.everything = c.supports.everything && c.supports[i[h]], "flag" !== i[h] && (c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && c.supports[i[h]]); c.supports.everythingExceptFlag = c.supports.everythingExceptFlag && !c.supports.flag, c.DOMReady = !1, c.readyCallback = function () { c.DOMReady = !0 }, c.supports.everything || (g = function () { c.readyCallback() }, b.addEventListener ? (b.addEventListener("DOMContentLoaded", g, !1), a.addEventListener("load", g, !1)) : (a.attachEvent("onload", g), b.attachEvent("onreadystatechange", function () { "complete" === b.readyState && c.readyCallback() })), f = c.source || {}, f.concatemoji ? e(f.concatemoji) : f.wpemoji && f.twemoji && (e(f.twemoji), e(f.wpemoji))) }(window, document, window._wpemojiSettings);
+  </script>
+  <script src="https://revature.com/wp-includes/js/wp-emoji-release.min.js?ver=4.7.5" type="text/javascript" defer=""></script>
+  <style type="text/css">
+    img.wp-smiley,
+    img.emoji {
+      display: inline !important;
+      border: none !important;
+      box-shadow: none !important;
+      height: 1em !important;
+      width: 1em !important;
+      margin: 0 .07em !important;
+      vertical-align: -0.1em !important;
+      background: none !important;
+      padding: 0 !important;
+    }
+  </style>
+  <!--[if lt IE 10]><link rel='stylesheet' id='twentysixteen-ie-css'  href='https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/css/ie.css?ver=20160816' type='text/css' media='all' /> <![endif]-->
+  <!--[if lt IE 9]><link rel='stylesheet' id='twentysixteen-ie8-css'  href='https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/css/ie8.css?ver=20160816' type='text/css' media='all' /> <![endif]-->
+  <!--[if lt IE 8]><link rel='stylesheet' id='twentysixteen-ie7-css'  href='https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/css/ie7.css?ver=20160816' type='text/css' media='all' /> <![endif]-->
+  <link rel="stylesheet" id="js_composer_front-css" href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=5.0"
+    type="text/css" media="all">
+  <link rel="stylesheet" id="A2A_SHARE_SAVE-css" href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/plugins/add-to-any/addtoany.min.css?ver=1.13"
+    type="text/css" media="all">
+  <script type="text/javascript" src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+  <script type="text/javascript">
+    /*  */
+    var cssTarget = "img.";
+/*  */
+  </script>
+  <!--[if lt IE 9]> <script type='text/javascript' src='https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/js/html5.js?ver=3.7.3'></script> <![endif]-->
+  <link rel="https://api.w.org/" href="https://revature.com/wp-json/">
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://revature.com/xmlrpc.php?rsd">
+  <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://revature.com/wp-includes/wlwmanifest.xml">
+  <link rel="shortlink" href="https://revature.com/">
+  <link rel="alternate" type="application/json+oembed" href="https://revature.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Frevature.com%2F">
+  <link rel="alternate" type="text/xml+oembed" href="https://revature.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Frevature.com%2F&amp;format=xml">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', '__gaTracker');
+
+    __gaTracker('create', 'UA-74753735-1', 'auto');
+    __gaTracker('set', 'forceSSL', true);
+    __gaTracker('require', 'GTM-WLSHBRM');
+    __gaTracker('send', 'pageview');
+  </script>
+  <script type="text/javascript">
+    var a2a_config = a2a_config || {}; a2a_config.callbacks = a2a_config.callbacks || []; a2a_config.templates = a2a_config.templates || {};
+  </script>
+  <script type="text/javascript" src="https://static.addtoany.com/menu/page.js" async="async"></script>
+  <meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress.">
+  <!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/8d8fa1da46.css" media="all">
+  <noscript>
+    <style type="text/css">
+      .wpb_animate_when_almost_visible {
+        opacity: 1;
+      }
+    </style>
+  </noscript>
+  <style type="text/css">
+    @font-face {
+      font-family: adobe-garamond-pro;
+      src: url(https://use.typekit.net/af/1660d0/00000000000000003b9b00c5/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff2"), url(https://use.typekit.net/af/1660d0/00000000000000003b9b00c5/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff"), url(https://use.typekit.net/af/1660d0/00000000000000003b9b00c5/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("opentype");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: adobe-garamond-pro;
+      src: url(https://use.typekit.net/af/0dad0b/00000000000000003b9b00c6/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff2"), url(https://use.typekit.net/af/0dad0b/00000000000000003b9b00c6/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff"), url(https://use.typekit.net/af/0dad0b/00000000000000003b9b00c6/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("opentype");
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    @font-face {
+      font-family: adobe-garamond-pro;
+      src: url(https://use.typekit.net/af/86bdd6/00000000000000003b9b00c2/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff2"), url(https://use.typekit.net/af/86bdd6/00000000000000003b9b00c2/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff"), url(https://use.typekit.net/af/86bdd6/00000000000000003b9b00c2/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("opentype");
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    @font-face {
+      font-family: adobe-garamond-pro;
+      src: url(https://use.typekit.net/af/f18930/00000000000000003b9b00c1/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"), url(https://use.typekit.net/af/f18930/00000000000000003b9b00c1/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"), url(https://use.typekit.net/af/f18930/00000000000000003b9b00c1/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/c1ce99/000000000000000000010091/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff2"), url(https://use.typekit.net/af/c1ce99/000000000000000000010091/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff"), url(https://use.typekit.net/af/c1ce99/000000000000000000010091/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("opentype");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/854039/000000000000000000010092/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff2"), url(https://use.typekit.net/af/854039/000000000000000000010092/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("woff"), url(https://use.typekit.net/af/854039/000000000000000000010092/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3) format("opentype");
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/257da3/000000000000000000013365/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"), url(https://use.typekit.net/af/257da3/000000000000000000013365/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"), url(https://use.typekit.net/af/257da3/000000000000000000013365/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: futura-pt;
+      src: url(https://use.typekit.net/af/db80fe/000000000000000000010095/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff2"), url(https://use.typekit.net/af/db80fe/000000000000000000010095/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("woff"), url(https://use.typekit.net/af/db80fe/000000000000000000010095/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i4&v=3) format("opentype");
+      font-weight: 400;
+      font-style: italic;
+    }
+  </style>
+  <style type="text/css">
+    .fancybox-margin {
+      margin-right: 17px;
+    }
+  </style>
 </head>
 
 <body data-ng-app="ng-housingManager">
-  
+
+  <div class="navbar-wrapper hero-bm">
+    <div class="container">
+      <nav class="navbar navbar-revature navbar-static-top navbar-bg">
+        <div class="container">
+          <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+              aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <div class="logo"><a href="#"><img src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png" alt="Revature"></a></div>
+            <li class="mobile_user_icon" style="display: none;"><a href="https://app.revature.com/login" target="_blank"><span class="glyphicon glyphicon-user" style="color:#f26925"></span></a></li>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse rev-menu">
+            <ul id="menu-header-menu" class="nav navbar-nav">
+              <li id="menu-item-1795" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1795"><a title="APARTMENT COMPLEXES" href="#">APARTMENT COMPLEXES</a></li>
+              <li id="menu-item-1962" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1962"><a title="PROVIDERS" href="#">PROVIDERS</a></li>
+              <li id="menu-item-1959" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1959"><a title="BATCHES" href="#">BATCHES</a></li>
+              <li id="menu-item-1787" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1787"><a title="TENANTS" href="#">TENANTS</a></li>
+              <li id="menu-item-1785" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1785"><a title="REQUESTS" href="#">REQUESTS</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
   <section ng-controller="addressController">
     <button type="submit" ng-click="getAddresses()">Display All Addresses</button>
     <ul class="list-unstyled" data-ng-repeat="address in addresses">
@@ -31,6 +303,144 @@
   </section>
 
   <!-- <div data-ng-view></div> -->
+
+  <section class="footer padding-50">
+    <div class="container">
+      <div class="row no-margin border-bottom-line padding-bottom-35">
+        <!-- <div class="foot-1 col-lg-4 col-md-4 col-sm-12"><span class="s-title">FOLLOW US</span>
+          <div class="address social-icon-foot">
+            <ul>
+              <li><a href="https://www.facebook.com/revature/" target="_blank"><img src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/facebook-logo.svg"></a></li>
+              <li><a href="https://twitter.com/WeAreRevature" target="_blank"><img src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/twitter.svg"></a></li>
+              <li><a href="https://www.linkedin.com/company/revature" target="_blank"><img src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/linkedin.svg"></a></li>
+            </ul>
+          </div>
+        </div> -->
+        <div class="foot-7 col-lg-7 col-md-7 col-sm-12 foot-offset-3 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+          <div class="footer-nav">
+            <ul id="menu-header-menu" class="nav navbar-nav">
+              <li><a href="#" class="main-head">APARTMENT COMPLEXES</a></li>
+              <li><a href="#" class="main-head">PROVIDERS</a></li>
+              <li><a href="#" class="main-head">BATCHES</a></li>
+              <li><a href="#" class="main-head">TENANTS</a></li>
+              <li><a href="#" class="main-head">REQUESTS</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div class="foot-3 col-lg-3 col-md-3 col-sm-12">
+           <div class="footer-nav">
+            <ul>
+              <li><a href="/our-story" class="main-head">OUR STORY</a></li>
+              <li class="hidden-xs"><a href="/our-story/#leadership" class="sub-head">Leadership</a></li>
+              <li class="hidden-xs"><a href="/careers" class="sub-head">Careers</a></li>
+            </ul>
+            <ul>
+              <li><a href="/insights" class="main-head">INSIGHTS</a></li>
+            </ul>
+          </div> 
+        </div> -->
+        <!-- <div class="foot-4 col-lg-2 col-md-2 col-sm-12">
+           <div class="footer-nav">
+            <ul>
+              <li><a href="/contact-us" class="main-head">CONTACT US</a></li>
+              <li><a href="mailto:info@revature.com" class="sub-head">info@revature.com</a></li>
+              <li class="margin-top-5"><a href="tel:703 570 8181" class="sub-head"><span class="small padding-right-5">P</span>703 570 8181</a></li>
+              <li class=""><a href="tel:703 995 4500" class="sub-head"><span class="small padding-right-5">F</span>703 995 4500</a></li>
+              <li><span href="" class="main-head-contact">CORPORATE HEADQUARTERS</span></li>
+              <li><span href="" class="sub-head">11730 Plaza America Dr.<br>2nd Floor <br> Reston, VA 20190.</span></li>
+              <li class="margin-top-5"><a href="/contact-us" class="sub-head" style="color:#e9e9e9;">All Locations <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+            </ul>
+          </div> 
+        </div> -->
+      </div>
+      <div class="row no-margin">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+          <nav class="under-footer">
+            <ul>
+              <li><a href="/eeo-policy/">Equal Employment</a></li>
+              <li><a href="/privacy-policy/">Privacy Policy</a></li>
+              <li><a href="/terms-and-conditions/">Terms &amp; Service</a></li>
+              <li><a href="/revaturepro/#faq">FAQ</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padding-top-20"><span class="copyright"><i class="fa fa-copyright" aria-hidden="true"></i> 2017  All rights reserved.</span></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/scrollreveal.js/3.3.1/scrollreveal.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <script type="application/ld+json">
+      {
+		"@context" : "https://schema.org",
+		"@type" : "Organization",
+					  
+		"url" : "https://revature.com",
+		"logo" : "https://revature.com/wp-content/themes/revature/imgs/logo.png"
+								   
+	}
+    </script>
+    <script type="text/javascript">
+      var $jq = jQuery.noConflict();
+      $jq(document).ready(function () {
+        $jq('.autoplay').slick({
+          slidesToShow: 8,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          arrows: false,
+          variableWidth: true,
+          adaptiveHeight: true,
+          pauseOnHover: false,
+          pauseOnFocus: false,
+          responsive: [
+            {
+              breakpoint: 1224,
+              settings: {
+                slidesToShow: 5,
+                slidesToScroll: 1
+              }
+            },
+            {
+              breakpoint: 767,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ]
+        });
+
+      });
+    </script>
+    <script type="text/javascript">
+      /*  */
+      var wpum_frontend_js = { "ajax": "https:\/\/revature.com\/wp-admin\/admin-ajax.php", "checking_credentials": "Checking credentials...", "pwd_meter": "", "disable_ajax": "" };
+/*  */
+    </script>
+    <script type="text/javascript">
+      /*  */
+      var screenReaderText = { "expand": "expand child menu", "collapse": "collapse child menu" };
+/*  */
+    </script>
+    <script type="text/javascript">
+      /*  */
+      var uiAutocompleteL10n = { "noResults": "No results found.", "oneResult": "1 result found. Use up and down arrow keys to navigate.", "manyResults": "%d results found. Use up and down arrow keys to navigate.", "itemSelected": "Item selected." };
+/*  */
+    </script>
+    <script type="text/javascript" id="slb_context">
+      /*  */if (!!window.jQuery) { (function ($) { $(document).ready(function () { if (!!window.SLB) { { $.extend(SLB, { "context": ["public", "user_guest"] }); } } }) })(jQuery); }/*  */
+    </script>
+    <script type="text/javascript" defer="" src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/cache/autoptimize/1/js/autoptimize_c1d00c957d581c95c12aaec3bd3c85b8.js"></script>
+  </section>
 
   <script src="public/script.bundle.js"></script>
 </body>
