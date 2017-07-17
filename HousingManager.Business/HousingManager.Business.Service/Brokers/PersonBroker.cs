@@ -3,15 +3,18 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace HousingManager.Business.Service.Brokers
 {
     public class PersonBroker : DataBroker
     {
+        private string _PUrl = _Url + "api/person";
+
         public List<Person> GetPeople()
         {
-            var res = _Client.GetAsync(_Url + "/api/person").Result;
+            var res = _Client.GetAsync(_PUrl).Result;
             if (res.IsSuccessStatusCode)
             {
                 var content = res.Content.ReadAsStringAsync().Result;
@@ -22,5 +25,13 @@ namespace HousingManager.Business.Service.Brokers
                 return null;
             }
         }
+
+        public void AddPerson(Person per)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(per), System.Text.Encoding.UTF8, "application/json");
+            _Client.PostAsync(_PUrl, content);
+        }
+
+
     }
 }

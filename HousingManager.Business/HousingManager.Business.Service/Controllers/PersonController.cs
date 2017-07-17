@@ -31,8 +31,9 @@ namespace HousingManager.Business.Service.Controllers
         
         // POST: api/Person
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Person per)
         {
+            _PBroker.AddPerson(per);
         }
         
         // PUT: api/Person/5
