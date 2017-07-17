@@ -8,5 +8,4 @@
 	CONSTRAINT FK_Request_MaintenanceRequest_MaintenanceRequestTypeID FOREIGN KEY (MaintenanceTypeID) REFERENCES Request.MaintenanceType(MaintenanceTypeID),
 	CONSTRAINT FK_Request_MaintenanceRequest_ApartmentUnitId FOREIGN KEY (ApartmentUnitId) REFERENCES Request.MaintenanceType(MaintenanceTypeID)
 
-  
 );
