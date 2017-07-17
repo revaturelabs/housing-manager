@@ -31,15 +31,23 @@ namespace HousingManager.Data.Service.DAOs
 
         public T Update(T model)
         {
-            Delete(model);
-            return Create(model);
+            if (Delete(model))
+            {
+                return Create(model);
+            }
+            return null;
         }
 
         public bool Delete(T model)
         {
-            var e = _Context.Set<T>().Remove(Get(model));
-            _Context.SaveChanges();
-            return e != null;
+            var entity = Get(model);
+            if (entity != null)
+            {
+                var e = _Context.Set<T>().Remove(entity);
+                _Context.SaveChanges();
+                return e != null;
+            }
+            return false;
         }
 
         public abstract T Get(T model);
