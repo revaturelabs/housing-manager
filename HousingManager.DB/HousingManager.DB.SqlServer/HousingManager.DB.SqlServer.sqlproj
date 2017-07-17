@@ -82,6 +82,7 @@
     <Build Include="Person\ContactInfo.sql" />
     <Build Include="Person\ProviderContactInfo.sql" />
     <Build Include="Person\Provider.sql" />
+    <Build Include="Request\MaintenanceRequest.sql" />
     <Build Include="Request\ProviderSupplyRequest.sql" />
   </ItemGroup>
   <ItemGroup>
