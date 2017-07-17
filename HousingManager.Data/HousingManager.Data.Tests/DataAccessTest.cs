@@ -62,5 +62,19 @@ namespace HousingManager.Data.Tests
         {
             Assert.IsTrue(_AdrData.Read().Count >= 1);
         }
+
+        [Test]
+        public void DeleteTest()
+        {
+            var adr = new Address
+            {
+                StreetName = "100 Test Street",
+                AptNum = "100",
+                City = "TestVille",
+                State = "Test",
+                ZipCode = 12345
+            };
+            Assert.IsTrue(_AdrData.Delete(adr));
+        }
     }
 }
