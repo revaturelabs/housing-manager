@@ -10,9 +10,9 @@ namespace HousingManager.Business.Service.Brokers
 {
     public class DataBroker
     {
-        private static string _Url = "http://localhost/";
+        protected static string _Url = "http://localhost:51902";
 
-        private HttpClient _Client = new HttpClient();
+        protected HttpClient _Client = new HttpClient();
 
         public string GetValues()
         {
