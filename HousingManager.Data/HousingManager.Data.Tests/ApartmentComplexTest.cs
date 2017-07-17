@@ -22,14 +22,14 @@ namespace HousingManager.Data.Tests
             c.Address.Street = "WordsWorth ct";
             c.Address.ZipCode = 12345;
             var c1 = new ApartmentComplex();
-            c.Name = "Ryan";
-            c.WalkingDistance = true;
-            c.Apartments.Add(new ApartmentUnit());
-            c.Address.AptNum = 123;
-            c.Address.City = "Herndon";
-            c.Address.State = "Virginia";
-            c.Address.Street = "WordsWorth ct";
-            c.Address.ZipCode = 12345;
+            c1.Name = "Ryan";
+            c1.WalkingDistance = true;
+            c1.Apartments.Add(new ApartmentUnit());
+            c1.Address.AptNum = 123;
+            c1.Address.City = "Herndon";
+            c1.Address.State = "Virginia";
+            c1.Address.Street = "WordsWorth ct";
+            c1.Address.ZipCode = 12345;
             var chash = c.GetHashCode();
             var c1hash = c1.GetHashCode();
 
@@ -49,14 +49,14 @@ namespace HousingManager.Data.Tests
             c.Address.Street = "WordsWorth ct";
             c.Address.ZipCode = 12345;
             var c1 = new ApartmentComplex();
-            c.Name = "Bryan";
-            c.WalkingDistance = true;
-            c.Apartments.Add(new ApartmentUnit());
-            c.Address.AptNum = 123;
-            c.Address.City = "Herndon";
-            c.Address.State = "Virginia";
-            c.Address.Street = "WordsWorth ct";
-            c.Address.ZipCode = 12345;
+            c1.Name = "Bryan";
+            c1.WalkingDistance = true;
+            c1.Apartments.Add(new ApartmentUnit());
+            c1.Address.AptNum = 123;
+            c1.Address.City = "Herndon";
+            c1.Address.State = "Virginia";
+            c1.Address.Street = "WordsWorth ct";
+            c1.Address.ZipCode = 12345;
             var chash = c.GetHashCode();
             var c1hash = c1.GetHashCode();
 
@@ -248,7 +248,7 @@ namespace HousingManager.Data.Tests
             var n = new ApartmentComplex();
             var Apartment = n.GetApartments();
 
-            Assert.IsNull(Apartment);
+            Assert.IsEmpty(Apartment);
         }
     }
 }

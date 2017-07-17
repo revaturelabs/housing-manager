@@ -13,21 +13,19 @@ namespace HousingManager.Data.Tests
         public void ProviderSupplyRequestIsEqualPositive()
         {
             var c = new ProviderSupplyRequest();
-            c.Submitted = new DateTime(2017, 10, 01);
+            c.Submitted = DateTime.Now;
             c.Manager.FirstName = "John";
             c.Manager.LastName = "Smith";
             c.Provider.Name = "Ryan";
             c.Provider.ProviderContactInfo.Email = "aballard513@yahoo.com";
             c.Provider.ProviderContactInfo.PhoneNumber = "xxx-xxx-xxxx";
-            c.Supply.Type = "Toilet Paper";
-            var c1 = new Provider();
-            c.Submitted = new DateTime(2017, 10, 01);
-            c.Manager.FirstName = "John";
-            c.Manager.LastName = "Smith";
-            c.Provider.Name = "Ryan";
-            c.Provider.ProviderContactInfo.Email = "aballard513@yahoo.com";
-            c.Provider.ProviderContactInfo.PhoneNumber = "xxx-xxx-xxxx";
-            c.Supply.Type = "Toilet Paper";
+            var c1 = new ProviderSupplyRequest();
+            c1.Submitted = DateTime.Now;
+            c1.Manager.FirstName = "John";
+            c1.Manager.LastName = "Smith";
+            c1.Provider.Name = "Ryan";
+            c1.Provider.ProviderContactInfo.Email = "aballard513@yahoo.com";
+            c1.Provider.ProviderContactInfo.PhoneNumber = "xxx-xxx-xxxx";
             var chash = c.GetHashCode();
             var c1hash = c1.GetHashCode();
 
@@ -45,14 +43,14 @@ namespace HousingManager.Data.Tests
             c.Provider.ProviderContactInfo.Email = "aballard513@yahoo.com";
             c.Provider.ProviderContactInfo.PhoneNumber = "xxx-xxx-xxxx";
             c.Supply.Type = "Toilet Paper";
-            var c1 = new Provider();
-            c.Submitted = new DateTime(2017, 10, 01);
-            c.Manager.FirstName = "John";
-            c.Manager.LastName = "Smith";
-            c.Provider.Name = "Ryan";
-            c.Provider.ProviderContactInfo.Email = "ballard513@yahoo.com";
-            c.Provider.ProviderContactInfo.PhoneNumber = "xxx-xxx-xxxx";
-            c.Supply.Type = "Toilet Paper";
+            var c1 = new ProviderSupplyRequest();
+            c1.Submitted = new DateTime(2017, 10, 01);
+            c1.Manager.FirstName = "John";
+            c1.Manager.LastName = "Smith";
+            c1.Provider.Name = "Ryan";
+            c1.Provider.ProviderContactInfo.Email = "ballard513@yahoo.com";
+            c1.Provider.ProviderContactInfo.PhoneNumber = "xxx-xxx-xxxx";
+            c1.Supply.Type = "Toilet Paper";
             var chash = c.GetHashCode();
             var c1hash = c1.GetHashCode();
 
@@ -95,7 +93,7 @@ namespace HousingManager.Data.Tests
             var c = new ProviderSupplyRequest();
             var Manager = c.GetManager();
 
-            Assert.IsNull(Manager);
+            Assert.IsNotNull(Manager);
         }
 
         [Test]
@@ -114,7 +112,7 @@ namespace HousingManager.Data.Tests
             var c = new ProviderSupplyRequest();
             var Provider = c.GetProvider();
 
-            Assert.IsNull(Provider);
+            Assert.IsNotNull(Provider);
         }
 
         [Test]
@@ -133,7 +131,7 @@ namespace HousingManager.Data.Tests
             var c = new ProviderSupplyRequest();
             var Supply = c.GetSupply();
 
-            Assert.IsNull(Supply);
+            Assert.IsNotNull(Supply);
         }
     }
 }
