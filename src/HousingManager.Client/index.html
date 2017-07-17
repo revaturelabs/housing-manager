@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" data-ng-app="ng-displayAddress ng-displayPeople">
+<html lang="en">
 
 <head>
   <title>Housing Manager</title>
@@ -9,22 +9,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 </head>
 
-<body ng-controller="addressController peopleController">
+<body data-ng-app="ng-housingManager">
+  
+  <section ng-controller="addressController">
+    <button type="submit" ng-click="getAddresses()">Display All Addresses</button>
+    <ul class="list-unstyled" data-ng-repeat="address in addresses">
+      <li>ADDRESS {{address.counter}}</li>
+      <li>Street: {{address.streetName}} Apt {{address.aptNum}} </li>
+      <li>City: {{address.city}}</li>
+      <li>State: {{address.state}}</li>
+      <li>ZipCode: {{address.zipCode}}</li>
+    </ul>
+  </section>
 
-  <button type="submit" ng-click="getAddresses()">Display All Addresses</button>
-  <ul class="list-unstyled" data-ng-repeat="address in addresses">
-    <li>ADDRESS {{address.counter}}</li>
-    <li>Street: {{address.streetName}} Apt {{address.aptNum}} </li>
-    <li>City: {{address.city}}</li>
-    <li>State: {{address.state}}</li>
-    <li>ZipCode: {{address.zipCode}}</li>
-  </ul>
-
-  <button type="submit" ng-click="getPeople()">Display All People</button>
-  <ul class="list-unstyled" data-ng-repeat="person in people">
-    <li>PERSON {{person.counter}}</li>
-    <li>Name: {{person.FirstName}} {{person.LastName}}</li>
-  </ul>
+  <section ng-controller="peopleController">
+    <button type="submit" ng-click="getPeople()">Display All People</button>
+    <ul class="list-unstyled" data-ng-repeat="person in people">
+      <li>PERSON {{person.counter}}</li>
+      <li>Name: {{person.firstName}} {{person.lastName}}</li>
+    </ul>
+  </section>
 
   <!-- <div data-ng-view></div> -->
 
