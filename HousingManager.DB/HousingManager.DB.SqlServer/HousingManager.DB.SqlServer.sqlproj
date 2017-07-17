@@ -62,6 +62,7 @@
     <Folder Include="Apartment" />
     <Folder Include="Batch" />
     <Folder Include="Person" />
+    <Folder Include="Request" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Person.sql" />
@@ -75,10 +76,20 @@
     <Build Include="Person\Person.sql" />
     <Build Include="Apartment\HouseKeeping.sql" />
     <Build Include="Apartment\ApartmentComplex.sql" />
+    <Build Include="Person\TenantInfo.sql" />
+    <Build Include="Person\PersonContactInfo.sql" />
+    <Build Include="Request\ApartmentRequest.sql" />
+    <Build Include="Person\ContactInfo.sql" />
+    <Build Include="Person\ProviderContactInfo.sql" />
+    <Build Include="Person\Provider.sql" />
+    <Build Include="Request\MaintenanceRequest.sql" />
+    <Build Include="Request\ProviderSupplyRequest.sql" />
+    <Build Include="Request\Supply.sql" />
+    <Build Include="Request\ApartmentSupplyRequest.sql" />
+    <Build Include="Request\MaintenanceType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TestRun.sql" />
-    <None Include="HousingManager.DB.SqlServer.publish.xml" />
-    <None Include="HousingManager_1.DB.SqlServer.publish.xml" />
+    <None Include="TestProcedures.sql" />
   </ItemGroup>
 </Project>

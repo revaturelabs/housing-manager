@@ -6,15 +6,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using HousingManager.Data.Library.EFModels;
 
-namespace HousingManager.Data.Service
+namespace HousingManager.Data.Service.DAOs
 {
-    public class DataAccessEntityFactory : IDataAccessFactory
+    public static class DataAccessEntityFactory
     {
         private static HousingManager_DB_SqlServerContext _Context = new HousingManager_DB_SqlServerContext();
 
-        public IDataAccess<Address> GetAddressDAO()
+        public static IDataAccess<Address> GetAddressDAO()
         {
-            return new DataAccessEntity<Address>(_Context);
+            return new AddressDataAccess(_Context);
         }
     }
 }
