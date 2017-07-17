@@ -12,7 +12,7 @@ namespace HousingManager.Business.Service.Brokers
     {
         private static string _Url = "http://localhost:50566/";
 
-        private HttpClient _Client = new HttpClient();
+        protected HttpClient _Client = new HttpClient();
 
         public string GetValues()
         {
