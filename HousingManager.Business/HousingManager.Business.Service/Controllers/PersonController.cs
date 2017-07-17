@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using HousingManager.Business.Service.Brokers;
+using HousingManager.Business.Library.Models;
 
 namespace HousingManager.Business.Service.Controllers
 {
@@ -11,11 +13,13 @@ namespace HousingManager.Business.Service.Controllers
     [Route("api/Person")]
     public class PersonController : Controller
     {
+        private PersonBroker _PBroker = new PersonBroker();
+
         // GET: api/Person
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Person> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _PBroker.GetPeople();
         }
 
         // GET: api/Person/5
