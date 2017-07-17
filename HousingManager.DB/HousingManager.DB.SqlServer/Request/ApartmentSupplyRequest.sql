@@ -5,5 +5,4 @@
 	Submitted datetime,
 		CONSTRAINT FK_Request_ApartmentSupplyRequest_SupplyId FOREIGN KEY (SupplyId) REFERENCES Request.Supply(SupplyId),
 		CONSTRAINT FK_Request_ApartmentSupplyRequest_ApartmentUnitId FOREIGN KEY (ApartmentUnitId) REFERENCES Apartment.ApartmentUnit(ApartmentUnitId)
-
 );
