@@ -12,9 +12,9 @@ namespace HousingManager.Data.Service.Models
         public int ProviderId { get; set; }
         public int ManagerId { get; set; }
         public DateTime Submitted { get; set; }
-        public Person Manager { get; set; }
-        public Provider Provider { get; set; }
-        public Supply Supply { get; set; }
+        public Person Manager = new Person();
+        public Provider Provider = new Provider();
+        public Supply Supply = new Supply();
 
         public override bool Equals(object obj)
         {

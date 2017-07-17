@@ -7,7 +7,7 @@ namespace HousingManager.Data.Service.Models
 {
     public class HouseKeeping
     {
-        public ApartmentUnit ApartmentUnit { get; set; }
+        public ApartmentUnit ApartmentUnit = new ApartmentUnit();
         public DateTime LastCleaning { get; set; }
         public DateTime NextCleaning { get; set; }
 
