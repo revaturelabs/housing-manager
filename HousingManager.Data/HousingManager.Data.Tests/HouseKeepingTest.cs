@@ -17,9 +17,9 @@ namespace HousingManager.Data.Tests
             c.LastCleaning = new DateTime(2017, 10, 01);
             c.NextCleaning = new DateTime(2017, 01, 10);
             var c1 = new HouseKeeping();
-            c.ApartmentUnit = new ApartmentUnit();
-            c.LastCleaning = new DateTime(2017, 10, 01);
-            c.NextCleaning = new DateTime(2017, 01, 10);
+            c1.ApartmentUnit = new ApartmentUnit();
+            c1.LastCleaning = new DateTime(2017, 10, 01);
+            c1.NextCleaning = new DateTime(2017, 01, 10);
             var chash = c.GetHashCode();
             var c1hash = c1.GetHashCode();
 
@@ -34,9 +34,9 @@ namespace HousingManager.Data.Tests
             c.LastCleaning = new DateTime(2017, 10, 01);
             c.NextCleaning = new DateTime(2017, 01, 10);
             var c1 = new HouseKeeping();
-            c.ApartmentUnit = new ApartmentUnit();
-            c.LastCleaning = new DateTime(2017, 10, 01);
-            c.NextCleaning = new DateTime(2017, 10, 10);
+            c1.ApartmentUnit = new ApartmentUnit();
+            c1.LastCleaning = new DateTime(2017, 10, 01);
+            c1.NextCleaning = new DateTime(2017, 10, 10);
             var chash = c.GetHashCode();
             var c1hash = c1.GetHashCode();
 
@@ -57,10 +57,9 @@ namespace HousingManager.Data.Tests
         public void ApartmentUnitNegative()
         {
             var n = new HouseKeeping();
-            n.ApartmentUnit = new ApartmentUnit();
             var ApartmentUnit = n.GetApartmentUnit();
 
-            Assert.IsNull(ApartmentUnit);
+            Assert.IsNotNull(ApartmentUnit);
         }
 
         [Test]

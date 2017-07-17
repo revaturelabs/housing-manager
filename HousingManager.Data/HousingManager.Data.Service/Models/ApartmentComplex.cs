@@ -10,7 +10,7 @@ namespace HousingManager.Data.Service.Models
         public Address Address = new Address();
         public string Name { get; set; }
         public bool WalkingDistance { get; set; }
-        public List<ApartmentUnit> Apartments { get; set; }
+        public List<ApartmentUnit> Apartments = new List<ApartmentUnit>();
 
         public override bool Equals(object obj)
         {
