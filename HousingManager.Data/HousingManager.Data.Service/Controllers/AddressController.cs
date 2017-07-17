@@ -23,26 +23,6 @@ namespace HousingManager.Data.Service.Controllers
         public List<Address> Get()
         {
             return _AdrData.Read();
-            //var res = new HttpResponseMessage();
-            //try
-            //{
-            //    var aList = _AdrData.Read();
-            //    if (aList.Count > 0)
-            //    {
-            //        res.Content = new StringContent(JsonConvert.SerializeObject(aList), System.Text.Encoding.UTF8, "application/json");
-            //        res.StatusCode = System.Net.HttpStatusCode.OK;
-            //    }
-            //    else
-            //    {
-            //        res.StatusCode = System.Net.HttpStatusCode.NoContent;
-            //    }
-            //}
-            //catch
-            //{
-            //    res.StatusCode = System.Net.HttpStatusCode.InternalServerError;
-            //    return res;
-            //}
-            //return res;
         }
 
         // GET: api/Address/5
@@ -63,7 +43,7 @@ namespace HousingManager.Data.Service.Controllers
         [HttpPut]
         public void Put([FromBody]Address adr)
         {
-            _AdrData.Update(adr);
+            throw new NotImplementedException();
         }
         
         // DELETE: api/ApiWithActions/5

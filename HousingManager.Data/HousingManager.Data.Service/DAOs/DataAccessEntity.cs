@@ -31,11 +31,7 @@ namespace HousingManager.Data.Service.DAOs
 
         public T Update(T model)
         {
-            if (Delete(model))
-            {
-                return Create(model);
-            }
-            return null;
+            throw new NotImplementedException();
         }
 
         public bool Delete(T model)
