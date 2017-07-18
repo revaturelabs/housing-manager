@@ -1,0 +1,6 @@
+# DOCKER
+.dockerignore
+Dockerfile*
+
+# PROJECT
+node_modules
