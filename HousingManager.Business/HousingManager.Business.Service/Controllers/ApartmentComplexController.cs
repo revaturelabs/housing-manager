@@ -12,12 +12,18 @@ namespace HousingManager.Business.Service.Brokers
         ApartmentComplexBroker _broker = new ApartmentComplexBroker();
 
         [HttpGet]
-        public IEnumerable<ApartmentComplex> Get()
+        public ApartmentComplex Get()
         {
-            return _broker.GetAll();    
+            return _broker.Get();
         }
 
 
+        [HttpGet]
+        public IEnumerable<ApartmentComplex> GetAll()
+        {
+            return _broker.GetAll();    
+        }
+        
         
         [HttpPost]
         public void Post([FromBody]string value)
