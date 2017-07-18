@@ -16,7 +16,7 @@ namespace HousingManager.Data.Tests
 
       var expect = aptcpxctrl.Get();
 
-      Assert.IsNotNull(expect);
+      Assert.IsNotNull(expect[0].ApartmentName);
     }
 
   }
