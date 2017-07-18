@@ -1,9 +1,0 @@
-FROM node:latest
-COPY ./HousingManager.Client /var/www
-RUN cd /var/www \
-  && npm install --global http-server typescript webpack \
-  && npm install \
-  && npm run build
-WORKDIR /var/www
-EXPOSE 80
-ENTRYPOINT ["npm", "start"]
