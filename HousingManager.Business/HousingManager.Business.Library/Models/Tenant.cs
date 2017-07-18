@@ -6,26 +6,28 @@ namespace HousingManager.Business.Library.Models
 {
     public class Tenant
     {
-        Person _person = new Person();
+        private Person _person = new Person();
         
-        Person tenant {
+        public Person tenant {
             get { return _person; }
             set { _person = tenant; }
         }
 
-        DateTime MoveIn { get; set; }
-        DateTime MoveOut { get; set; }
+        public DateTime MoveIn { get; set; }
+        public DateTime MoveOut { get; set; }
 
 
-        Address _address = new Address();
-        Address address
+        private Address _address = new Address();
+        public Address address
         {
             get { return _address; }
             set { _address = address; }
         }
         
-        bool hasCar { get; set; }
+        public bool hasCar { get; set; }
 
-        string batchName { get; set; }
+        public string batchName { get; set; }
+
+        
     }
 }
