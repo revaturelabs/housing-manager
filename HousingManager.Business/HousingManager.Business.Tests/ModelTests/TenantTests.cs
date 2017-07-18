@@ -21,9 +21,11 @@ namespace HousingManager.Business.Tests.ModelTests
         public void TenantFullCreateTest()
         {
             Tenant test = new Tenant();
+            test.batchName = "TestName";
 
-
-            
+            Assert.IsNotNull(test.address);
+            Assert.IsNotNull(test.MoveIn);
+            Assert.IsNotNull(test.batchName);
         }
     }
 }
