@@ -7,7 +7,30 @@ namespace HousingManager.Business.Library.Models
   public class Maintenance
   {
     public string Issue { get; set; }
-    public ApartmentUnit ApartmentUnitNumber { get; set; }
-    public DateTime SubmissionDate { get; set; }
+    private ApartmentUnit _ApartmentUnitNumber = new ApartmentUnit();
+    private DateTime _SubmissionDate = new DateTime();
+
+    public ApartmentUnit ApartmentUnitNumber
+    {
+      get
+      {
+        return _ApartmentUnitNumber;
+      }
+      set
+      {
+        _ApartmentUnitNumber = ApartmentUnitNumber;
+      }
+    }
+
+    public DateTime SubmissionDate {
+      get
+      {
+        return _SubmissionDate;
+      }
+      set
+      {
+        _SubmissionDate = SubmissionDate;
+      }
+    }
   }
 }
