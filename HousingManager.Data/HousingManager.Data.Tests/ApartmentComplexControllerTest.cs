@@ -16,7 +16,10 @@ namespace HousingManager.Data.Tests
 
       var expect = aptcpxctrl.Get();
 
+      var count = expect[0].ApartmentUnit.Count;
+
       Assert.IsNotNull(expect[0].ApartmentName);
+      Assert.IsTrue(count > 0);
     }
 
   }

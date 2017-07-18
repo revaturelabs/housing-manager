@@ -24,7 +24,7 @@ namespace HousingManager.Data.Service.DAOs
             return e;
         }
         
-        public List<T> Read()
+        public virtual List<T> Read()
         {
             return _Context.Set<T>().ToList();
         }
