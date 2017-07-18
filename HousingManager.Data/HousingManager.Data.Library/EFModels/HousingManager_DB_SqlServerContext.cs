@@ -28,7 +28,7 @@ namespace HousingManager.Data.Library.EFModels
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\ProjectsV13;Database=HousingManager.DB.SqlServer;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=revature-housing.database.windows.net;Database=HousingManagerDB;User ID=dotnet@revature-housing;Password=2017Housing;Trusted_Connection=False;Encrypt=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
