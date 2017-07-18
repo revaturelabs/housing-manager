@@ -19,11 +19,12 @@ namespace HousingManager.Business.Service.Brokers
             return _broker.GetAll();
         }
 
-        
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
 
+        [HttpPost]
+        public async void Post([FromBody]ApartmentComplex value)
+        {
+            var response = await _broker.AddComplex(value);
+            
         }
         
         public void Delete()
