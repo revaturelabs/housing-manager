@@ -13,10 +13,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HousingManager.Business.Library\HousingManager.Business.Library.csproj" />
+    <ProjectReference Include="..\HousingManager.Business.Service\HousingManager.Business.Service.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ControllerTests\" />
   </ItemGroup>
 
 </Project>
