@@ -8,6 +8,19 @@ namespace HousingManager.Business.Library.Models
   {
     public string ApartmentName { get; set; }
     public Address ApartmentAddress { get; set; }
-    public ApartmentUnit List<ApartmentUnit> { get; set; }
+    private List<ApartmentUnit> _ApartmentUnit = new List<ApartmentUnit>();
+
+    public List<ApartmentUnit> ApartmentUnit
+    {
+      get
+      {
+        return _ApartmentUnit;
+      }
+      set
+      {
+        _ApartmentUnit = ApartmentUnit;
+      }
+
+    }
   }
 }
