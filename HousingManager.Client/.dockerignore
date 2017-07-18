@@ -3,4 +3,6 @@
 Dockerfile*
 
 # PROJECT
+*.log
 node_modules
+tmp

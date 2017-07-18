@@ -1,5 +1,7 @@
 # REPOSITORY
+tmp/
 .vagrant/
+
 
 # Created by https://www.gitignore.io/api/visualstudio
 
