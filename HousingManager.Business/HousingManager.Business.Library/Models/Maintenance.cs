@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HousingManager.Business.Library.Models
 {
-  public class Maintenance
+  public class Maintenance : IModel
   {
     public string Issue { get; set; }
     private ApartmentUnit _ApartmentUnitNumber = new ApartmentUnit();

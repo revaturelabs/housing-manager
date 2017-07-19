@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HousingManager.Business.Library.Models
 {
-  public class Person
+  public class Person : IModel
   {
     public string FirstName { get; set; }
     public string LastName { get; set; }

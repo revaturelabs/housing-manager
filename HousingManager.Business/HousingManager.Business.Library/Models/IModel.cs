@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HousingManager.Business.Library.Models
 {
-  public class Supply : IModel
-  {
-    public string Content { get; set; }
-  }
+    public class IModel
+    {
+
+    }
 }

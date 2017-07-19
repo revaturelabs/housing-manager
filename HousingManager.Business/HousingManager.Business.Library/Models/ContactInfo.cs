@@ -7,7 +7,7 @@ using System.Text;
 
 namespace HousingManager.Business.Library.Models
 {
-    public class ContactInfo
+    public class ContactInfo : IModel
     {
         public string EmailAddress { get; set; }     
         public string PhoneNumber { get; set; }
