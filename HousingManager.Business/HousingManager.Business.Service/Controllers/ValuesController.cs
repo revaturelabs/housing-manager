@@ -4,17 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HousingManager.Business.Service.Brokers;
+using HousingManager.Business.Library.Models;
 
 namespace HousingManager.Business.Service.Controllers
 {
+    
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        
+
         // GET api/values
         [HttpGet]
         public string Get()
         {
-            return new DataBroker().GetValues();
+            var what = BrokerFactory<Address>.GetInstance();
+            return what.TestGet();
+
         }
 
         // GET api/values/5
