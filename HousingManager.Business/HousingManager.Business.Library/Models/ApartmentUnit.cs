@@ -14,7 +14,7 @@ namespace HousingManager.Business.Library.Models
     public Provider UnitProvider
     {
       get
-      {
+      { 
         return _UnitProvider;
       }
       set
