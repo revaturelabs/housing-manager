@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HousingManager.Business.Library.Models
 {
-    public class Tenant
+    public class Tenant : IModel
     {
         private Person _person = new Person();
         

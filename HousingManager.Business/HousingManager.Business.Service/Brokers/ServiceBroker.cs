@@ -22,7 +22,6 @@ namespace HousingManager.Business.Service.Brokers
 
         public override List<T> GetAll( )
         {
-            
 
             return null;
         }

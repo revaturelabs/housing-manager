@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HousingManager.Business.Library.Models
 {
-    public class Batch
+    public class Batch : IModel
     {
       public string BatchName { get; set; }
       public DateTime StartDate { get; set; }
