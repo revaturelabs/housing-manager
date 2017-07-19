@@ -18,7 +18,7 @@ namespace HousingManager.Business.Tests.ModelTests
       Assert.IsNotNull(au.GetType().GetProperty("UnitNumber"));
       Assert.IsNotNull(au.GetType().GetProperty("ComplexName"));
       Assert.IsNotNull(au.GetType().GetProperty("Capacity"));
-      Assert.IsNotNull(au.UnitProvider);
+      Assert.IsNotNull(au.UnitProvider); 
     }
   }
 }
