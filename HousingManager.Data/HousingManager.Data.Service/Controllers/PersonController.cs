@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using HousingManager.Data.Service.Interfaces;
 using HousingManager.Data.Library.EFModels;
 using HousingManager.Data.Service.DAOs;
+using HousingManager.Data.Service.DTOs;
+using HousingManager.Data.Service.Mapper;
 
 namespace HousingManager.Data.Service.Controllers
 {
@@ -16,6 +18,7 @@ namespace HousingManager.Data.Service.Controllers
   {
     protected static HousingManager_DB_SqlServerContext _Context;
     private IDataAccess<Person> _PData;
+    private MyMapper _Mapper = new MyMapper();
 
     public PersonController(HousingManager_DB_SqlServerContext context)
     {
@@ -25,9 +28,16 @@ namespace HousingManager.Data.Service.Controllers
 
     // GET: api/Person
     [HttpGet]
-    public List<Person> Get()
+    public List<PersonDTO> Get()
     {
-      return _PData.Read();
+      var listofpeople = _PData.Read();
+      var listofpersondto = new List<PersonDTO>();
+      for (int i = 0; i < listofpeople.Count; i++)
+      {
+        listofpersondto.Add(_Mapper.PersonEntitytoPersonDTO<PersonDTO>(listofpeople[i]));
+      }
+
+      return listofpersondto;
     }
 
     // GET: api/Person/5
