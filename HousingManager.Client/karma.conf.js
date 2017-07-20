@@ -7,14 +7,14 @@ module.exports = function(config) {
     ],
 
     files: [
-      'public/**/*.js',
-      'test/**/*.spec.js'
+      'test/index.js'
     ],
 
     exclude: [
     ],
 
     preprocessors: {
+      'test/index.js': ['webpack']
     },
 
     reporters: [
@@ -30,7 +30,9 @@ module.exports = function(config) {
     autoWatch: true,
 
     browsers: [
-      'Firefox'
+      'Chrome',
+      'Firefox',
+      'Safari'
     ],
 
     singleRun: false,
