@@ -33960,6 +33960,17 @@ var Entity = (function () {
     }
     return Entity;
 }());
+var Person = (function () {
+    function Person() {
+        this.firstName = "N/A";
+        this.lastName = "N/A";
+    }
+    Person.prototype.getPerson = function (id, res) {
+        this.firstName = res.data[id].firstName;
+        this.lastName = res.data[id].lastName;
+    };
+    return Person;
+}());
 var Address = (function () {
     function Address() {
         this.streetName = "N/A";
@@ -33979,11 +33990,16 @@ var Address = (function () {
 }());
 module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($scope, homeFactory) {
         $scope.myAddress = new Address();
+        $scope.myPerson = new Person();
         $scope.entities = [
             new Entity('Address', 'Address'),
+            new Entity('Person', 'Person'),
         ];
-        $scope.processRequest = function (id) {
+        $scope.processAddress = function (id) {
             homeFactory.getAddress(id, $scope.myAddress);
+        };
+        $scope.processPerson = function (id) {
+            homeFactory.getPerson(id, $scope.myPerson);
         };
     }]);
 
@@ -34012,6 +34028,11 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
                     obj.getAddress(id, res);
                 }, failure);
             },
+            getPerson: function (id, obj) {
+                $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
+                    obj.getPerson(id, res);
+                }, failure);
+            }
         };
     }]);
 

@@ -11,5 +11,10 @@ h.factory('homeFactory', ['$http', function ($http) {
         obj.getAddress(id, res);
       }, failure);
     },
+    getPerson: function (id: number, obj) {
+      $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
+        obj.getPerson(id, res);
+      }, failure);
+    }
   }
 }]);

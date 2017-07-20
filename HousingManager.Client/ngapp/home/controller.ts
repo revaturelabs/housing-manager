@@ -11,6 +11,21 @@ class Entity {
   }
 }
 
+class Person {
+  firstName: string;
+  lastName: string;
+
+  constructor() {
+    this.firstName = "N/A";
+    this.lastName = "N/A";
+  }
+
+  getPerson(id: number, res: any){
+    this.firstName = res.data[id].firstName;
+    this.lastName = res.data[id].lastName;
+  }
+}
+
 class Address {
   streetName: string;
   aptNum: number;
@@ -26,7 +41,7 @@ class Address {
     this.zipCode = 0;
   }
 
-  getAddress(id, res: any){
+  getAddress(id: number, res: any){
     this.streetName = res.data[id].streetName;
     this.aptNum = res.data[id].aptNum;
     this.city = res.data[id].city;
@@ -37,11 +52,16 @@ class Address {
 
 h.controller('homeController', ['$scope', 'homeFactory', function ($scope, homeFactory) {
   $scope.myAddress = new Address();
+  $scope.myPerson = new Person();
   $scope.entities = [
     new Entity('Address', 'Address'),
+    new Entity('Person', 'Person'),
   ];
 
-  $scope.processRequest = function (id) {
+  $scope.processAddress = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
+  }
+  $scope.processPerson = function (id) {
+    homeFactory.getPerson(id, $scope.myPerson);
   }
 }]);

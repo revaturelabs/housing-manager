@@ -1,22 +1,61 @@
 <section>
-  <form> 
-    <label for="number">Number</label>
-    <input required type="number" id="number" data-ng-model="number">
+  <!-- <form> 
+    <label>Address Selector</label>
+    <input type="number" id="number" data-ng-model="addressNumber">
+    
+    <md-button class="md-raised md-primary" data-ng-click="processAddress(addressNumber)">Addresses</md-button>
 
-    <md-button class="md-raised md-primary" data-ng-click="processRequest(number)">Addresses</md-button>
-  </form>
+    <br/>
 
-  <article>
-    <header>
-      <h3>Address</h3>
-    </header>
+    <label>Person Selector</label>
+    <input type="number" id="number" data-ng-model="personNumber">
 
-    <section>
-      <p>Street Name: {{myAddress.streetName}}</p>
-      <p>Apartment Number: {{myAddress.aptNum}}</p>
-      <p>City: {{myAddress.city}}</p>
-      <p>State: {{myAddress.state}}</p>
-      <p>Zip Code: {{myAddress.zipCode}}</p> 
-    </section>
-  </article>
+    <md-button class="md-raised md-primary" data-ng-click="processPerson(personNumber)">Persons</md-button> 
+  </form> -->
+
+  <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="1:1" md-gutter="12px" md-gutter-gt-sm="8px" >
+    <md-grid-tile class="gray" md-rowspan="1" md-colspan="3">
+      <md-content layout-xs="column" layout="row">
+        <div flex-xs flex-gt-xs="50" layout="column">
+          <md-card>
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Address</span>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+              <p>Street Name: {{myAddress.streetName}}</p>
+              <p>Apartment Number: {{myAddress.aptNum}}</p>
+              <p>City: {{myAddress.city}}</p>
+              <p>State: {{myAddress.state}}</p>
+              <p>Zip Code: {{myAddress.zipCode}}</p> 
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+              <label>Address Selector</label>
+              <input type="number" id="number" data-ng-model="addressNumber">
+              <md-button class="md-raised md-primary" data-ng-click="processAddress((addressNumber-1))">Addresses</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+        <div flex-xs flex-gt-xs="50" layout="column">
+          <md-card>
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">Person</span>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+              <p>First Name: {{myPerson.firstName}}</p>
+              <p>Last Name: {{myPerson.lastName}}</p> 
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+              <label>Person Selector</label>
+              <input type="number" id="number" data-ng-model="personNumber">
+              <md-button class="md-raised md-primary" data-ng-click="processPerson((personNumber-1))">Persons</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </md-content>
+    </md-grid-tile>
+  </md-grid-list>
 </section>
