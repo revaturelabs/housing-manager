@@ -13,13 +13,14 @@ namespace HousingManager.Business.Service.Controllers
     [Route("api/Person")]
     public class PersonController : Controller
     {
-        private PersonBroker _PBroker = new PersonBroker();
+        
+        ServiceBroker<Person>_broker = BrokerFactory<Person>.GetInstance();
 
         // GET: api/Person
         [HttpGet]
         public IEnumerable<Person> Get()
         {
-            return _PBroker.GetPeople();
+            return _broker.GetAll();
         }
 
         // GET: api/Person/5
@@ -33,7 +34,7 @@ namespace HousingManager.Business.Service.Controllers
         [HttpPost]
         public void Post([FromBody]Person per)
         {
-            _PBroker.AddPerson(per);
+            //_broker.Add(per);
         }
         
         // PUT: api/Person/5
