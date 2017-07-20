@@ -26,12 +26,12 @@ class Address {
     this.zipCode = 0;
   }
 
-  getAddress(res: any){
-    this.streetName = res.data.streetName;
-    this.aptNum = res.data.aptNum;
-    this.city = res.data.city;
-    this.state = res.data.state;
-    this.zipCode = res.data.zipCode;
+  getAddress(id, res: any){
+    this.streetName = res.data[id].streetName;
+    this.aptNum = res.data[id].aptNum;
+    this.city = res.data[id].city;
+    this.state = res.data[id].state;
+    this.zipCode = res.data[id].zipCode;
   }
 }
 
