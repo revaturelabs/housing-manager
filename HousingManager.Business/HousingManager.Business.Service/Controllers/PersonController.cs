@@ -18,7 +18,7 @@ namespace HousingManager.Business.Service.Controllers
 
         // GET: api/Person
         [HttpGet]
-        public IEnumerable<Person> Get()
+        public string Get()
         {
             return _broker.TestGet();
         }
