@@ -14,8 +14,14 @@ namespace HousingManager.Data.Service.Controllers
   [Route("api/ApartmentComplex")]
   public class ApartmentComplexController : Controller
   {
+    protected static HousingManager_DB_SqlServerContext _Context;
+    private IDataAccess<ApartmentComplex> _AptCpx;
 
-    private IDataAccess<ApartmentComplex> _AptCpx = DataAccessEntityFactory.GetApartmentComplexDAO();
+    public ApartmentComplexController(HousingManager_DB_SqlServerContext context)
+    {
+      _Context = context;
+      _AptCpx = DataAccessEntityFactory.GetApartmentComplexDAO(_Context);
+    }
 
     // GET: api/ApartmentComplex
     [HttpGet]

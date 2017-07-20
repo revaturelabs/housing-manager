@@ -12,45 +12,51 @@ using HousingManager.Data.Service.DAOs;
 
 namespace HousingManager.Data.Service.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Address")]
-    public class AddressController : Controller
+  [Produces("application/json")]
+  [Route("api/Address")]
+  public class AddressController : Controller
+  {
+    protected static HousingManager_DB_SqlServerContext _Context;
+    private IDataAccess<Address> _AdrData;
+
+    public AddressController(HousingManager_DB_SqlServerContext context)
     {
-        private IDataAccess<Address> _AdrData = DataAccessEntityFactory.GetAddressDAO();
-
-        // GET: api/Address
-        [HttpGet]
-        public List<Address> Get()
-        {
-            return _AdrData.Read();
-        }
-
-        // GET: api/Address/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-        
-        // POST: api/Address
-        [HttpPost]
-        public void Post([FromBody]Address adr)
-        {
-            _AdrData.Create(adr);
-        }
-        
-        // PUT: api/Address/
-        [HttpPut]
-        public void Put([FromBody]Address adr)
-        {
-            throw new NotImplementedException();
-        }
-        
-        // DELETE: api/ApiWithActions/
-        [HttpDelete]
-        public void Delete([FromBody]Address adr)
-        {
-            _AdrData.Delete(adr);
-        }
+      _Context = context;
+      _AdrData = DataAccessEntityFactory.GetAddressDAO(_Context);
     }
+    // GET: api/Address
+    [HttpGet]
+    public List<Address> Get()
+    {
+      return _AdrData.Read();
+    }
+
+    // GET: api/Address/5
+    [HttpGet("{id}")]
+    public string Get(int id)
+    {
+      return "value";
+    }
+
+    // POST: api/Address
+    [HttpPost]
+    public void Post([FromBody]Address adr)
+    {
+      _AdrData.Create(adr);
+    }
+
+    // PUT: api/Address/
+    [HttpPut]
+    public void Put([FromBody]Address adr)
+    {
+      throw new NotImplementedException();
+    }
+
+    // DELETE: api/ApiWithActions/
+    [HttpDelete]
+    public void Delete([FromBody]Address adr)
+    {
+      _AdrData.Delete(adr);
+    }
+  }
 }
