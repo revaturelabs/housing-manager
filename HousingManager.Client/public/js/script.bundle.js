@@ -82,6 +82,16 @@ var ng = __webpack_require__(0);
 __webpack_require__(3);
 __webpack_require__(9);
 var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial']);
+ngApp.config(['$routeProvider', function ($routeProvider) {
+        $routeProvider
+            .when('/', {
+            controller: 'homeController',
+            templateUrl: 'ts/home/template.html'
+        })
+            .otherwise({
+            redirectTo: '/'
+        });
+    }]);
 
 
 /***/ }),
