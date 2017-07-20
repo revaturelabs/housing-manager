@@ -1,0 +1,22 @@
+<section>
+  <form> 
+    <label for="number">Number</label>
+    <input required type="number" id="number" data-ng-model="number">
+
+    <md-button class="md-raised md-primary" data-ng-click="processRequest(number)">Addresses</md-button>
+  </form>
+
+  <article>
+    <header>
+      <h3>Address</h3>
+    </header>
+
+    <section>
+      <p>Street Name: {{myAddress.streetName}}</p>
+      <p>Apartment Number: {{myAddress.aptNum}}</p>
+      <p>City: {{myAddress.city}}</p>
+      <p>State: {{myAddress.state}}</p>
+      <p>Zip Code: {{myAddress.zipCode}}</p> 
+    </section>
+  </article>
+</section>
