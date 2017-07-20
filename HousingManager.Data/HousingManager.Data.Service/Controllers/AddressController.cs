@@ -9,48 +9,59 @@ using HousingManager.Data.Library.EFModels;
 using System.Net.Http;
 using Newtonsoft.Json;
 using HousingManager.Data.Service.DAOs;
+using HousingManager.Data.Service.Mapper;
+using HousingManager.Data.Service.DTOs;
 
 namespace HousingManager.Data.Service.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Address")]
-    public class AddressController : Controller
+  [Produces("application/json")]
+  [Route("api/Address")]
+  public class AddressController : Controller
+  {
+    private IDataAccess<Address> _AdrData = DataAccessEntityFactory.GetAddressDAO();
+    private MyMapper _Mapper = new MyMapper();
+
+    // GET: api/Address
+    [HttpGet]
+    public List<AddressDTO> Get()
     {
-        private IDataAccess<Address> _AdrData = DataAccessEntityFactory.GetAddressDAO();
+      //find out how to map lists better
+      var listofaddress = _AdrData.Read();
+      var listofaddressdto = new List<AddressDTO>();
+      for (int i = 0; i < listofaddress.Count; i++)
+      {
+        listofaddressdto.Add(_Mapper.AddressEntitytoAddressDTO<AddressDTO>(listofaddress[i]));
+      }
 
-        // GET: api/Address
-        [HttpGet]
-        public List<Address> Get()
-        {
-            return _AdrData.Read();
-        }
-
-        // GET: api/Address/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-        
-        // POST: api/Address
-        [HttpPost]
-        public void Post([FromBody]Address adr)
-        {
-            _AdrData.Create(adr);
-        }
-        
-        // PUT: api/Address/
-        [HttpPut]
-        public void Put([FromBody]Address adr)
-        {
-            throw new NotImplementedException();
-        }
-        
-        // DELETE: api/ApiWithActions/
-        [HttpDelete]
-        public void Delete([FromBody]Address adr)
-        {
-            _AdrData.Delete(adr);
-        }
+      return listofaddressdto;
     }
+
+    // GET: api/Address/5
+    [HttpGet("{id}")]
+    public string Get(int id)
+    {
+      return "value";
+    }
+
+    // POST: api/Address
+    [HttpPost]
+    public void Post([FromBody]Address adr)
+    {
+      _AdrData.Create(adr);
+    }
+
+    // PUT: api/Address/
+    [HttpPut]
+    public void Put([FromBody]Address adr)
+    {
+      throw new NotImplementedException();
+    }
+
+    // DELETE: api/ApiWithActions/
+    [HttpDelete]
+    public void Delete([FromBody]Address adr)
+    {
+      _AdrData.Delete(adr);
+    }
+  }
 }
