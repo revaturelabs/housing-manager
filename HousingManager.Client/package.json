@@ -17,9 +17,12 @@
     "http-server": "^0.10.0",
     "jasmine-core": "^2.6.4",
     "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.2.0",
     "karma-firefox-launcher": "^1.0.1",
     "karma-jasmine": "^1.1.0",
-    "typescript": "^2.4.1",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-webpack": "^2.0.4",
+    "typescript": "^2.4.2",
     "webpack": "^3.3.0"
   },
   "dependencies": {
