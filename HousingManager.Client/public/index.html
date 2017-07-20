@@ -4,19 +4,24 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css">
   </head>
 
-  <body>
+  <body ng-app="ngApp">
     <header>
       <h1>Revature Housing</h1>
     </header>
 
     <main>
-      Housing Manager
+      <p>Housing Manager</p>
+      <md-button class="md-raised md-primary">Addresses</md-button>
+      
+      <div data-ng-view></div>
     </main>
 
     <footer>
       <small>copyright &copy; 2017 fred belotte, all rights reserved.</small>
+      <script src="js/script.bundle.js"></script>
     </footer>
   </body>
 </html>
