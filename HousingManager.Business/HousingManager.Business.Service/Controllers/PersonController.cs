@@ -20,7 +20,7 @@ namespace HousingManager.Business.Service.Controllers
         [HttpGet]
         public IEnumerable<Person> Get()
         {
-            return _broker.GetAll();
+            return _broker.TestGet();
         }
 
         // GET: api/Person/5
