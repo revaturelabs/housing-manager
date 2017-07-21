@@ -54,6 +54,8 @@ namespace HousingManager.Business.Service.Brokers
 
         public override bool Add(T model)
         {
+            T type = new T();
+            Url += type.GetType().Name;
             var content = new StringContent(JsonConvert.SerializeObject(model), System.Text.Encoding.UTF8, "application/json");
             var response = client.PostAsync(Url, content).Result;
 
