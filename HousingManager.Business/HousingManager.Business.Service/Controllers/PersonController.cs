@@ -36,7 +36,8 @@ namespace HousingManager.Business.Service.Controllers
         [HttpPost]
         public void Post([FromBody]Person per)
         {
-            //_broker.Add(per);
+
+            _broker.Add(per);
         }
         
         // PUT: api/Person/5

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HousingManager.Business.Service.Interfaces;
 using HousingManager.Business.Library.Models;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace HousingManager.Business.Service.Brokers
 {
@@ -38,7 +39,10 @@ namespace HousingManager.Business.Service.Brokers
 
         public override bool Add(T model)
         {
-            return false;
+            var content = new StringContent(JsonConvert.SerializeObject(model), System.Text.Encoding.UTF8, "application/json");
+            client.PostAsync(Url, content);
+            return true;
+            //return false;
         }
 
         public override bool Delete(int id)
