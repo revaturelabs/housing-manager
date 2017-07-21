@@ -3,7 +3,8 @@
     ApartmentComplexId int not null,
     AddressId int unique not null,
     ProviderId int not null,
-    Capacity int not null,
+    Capacity int not null,	
+	[Guid] UNIQUEIDENTIFIER DEFAULT NEWID() not null
 		--constraint PK_Apartment_ApartmentUnit_ApartmentUnitId primary key clustered (ApartmentUnitId),
 		CONSTRAINT FK_Apartment_ApartmentUnit_ApartmentComplexId FOREIGN KEY (ApartmentComplexId) REFERENCES Apartment.ApartmentComplex(ApartmentComplexId),
 		CONSTRAINT FK_Apartment_ApartmentUnit_ApartmentId FOREIGN KEY (AddressId) REFERENCES Apartment.Address(AddressId),

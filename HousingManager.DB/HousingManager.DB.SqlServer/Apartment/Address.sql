@@ -4,5 +4,6 @@
     AptNum nvarchar(5) not null,
     City nvarchar(30)  not null,
     [State] nvarchar(10) not null,
-	ZipCode int not null
+	ZipCode int not null,	
+	[Guid] UNIQUEIDENTIFIER DEFAULT NEWID() not null
 );
