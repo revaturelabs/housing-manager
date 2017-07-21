@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HousingManager.Business.Service.Brokers;
 using HousingManager.Business.Library.Models;
+using HousingManager.Business.Service.Interfaces;
 
 namespace HousingManager.Business.Service.Controllers
 {
@@ -14,27 +15,28 @@ namespace HousingManager.Business.Service.Controllers
     public class PersonController : Controller
     {
         
-        ServiceBroker<Person>_broker = BrokerFactory<Person>.GetInstance();
+        IBroker<Person> _broker = BrokerFactory<Person>.GetInstance();
 
         // GET: api/Person
         [HttpGet]
-        public string Get()
+        public List<Person> Get()
         {
-            return _broker.TestGet();
+            return _broker.GetAll();
         }
 
-        // GET: api/Person/5
+        
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Person Get(int id)
         {
-            return "value";
+            return _broker.Get(id);
         }
         
+
         // POST: api/Person
         [HttpPost]
         public void Post([FromBody]Person per)
         {
-            //_broker.Add(per);
+            _broker.Add(per);
         }
         
         // PUT: api/Person/5
@@ -43,10 +45,11 @@ namespace HousingManager.Business.Service.Controllers
         {
         }
         
-        // DELETE: api/ApiWithActions/5
+        
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _broker.Delete(id);
         }
     }
 }

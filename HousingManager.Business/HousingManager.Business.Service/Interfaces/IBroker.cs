@@ -8,8 +8,10 @@ namespace HousingManager.Business.Service.Interfaces
 {
     public interface IBroker<T> where T : IModel
     {
-        T Get( );
+        T Get(int id );
         List<T> GetAll( );
+        bool Add(T model);
+        bool Delete(int id);
 
         string TestGet( );
     }
