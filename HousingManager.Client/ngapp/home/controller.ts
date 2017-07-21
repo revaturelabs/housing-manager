@@ -81,14 +81,6 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     });
   };
 
-  // $scope.createPerson = function(ev) {
-  //   $mdDialog.show(confirm).then(function(result) {
-  //     $scope.status = 'You decided to name your dog ' + result + '.';
-  //   }, function() {
-  //     $scope.status = 'You didn\'t name your dog.';
-  //   });
-  // };
-
   function DialogController($scope, $mdDialog) {
     $scope.hide = function() {
       $mdDialog.hide();
