@@ -1,6 +1,7 @@
 ﻿Create table Person.ProviderContactInfo(
 	ProviderId int not null, 
-	ContactInfoId int not null,
+	ContactInfoId int not null,	
+	[Guid] UNIQUEIDENTIFIER DEFAULT NEWID() not null
 
 	constraint PK_Person_ProviderContactInfo_ProviderId_ContactInfoId primary key clustered (ProviderId, ContactInfoId),
 	CONSTRAINT FK_Person_ProviderContactInfo_ProviderId FOREIGN KEY (ProviderId) REFERENCES Person.Provider(ProviderId),
