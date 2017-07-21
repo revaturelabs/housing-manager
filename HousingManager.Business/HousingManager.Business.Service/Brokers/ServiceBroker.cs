@@ -45,7 +45,8 @@ namespace HousingManager.Business.Service.Brokers
             var response = client.GetAsync(temp).Result;
 
             List<T> obj = new List<T>();
-            JsonConvert.DeserializeAnonymousType<List<T>>(response.Content.ReadAsStringAsync().Result, obj);
+            obj = JsonConvert.DeserializeObject<List<T>>(response.Content.ReadAsStringAsync().Result);
+            //obj = JsonConvert.DeserializeAnonymousType<List<T>>(response.Content.ReadAsStringAsync().Result, obj);
             
             return obj;
             

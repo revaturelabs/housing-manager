@@ -18,7 +18,7 @@ namespace HousingManager.Business.Service.Controllers
         IBroker<Person> _broker = BrokerFactory<Person>.GetInstance();
 
         // GET: api/Person
-        [HttpGet(Name ="Get")]
+        [HttpGet]
         public List<Person> Get()
         {
             return _broker.GetAll();
