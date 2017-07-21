@@ -80,6 +80,7 @@ module.exports = angular;
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(5);
+__webpack_require__(6);
 var home = ng.module('ngHome', []);
 exports.home = home;
 
@@ -93,8 +94,8 @@ exports.home = home;
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(4);
-__webpack_require__(7);
-__webpack_require__(13);
+__webpack_require__(8);
+__webpack_require__(14);
 var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome']);
 ngApp.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -33952,7 +33953,8 @@ $provide.value("$locale", {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(1);
-__webpack_require__(6);
+var ng = __webpack_require__(0);
+__webpack_require__(7);
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -33988,7 +33990,7 @@ var Address = (function () {
     };
     return Address;
 }());
-module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($scope, homeFactory) {
+module_1.home.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function ($scope, $mdDialog, homeFactory) {
         $scope.myAddress = new Address();
         $scope.myPerson = new Person();
         $scope.entities = [
@@ -34001,6 +34003,39 @@ module_1.home.controller('homeController', ['$scope', 'homeFactory', function ($
         $scope.processPerson = function (id) {
             homeFactory.getPerson(id, $scope.myPerson);
         };
+        $scope.createPersonDialog = function (ev) {
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'ngapp/home/partials/createPersonTemplate.html',
+                parent: ng.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false,
+            })
+                .then(function (answer) {
+                $scope.status = answer + ' has been added.';
+            }, function () {
+                $scope.status = 'No one as been added.';
+            });
+        };
+        // $scope.createPerson = function(ev) {
+        //   $mdDialog.show(confirm).then(function(result) {
+        //     $scope.status = 'You decided to name your dog ' + result + '.';
+        //   }, function() {
+        //     $scope.status = 'You didn\'t name your dog.';
+        //   });
+        // };
+        function DialogController($scope, $mdDialog) {
+            $scope.hide = function () {
+                $mdDialog.hide();
+            };
+            $scope.cancel = function () {
+                $mdDialog.cancel();
+            };
+            $scope.answer = function (answer) {
+                $mdDialog.hide(answer);
+            };
+        }
+        ;
     }]);
 
 
@@ -34012,6 +34047,12 @@ module.exports = __webpack_require__.p + "ngapp/home/partials/template.html";
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/home/partials/createPersonTemplate.html";
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34038,33 +34079,33 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Should already be required, here for clarity
 __webpack_require__(0);
 
 // Load Angular and dependent libs
-__webpack_require__(8);
-__webpack_require__(10);
+__webpack_require__(9);
+__webpack_require__(11);
 
 // Now load Angular Material
-__webpack_require__(12);
+__webpack_require__(13);
 
 // Export namespace
 module.exports = 'ngMaterial';
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(9);
+__webpack_require__(10);
 module.exports = 'ngAnimate';
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -38224,15 +38265,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(11);
+__webpack_require__(12);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /**
@@ -38641,7 +38682,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 /*!
@@ -74651,15 +74692,15 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(14);
+__webpack_require__(15);
 module.exports = 'ngRoute';
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 /**
