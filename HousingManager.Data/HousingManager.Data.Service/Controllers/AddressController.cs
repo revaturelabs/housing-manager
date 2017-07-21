@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HousingManager.Data.Service.Interfaces;
-using HousingManager.Data.Library.EFModels;
+using HousingManager.Data.Library.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
 using HousingManager.Data.Service.DAOs;
@@ -16,10 +16,10 @@ namespace HousingManager.Data.Service.Controllers
   [Route("api/Address")]
   public class AddressController : Controller
   {
-    protected static HousingManager_DB_SqlServerContext _Context;
+    protected static HousingManagerDBContext _Context;
     private IDataAccess<Address> _AdrData;
 
-    public AddressController(HousingManager_DB_SqlServerContext context)
+    public AddressController(HousingManagerDBContext context)
     {
       _Context = context;
       _AdrData = DataAccessEntityFactory.GetAddressDAO(_Context);

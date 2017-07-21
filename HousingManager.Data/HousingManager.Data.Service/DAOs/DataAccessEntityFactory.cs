@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HousingManager.Data.Library.EFModels;
+using HousingManager.Data.Library.Models;
 
 namespace HousingManager.Data.Service.DAOs
 {
@@ -12,17 +12,17 @@ namespace HousingManager.Data.Service.DAOs
   {
     //private static HousingManager_DB_SqlServerContext _Context = new HousingManager_DB_SqlServerContext();
 
-    public static IDataAccess<Address> GetAddressDAO(HousingManager_DB_SqlServerContext _Context)
+    public static IDataAccess<Address> GetAddressDAO(HousingManagerDBContext _Context)
     {
       return new AddressDataAccess(_Context);
     }
 
-    public static IDataAccess<Person> GetPersonDAO(HousingManager_DB_SqlServerContext _Context)
+    public static IDataAccess<Person> GetPersonDAO(HousingManagerDBContext _Context)
     {
       return new PersonDataAccess(_Context);
     }
 
-    public static IDataAccess<ApartmentComplex> GetApartmentComplexDAO(HousingManager_DB_SqlServerContext _Context)
+    public static IDataAccess<ApartmentComplex> GetApartmentComplexDAO(HousingManagerDBContext _Context)
     {
       return new ApartmentComplexAccess(_Context);
     }

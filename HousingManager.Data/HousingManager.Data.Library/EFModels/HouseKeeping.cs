@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HousingManager.Data.Library.EFModels
+namespace HousingManager.Data.Library.Models
 {
     public partial class HouseKeeping
     {
@@ -9,5 +9,6 @@ namespace HousingManager.Data.Library.EFModels
         public int ApartmentUnitId { get; set; }
         public DateTime LastCleaning { get; set; }
         public DateTime NextCleaning { get; set; }
+        public Guid Guid { get; set; }
     }
 }

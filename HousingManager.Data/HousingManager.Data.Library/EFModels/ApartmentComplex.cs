@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HousingManager.Data.Library.EFModels
+namespace HousingManager.Data.Library.Models
 {
     public partial class ApartmentComplex
     {
@@ -14,6 +14,7 @@ namespace HousingManager.Data.Library.EFModels
         public int AddressId { get; set; }
         public string ApartmentName { get; set; }
         public bool? WalkingDistance { get; set; }
+        public Guid Guid { get; set; }
 
         public virtual ICollection<ApartmentUnit> ApartmentUnit { get; set; }
         public virtual Address Address { get; set; }

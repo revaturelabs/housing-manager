@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HousingManager.Data.Service.Interfaces;
-using HousingManager.Data.Library.EFModels;
+using HousingManager.Data.Library.Models;
 using HousingManager.Data.Service.DAOs;
 
 namespace HousingManager.Data.Service.Controllers
@@ -14,10 +14,10 @@ namespace HousingManager.Data.Service.Controllers
   [Route("api/ApartmentComplex")]
   public class ApartmentComplexController : Controller
   {
-    protected static HousingManager_DB_SqlServerContext _Context;
+    protected static HousingManagerDBContext _Context;
     private IDataAccess<ApartmentComplex> _AptCpx;
 
-    public ApartmentComplexController(HousingManager_DB_SqlServerContext context)
+    public ApartmentComplexController(HousingManagerDBContext context)
     {
       _Context = context;
       _AptCpx = DataAccessEntityFactory.GetApartmentComplexDAO(_Context);

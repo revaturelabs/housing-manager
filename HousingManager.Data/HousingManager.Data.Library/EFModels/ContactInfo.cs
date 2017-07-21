@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HousingManager.Data.Library.EFModels
+namespace HousingManager.Data.Library.Models
 {
     public partial class ContactInfo
     {
@@ -14,6 +14,7 @@ namespace HousingManager.Data.Library.EFModels
         public int ContactInfoId { get; set; }
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
+        public Guid Guid { get; set; }
 
         public virtual ICollection<PersonContactInfo> PersonContactInfo { get; set; }
         public virtual ICollection<ProviderContactInfo> ProviderContactInfo { get; set; }

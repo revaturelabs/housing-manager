@@ -1,4 +1,4 @@
-﻿using HousingManager.Data.Library.EFModels;
+﻿using HousingManager.Data.Library.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace HousingManager.Data.Service.DAOs
 {
   public class ApartmentComplexAccess : DataAccessEntity<ApartmentComplex>
   {
-    public ApartmentComplexAccess(HousingManager_DB_SqlServerContext context) : base(context)
+    public ApartmentComplexAccess(HousingManagerDBContext context) : base(context)
     { }
 
     public override ApartmentComplex Get(ApartmentComplex model)

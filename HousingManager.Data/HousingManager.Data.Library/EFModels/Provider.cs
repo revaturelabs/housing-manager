@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HousingManager.Data.Library.EFModels
+namespace HousingManager.Data.Library.Models
 {
     public partial class Provider
     {
@@ -15,6 +15,7 @@ namespace HousingManager.Data.Library.EFModels
 
         public int ProviderId { get; set; }
         public string Name { get; set; }
+        public Guid Guid { get; set; }
 
         public virtual ICollection<ApartmentRequest> ApartmentRequest { get; set; }
         public virtual ICollection<ApartmentUnit> ApartmentUnit { get; set; }

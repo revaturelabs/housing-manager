@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using HousingManager.Data.Service.Interfaces;
-using HousingManager.Data.Library.EFModels;
+using HousingManager.Data.Library.Models;
 using HousingManager.Data.Service.DAOs;
 using HousingManager.Data.Service.DTOs;
 using HousingManager.Data.Service.Mapper;
@@ -16,11 +16,11 @@ namespace HousingManager.Data.Service.Controllers
   [Route("api/Person")]
   public class PersonController : Controller
   {
-    protected static HousingManager_DB_SqlServerContext _Context;
+    protected static HousingManagerDBContext _Context;
     private IDataAccess<Person> _PData;
     private MyMapper _Mapper = new MyMapper();
 
-    public PersonController(HousingManager_DB_SqlServerContext context)
+    public PersonController(HousingManagerDBContext context)
     {
       _Context = context;
       _PData = DataAccessEntityFactory.GetPersonDAO(_Context);

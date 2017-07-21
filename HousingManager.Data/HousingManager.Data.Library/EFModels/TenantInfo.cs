@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HousingManager.Data.Library.EFModels
+namespace HousingManager.Data.Library.Models
 {
     public partial class TenantInfo
     {
@@ -13,6 +13,7 @@ namespace HousingManager.Data.Library.EFModels
         public DateTime MoveInDate { get; set; }
         public DateTime MoveOutDate { get; set; }
         public bool? HasCar { get; set; }
+        public Guid Guid { get; set; }
 
         public virtual ApartmentUnit ApartmentUnit { get; set; }
         public virtual Batch Batch { get; set; }

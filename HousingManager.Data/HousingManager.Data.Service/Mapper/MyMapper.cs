@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HousingManager.Data.Library.EFModels;
+using HousingManager.Data.Library.Models;
 using HousingManager.Data.Service.DTOs;
 using System;
 using System.Collections.Generic;

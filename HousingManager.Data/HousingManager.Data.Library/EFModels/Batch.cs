@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HousingManager.Data.Library.EFModels
+namespace HousingManager.Data.Library.Models
 {
     public partial class Batch
     {
@@ -15,6 +15,7 @@ namespace HousingManager.Data.Library.EFModels
         public DateTime StarDate { get; set; }
         public DateTime EndDate { get; set; }
         public int Size { get; set; }
+        public Guid Guid { get; set; }
 
         public virtual ICollection<TenantInfo> TenantInfo { get; set; }
         public virtual BatchType BatchType { get; set; }

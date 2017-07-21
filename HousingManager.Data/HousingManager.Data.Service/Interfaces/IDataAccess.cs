@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace HousingManager.Data.Service.Interfaces
 {
-    public interface IDataAccess<T>
-    {
-        T Create(T model);
-        List<T> Read();
-        T Update(T model);
-        bool Delete(T model);
-    }
+  public interface IDataAccess<T>
+  {
+    T Create(T model);
+    List<T> Read();
+    T Update(T model);
+    bool Delete(T model);
+  }
 }

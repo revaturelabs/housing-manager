@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using HousingManager.Data.Library.EFModels;
 using Microsoft.EntityFrameworkCore;
+using HousingManager.Data.Library.Models;
 
 namespace HousingManager.Data.Service
 {
@@ -33,8 +33,8 @@ namespace HousingManager.Data.Service
       services.AddCors(o => o.AddPolicy("default", b => b.AllowAnyOrigin()));
       services.AddMvc();
       var connection = @"Server=revature-housing.database.windows.net;Database=HousingManagerDB;User ID=dotnet@revature-housing;Password=2017Housing;Trusted_Connection=False;Encrypt=True;";
-      services.AddDbContext<HousingManager_DB_SqlServerContext>(options => options.UseSqlServer(connection));
-
+      services.AddDbContext<HousingManagerDBContext>(options => options.UseSqlServer(connection));
+      
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
