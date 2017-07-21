@@ -36,7 +36,6 @@ namespace HousingManager.Business.Service.Controllers
         [HttpPost]
         public void Post([FromBody]Person per)
         {
-
             _broker.Add(per);
         }
         
@@ -46,10 +45,11 @@ namespace HousingManager.Business.Service.Controllers
         {
         }
         
-        // DELETE: api/ApiWithActions/5
+        
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _broker.Delete(id);
         }
     }
 }

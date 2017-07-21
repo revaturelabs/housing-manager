@@ -18,8 +18,22 @@ namespace HousingManager.Business.Service.Brokers
 
         public override T Get(int id )
         {
-           
-            throw new NotImplementedException();
+            var type = new T();
+            string uri = Url + type.GetType().Name;
+            var response = client.GetAsync(uri).Result;
+
+            if(response.IsSuccessStatusCode)
+            {
+                T obj = new T();
+                obj =
+                JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
+                return obj;
+            }
+
+            else
+            {
+                return null;
+            }
         }
 
         public override List<T> GetAll( )
@@ -40,9 +54,16 @@ namespace HousingManager.Business.Service.Brokers
         public override bool Add(T model)
         {
             var content = new StringContent(JsonConvert.SerializeObject(model), System.Text.Encoding.UTF8, "application/json");
-            client.PostAsync(Url, content);
-            return true;
-            //return false;
+            var response = client.PostAsync(Url, content).Result;
+
+            if(response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+
+            return false;
+                       
         }
 
         public override bool Delete(int id)
