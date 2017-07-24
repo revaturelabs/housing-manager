@@ -33971,6 +33971,11 @@ var Person = (function () {
         this.firstName = res.data[id].firstName;
         this.lastName = res.data[id].lastName;
     };
+    Person.prototype.insertPerson = function (person) {
+        var res = person.split(" ");
+        this.firstName = res[0];
+        this.lastName = res[1];
+    };
     return Person;
 }());
 var Address = (function () {
@@ -34011,19 +34016,21 @@ module_1.home.controller('homeController', ['$scope', '$mdDialog', 'homeFactory'
                 targetEvent: ev,
                 clickOutsideToClose: false,
             })
-                .then(function (answer) {
-                $scope.status = answer + ' has been added.';
-            }, function () {
-                $scope.status = 'No one as been added.';
+                .then(function (person) {
+                $scope.insertPerson(person);
+                $scope.status = person + 'has been added!';
+            }, function (error) {
+                $scope.status = 'Creating a Person was cancelled: ' + error.message;
             });
         };
-        // $scope.createPerson = function(ev) {
-        //   $mdDialog.show(confirm).then(function(result) {
-        //     $scope.status = 'You decided to name your dog ' + result + '.';
-        //   }, function() {
-        //     $scope.status = 'You didn\'t name your dog.';
-        //   });
-        // };
+        $scope.insertPerson = function (person) {
+            homeFactory.insertPerson(person, $scope.myPerson)
+                .then(function (person) {
+                $scope.status = person + ' has been added.';
+            }, function (error) {
+                $scope.status = 'Unable to Create Person: ' + error.message;
+            });
+        };
         function DialogController($scope, $mdDialog) {
             $scope.hide = function () {
                 $mdDialog.hide();
@@ -34072,6 +34079,13 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
             getPerson: function (id, obj) {
                 $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
                     obj.getPerson(id, res);
+                }, failure);
+            },
+            insertPerson: function (person, obj) {
+                //var p = obj.insertPerson(person);
+                var test = { "FirstName": "Test", "LastName": "User" };
+                return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', test, { headers: { 'Content-Type': 'application/json' } }).then(function (res) {
+                    console.log("WE DID IT!");
                 }, failure);
             }
         };
