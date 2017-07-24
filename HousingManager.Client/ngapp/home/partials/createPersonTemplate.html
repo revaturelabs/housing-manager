@@ -14,20 +14,20 @@
         <div layout-gt-md="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>First name</label>
-            <input ng-model="user.firstName">
+            <input ng-model="person.firstName">
           </md-input-container>
         </div>
 
         <div layout-gt-md="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Last Name</label>
-            <input ng-model="user.lastName">
+            <input ng-model="person.lastName">
           </md-input-container>
         </div>
 
         <div>
           <md-button class="md-raised md-primary" ng-click="cancel()">Cancel</md-button>
-          <md-button class="md-raised md-primary" ng-click="answer(user.firstName + ' ' + user.lastName)">Create</md-button>
+          <md-button class="md-raised md-primary" ng-click="answer(person)">Create</md-button>
         </div>
       </form>
     </div>

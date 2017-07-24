@@ -26,11 +26,9 @@ class Person {
     this.lastName = res.data[id].lastName;
   }
 
-  insertPerson(person: string) {
-    var res = person.split(" ");
-
-    this.firstName = res[0];
-    this.lastName = res[1];
+  insertPerson(person: any) {
+    this.firstName = person.firstName;
+    this.lastName = person.lastName;
   }
 }
 
@@ -83,7 +81,6 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     })
     .then(function(person) {
       $scope.insertPerson(person);
-      $scope.status = person + 'has been added!';
     }, function(error) {
       $scope.status = 'Creating a Person was cancelled: ' + error.message;
     });
@@ -91,8 +88,8 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
 
   $scope.insertPerson = function(person) {
     homeFactory.insertPerson(person, $scope.myPerson)
-      .then(function (person) {
-        $scope.status = person + ' has been added.';
+      .then(function (response) {
+        $scope.status = person.firstName + " " + person.lastName + ' has been added!';
       }, function(error) {
         $scope.status = 'Unable to Create Person: ' + error.message;
       });

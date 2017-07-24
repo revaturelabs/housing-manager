@@ -16,12 +16,17 @@ h.factory('homeFactory', ['$http', function ($http) {
         obj.getPerson(id, res);
       }, failure);
     },
-    insertPerson: function (person: string, obj) {
-      //var p = obj.insertPerson(person);
-      //var test = { "FirstName": "Test", "LastName": "User" };
-      return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', person, {headers: {'Content-Type': 'application/json'}}).then(function(res){
-        console.log("WE DID IT!")
-      }, failure);
+    insertPerson: function (person, obj) {
+    //   return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', JSON.stringify(person), {headers: {'Content-Type': 'application/json'}}).then(function(res){
+    //     console.log("WE DID IT!")
+    //   }, failure);
+    // }
+      return $http({
+        method: 'POST',
+        url: 'http://housingmanagerbusiness.azurewebsites.net/api/Person/',
+        data: person,
+        headers: {'Content-Type': 'application/json'}
+      });
     }
   }
 }]);

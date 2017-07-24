@@ -33972,9 +33972,8 @@ var Person = (function () {
         this.lastName = res.data[id].lastName;
     };
     Person.prototype.insertPerson = function (person) {
-        var res = person.split(" ");
-        this.firstName = res[0];
-        this.lastName = res[1];
+        this.firstName = person.firstName;
+        this.lastName = person.lastName;
     };
     return Person;
 }());
@@ -34018,15 +34017,14 @@ module_1.home.controller('homeController', ['$scope', '$mdDialog', 'homeFactory'
             })
                 .then(function (person) {
                 $scope.insertPerson(person);
-                $scope.status = person + 'has been added!';
             }, function (error) {
                 $scope.status = 'Creating a Person was cancelled: ' + error.message;
             });
         };
         $scope.insertPerson = function (person) {
             homeFactory.insertPerson(person, $scope.myPerson)
-                .then(function (person) {
-                $scope.status = person + ' has been added.';
+                .then(function (response) {
+                $scope.status = person.firstName + " " + person.lastName + ' has been added!';
             }, function (error) {
                 $scope.status = 'Unable to Create Person: ' + error.message;
             });
@@ -34082,11 +34080,16 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
                 }, failure);
             },
             insertPerson: function (person, obj) {
-                //var p = obj.insertPerson(person);
-                var test = { "FirstName": "Test", "LastName": "User" };
-                return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', test, { headers: { 'Content-Type': 'application/json' } }).then(function (res) {
-                    console.log("WE DID IT!");
-                }, failure);
+                //   return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', JSON.stringify(person), {headers: {'Content-Type': 'application/json'}}).then(function(res){
+                //     console.log("WE DID IT!")
+                //   }, failure);
+                // }
+                return $http({
+                    method: 'POST',
+                    url: 'http://housingmanagerbusiness.azurewebsites.net/api/Person/',
+                    data: person,
+                    headers: { 'Content-Type': 'application/json' }
+                });
             }
         };
     }]);
