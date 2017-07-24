@@ -26,5 +26,10 @@ namespace HousingManager.Data.Service.DAOs
     {
       return new ApartmentComplexAccess(_Context);
     }
+
+    public static IDataAccess<Batch> GetBatchDAO(HousingManagerDBContext _Context)
+    {
+      return new BatchAccess(_Context);
+    }
   }
 }
