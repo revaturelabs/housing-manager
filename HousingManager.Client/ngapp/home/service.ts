@@ -18,8 +18,8 @@ h.factory('homeFactory', ['$http', function ($http) {
     },
     insertPerson: function (person: string, obj) {
       //var p = obj.insertPerson(person);
-      var test = { "FirstName": "Test", "LastName": "User" };
-      return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', test, {headers: {'Content-Type': 'application/json'}}).then(function(res){
+      //var test = { "FirstName": "Test", "LastName": "User" };
+      return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', person, {headers: {'Content-Type': 'application/json'}}).then(function(res){
         console.log("WE DID IT!")
       }, failure);
     }
