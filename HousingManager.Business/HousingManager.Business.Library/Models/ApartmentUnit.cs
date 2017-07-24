@@ -9,6 +9,7 @@ namespace HousingManager.Business.Library.Models
     public int UnitNumber { get; set; }
     public string ComplexName { get; set; }
     public int Capacity { get; set; }
+    public Guid Guid { get; set; }
 
     private Provider _UnitProvider = new Provider();
     public Provider UnitProvider
