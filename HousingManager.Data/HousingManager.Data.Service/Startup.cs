@@ -30,7 +30,7 @@ namespace HousingManager.Data.Service
     public void ConfigureServices(IServiceCollection services)
     {
       // Add framework services.
-      services.AddCors(o => o.AddPolicy("default", b => b.AllowAnyOrigin()));
+      services.AddCors(o => o.AddPolicy("default", b => b.AllowAnyOrigin().AllowAnyHeader()));
       services.AddMvc();
       var connection = @"Server=revature-housing.database.windows.net;Database=HousingManagerDB;User ID=dotnet@revature-housing;Password=2017Housing;Trusted_Connection=False;Encrypt=True;";
       services.AddDbContext<HousingManagerDBContext>(options => options.UseSqlServer(connection));
