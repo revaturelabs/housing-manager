@@ -9,7 +9,8 @@ namespace HousingManager.Business.Library.Models
       public string BatchName { get; set; }
       public DateTime StartDate { get; set; }
       public DateTime EndDate { get; set; }
-      public int size { get; set; }
+      public int Size { get; set; }
+      public Guid Guid { get; set; }
       public List<Person> People = new List<Person>();
 
       public Person FindPerson(Person person)
