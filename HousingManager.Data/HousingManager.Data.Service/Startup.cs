@@ -43,7 +43,7 @@ namespace HousingManager.Data.Service
       loggerFactory.AddConsole(Configuration.GetSection("Logging"));
       loggerFactory.AddDebug();
 
-      app.UseCors("default");
+      app.UseCors("default");    
       app.UseMvc();
     }
   }
