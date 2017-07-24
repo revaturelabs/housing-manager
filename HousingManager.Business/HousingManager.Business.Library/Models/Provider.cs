@@ -9,6 +9,7 @@ namespace HousingManager.Business.Library.Models
     public string Issue { get; set; }
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
+    public Guid Guid { get; set; }
     private ApartmentUnit _Unit = new ApartmentUnit();
 
     public ApartmentUnit Unit
