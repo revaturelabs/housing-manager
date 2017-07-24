@@ -6,6 +6,7 @@ namespace HousingManager.Business.Library.Models
 {
   public class Housekeeping
   {
+    public Guid Guid { get; set; }
     private DateTime _CurrentDate = new DateTime();
     public DateTime CurrentDate
     {
