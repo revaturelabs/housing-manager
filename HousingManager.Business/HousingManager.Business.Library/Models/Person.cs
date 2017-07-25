@@ -10,6 +10,7 @@ namespace HousingManager.Business.Library.Models
     public string LastName { get; set; }
     public Address PersonAddress = new Address();
     public char Gender { get; set; }
+    public Guid Guid { get; set; }
     public ContactInfo ContactInformation = new ContactInfo();
 
     public string GetPhoneNumber()

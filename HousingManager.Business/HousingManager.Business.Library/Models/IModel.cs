@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace HousingManager.Business.Library.Models
 {
-    public class IModel
-    {
-
-    }
+  public class IModel
+  {
+    Guid Guid { get; set; }
+  }
 }

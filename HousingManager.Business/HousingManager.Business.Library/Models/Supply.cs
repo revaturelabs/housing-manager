@@ -7,5 +7,6 @@ namespace HousingManager.Business.Library.Models
   public class Supply : IModel
   {
     public string Content { get; set; }
+    public Guid Guid { get; set; }
   }
 }

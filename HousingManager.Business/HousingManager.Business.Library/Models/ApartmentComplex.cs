@@ -7,6 +7,7 @@ namespace HousingManager.Business.Library.Models
   public class ApartmentComplex : IModel
   {
     public string ApartmentName { get; set; }
+    public Guid Guid { get; set; }
     public Address ApartmentAddress { get; set; }
     private List<ApartmentUnit> _ApartmentUnit = new List<ApartmentUnit>();
 

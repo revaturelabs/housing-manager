@@ -7,6 +7,7 @@ namespace HousingManager.Business.Library.Models
   public class Maintenance : IModel
   {
     public string Issue { get; set; }
+    public Guid Guid { get; set; }
     private ApartmentUnit _ApartmentUnitNumber = new ApartmentUnit();
     private DateTime _SubmissionDate = new DateTime();
 
