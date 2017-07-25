@@ -11,5 +11,6 @@ namespace HousingManager.Data.Service.DTOs
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public Guid Guid { get; set; }
+    //a
   }
 }
