@@ -34084,12 +34084,14 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
                 //     console.log("WE DID IT!")
                 //   }, failure);
                 // }
-                return $http({
+                $http({
                     method: 'POST',
                     url: 'http://housingmanagerbusiness.azurewebsites.net/api/Person/',
-                    data: person,
-                    headers: { 'Content-Type': 'application/json' }
-                });
+                    data: JSON.stringify(obj.insertPerson(person)),
+                    headers: { "Content-Type": "application/json", "Accept": "application/json" }
+                }).then(function (res) {
+                    console.log("WE DID IT");
+                }, failure);
             }
         };
     }]);

@@ -16,17 +16,27 @@ h.factory('homeFactory', ['$http', function ($http) {
         obj.getPerson(id, res);
       }, failure);
     },
-    insertPerson: function (person, obj) {
+    insertPerson: function (person: any, obj) {
     //   return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', JSON.stringify(person), {headers: {'Content-Type': 'application/json'}}).then(function(res){
     //     console.log("WE DID IT!")
     //   }, failure);
     // }
-      return $http({
+      $http({
         method: 'POST',
         url: 'http://housingmanagerbusiness.azurewebsites.net/api/Person/',
-        data: person,
-        headers: {'Content-Type': 'application/json'}
-      });
+        withCredentials: true,
+        headers: {
+          'Access-Control-Allow-Origin': 'http://localhost',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Credentials' : 'true',
+          'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE'
+        },
+        data: {person}
+        }).then(function(res){
+          console.log(res);
+        }, function(err){
+          console.log(err);
+        });
     }
   }
 }]);
