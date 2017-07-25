@@ -15,19 +15,17 @@ namespace HousingManager.Business.Service.Controllers
     {
         ServiceBroker<Address> _broker = BrokerFactory<Address>.GetInstance();
 
-        [HttpGet(Name ="GetAll", Order = 3)]
+        [HttpGet]
         public IEnumerable<Address> Get()
         {
             return _broker.GetAll();
         }
 
-        [HttpGet("{id}", Name = "Get", Order = 2)]
+        [HttpGet("{id}")]
         public Address Get(int id)
         {
             return _broker.Get(id);
         }
-
-        [HttpGet(Name ="GetGuid", Order =1)]
         
         [HttpPost]
         public void Post([FromBody]Address value)

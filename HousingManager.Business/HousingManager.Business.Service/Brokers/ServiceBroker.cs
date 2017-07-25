@@ -103,5 +103,10 @@ namespace HousingManager.Business.Service.Brokers
 
             return "Lol, wrong";
         }
+
+        public string GetRoute()
+        {
+            return Url;
+        }
     }
 }
