@@ -28,7 +28,7 @@ homeModule.factory('homeFactory', ['$http', function ($http) {
           'Access-Control-Allow-Credentials' : 'true',
           'Access-Control-Allow-Methods' : 'POST'
         },
-        data: {person}
+        data: JSON.stringify(person)
         }).then(function(res){
           console.log(res);
         }, function(err){

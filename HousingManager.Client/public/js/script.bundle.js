@@ -34056,12 +34056,12 @@ module_1.homeModule.factory('homeFactory', ['$http', function ($http) {
                     withCredentials: true,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
-                        'Content-Type': 'application/json',
+                        // 'Content-Type': 'application/json',
                         'Accept': 'application/json',
                         'Access-Control-Allow-Credentials': 'true',
                         'Access-Control-Allow-Methods': 'POST'
                     },
-                    data: { person: person }
+                    data: JSON.stringify(person)
                 }).then(function (res) {
                     console.log(res);
                 }, function (err) {
