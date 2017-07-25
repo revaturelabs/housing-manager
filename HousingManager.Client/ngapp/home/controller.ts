@@ -1,6 +1,5 @@
-import { home as h } from './module';
+import {homeService as h} from './service';
 import * as ng from 'angular';
-import './service';
 
 class Entity {
   text: string;
@@ -26,7 +25,7 @@ class Person {
     this.lastName = res.data[id].lastName;
   }
 
-  insertPerson(person: any) {
+  insertPerson(person) {
     this.firstName = person.firstName;
     this.lastName = person.lastName;
   }
@@ -77,25 +76,16 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
       templateUrl: 'ngapp/home/partials/createPersonTemplate.html',
       parent: ng.element(document.body),
       targetEvent: ev,
-      clickOutsideToClose:false,
+      clickOutsideToClose:true
     })
     .then(function(person) {
-      $scope.insertPerson(person);
+      $scope.status = person.firstName + " " + person.lastName + ' has been added!';
     }, function(error) {
       $scope.status = 'Creating a Person was cancelled: ' + error.message;
     });
   };
 
-  $scope.insertPerson = function(person) {
-    homeFactory.insertPerson(person, $scope.myPerson)
-      .then(function (response) {
-        $scope.status = person.firstName + " " + person.lastName + ' has been added!';
-      }, function(error) {
-        $scope.status = 'Unable to Create Person: ' + error.message;
-      });
-  }
-
-  function DialogController($scope, $mdDialog) {
+  function DialogController($scope, $mdDialog, homeFactory) {
     $scope.hide = function() {
       $mdDialog.hide();
     };
@@ -107,5 +97,10 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     $scope.answer = function(answer) {
       $mdDialog.hide(answer);
     };
+
+    $scope.insertPerson = function(person) {
+      $mdDialog.hide(person);
+      homeFactory.postPerson(person);
+    }
   };
 }]);

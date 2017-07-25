@@ -1,10 +1,10 @@
-import { home as h } from './module';
+import { homeModule } from './module';
 
 function failure (err) {
   console.log(err);
 }
 
-h.factory('homeFactory', ['$http', function ($http) {
+homeModule.factory('homeFactory', ['$http', function ($http) {
   return {
     getAddress: function (id: number, obj) {
       $http.get('http://housingmanagerbusiness.azurewebsites.net/api/values/').then(function (res) {
@@ -16,20 +16,17 @@ h.factory('homeFactory', ['$http', function ($http) {
         obj.getPerson(id, res);
       }, failure);
     },
-    insertPerson: function (person: any, obj) {
-    //   return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', JSON.stringify(person), {headers: {'Content-Type': 'application/json'}}).then(function(res){
-    //     console.log("WE DID IT!")
-    //   }, failure);
-    // }
+    postPerson: function (person) {
       $http({
         method: 'POST',
         url: 'http://housingmanagerbusiness.azurewebsites.net/api/Person/',
         withCredentials: true,
         headers: {
-          'Access-Control-Allow-Origin': 'http://localhost',
+          'Access-Control-Allow-Origin': '*',
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
           'Access-Control-Allow-Credentials' : 'true',
-          'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE'
+          'Access-Control-Allow-Methods' : 'POST'
         },
         data: {person}
         }).then(function(res){
@@ -40,3 +37,5 @@ h.factory('homeFactory', ['$http', function ($http) {
     }
   }
 }]);
+
+export{homeModule as homeService};
