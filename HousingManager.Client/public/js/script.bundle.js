@@ -60,14 +60,14 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(3);
+__webpack_require__(2);
 module.exports = angular;
 
 
@@ -79,21 +79,7 @@ module.exports = angular;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(5);
-__webpack_require__(6);
-var home = ng.module('ngHome', []);
-exports.home = home;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ng = __webpack_require__(0);
-__webpack_require__(4);
+__webpack_require__(3);
 __webpack_require__(8);
 __webpack_require__(14);
 var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome']);
@@ -110,7 +96,7 @@ ngApp.config(['$routeProvider', function ($routeProvider) {
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports) {
 
 /**
@@ -33946,15 +33932,14 @@ $provide.value("$locale", {
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(1);
+var service_1 = __webpack_require__(4);
 var ng = __webpack_require__(0);
-__webpack_require__(7);
 var Entity = (function () {
     function Entity(t, v) {
         this.text = t;
@@ -33994,7 +33979,7 @@ var Address = (function () {
     };
     return Address;
 }());
-module_1.home.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function ($scope, $mdDialog, homeFactory) {
+service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function ($scope, $mdDialog, homeFactory) {
         $scope.myAddress = new Address();
         $scope.myPerson = new Person();
         $scope.entities = [
@@ -34013,23 +33998,15 @@ module_1.home.controller('homeController', ['$scope', '$mdDialog', 'homeFactory'
                 templateUrl: 'ngapp/home/partials/createPersonTemplate.html',
                 parent: ng.element(document.body),
                 targetEvent: ev,
-                clickOutsideToClose: false,
+                clickOutsideToClose: true
             })
                 .then(function (person) {
-                $scope.insertPerson(person);
+                $scope.status = person.firstName + " " + person.lastName + ' has been added!';
             }, function (error) {
                 $scope.status = 'Creating a Person was cancelled: ' + error.message;
             });
         };
-        $scope.insertPerson = function (person) {
-            homeFactory.insertPerson(person, $scope.myPerson)
-                .then(function (response) {
-                $scope.status = person.firstName + " " + person.lastName + ' has been added!';
-            }, function (error) {
-                $scope.status = 'Unable to Create Person: ' + error.message;
-            });
-        };
-        function DialogController($scope, $mdDialog) {
+        function DialogController($scope, $mdDialog, homeFactory) {
             $scope.hide = function () {
                 $mdDialog.hide();
             };
@@ -34039,35 +34016,28 @@ module_1.home.controller('homeController', ['$scope', '$mdDialog', 'homeFactory'
             $scope.answer = function (answer) {
                 $mdDialog.hide(answer);
             };
+            $scope.insertPerson = function (person) {
+                $mdDialog.hide(person);
+                homeFactory.postPerson(person);
+            };
         }
         ;
     }]);
 
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "ngapp/home/partials/template.html";
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "ngapp/home/partials/createPersonTemplate.html";
-
-/***/ }),
-/* 7 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(1);
+var module_1 = __webpack_require__(5);
+exports.homeService = module_1.homeModule;
 function failure(err) {
     console.log(err);
 }
-module_1.home.factory('homeFactory', ['$http', function ($http) {
+module_1.homeModule.factory('homeFactory', ['$http', function ($http) {
         return {
             getAddress: function (id, obj) {
                 $http.get('http://housingmanagerbusiness.azurewebsites.net/api/values/').then(function (res) {
@@ -34079,21 +34049,54 @@ module_1.home.factory('homeFactory', ['$http', function ($http) {
                     obj.getPerson(id, res);
                 }, failure);
             },
-            insertPerson: function (person, obj) {
-                //   return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', JSON.stringify(person), {headers: {'Content-Type': 'application/json'}}).then(function(res){
-                //     console.log("WE DID IT!")
-                //   }, failure);
-                // }
-                return $http({
+            postPerson: function (person) {
+                $http({
                     method: 'POST',
                     url: 'http://housingmanagerbusiness.azurewebsites.net/api/Person/',
-                    data: person,
-                    headers: { 'Content-Type': 'application/json' }
+                    withCredentials: true,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Access-Control-Allow-Credentials': 'true',
+                        'Access-Control-Allow-Methods': 'POST'
+                    },
+                    data: { person: person }
+                }).then(function (res) {
+                    console.log(res);
+                }, function (err) {
+                    console.log(err);
                 });
             }
         };
     }]);
 
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ng = __webpack_require__(0);
+__webpack_require__(6);
+__webpack_require__(7);
+var homeModule = ng.module('ngHome', []);
+exports.homeModule = homeModule;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/home/partials/template.html";
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/home/partials/createPersonTemplate.html";
 
 /***/ }),
 /* 8 */
