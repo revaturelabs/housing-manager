@@ -64,6 +64,7 @@ namespace HousingManager.Data.Service.Controllers
 
 
       _TenantData.Create(myTenantInfo);
+
     }
 
     // PUT: api/Tenant/5
