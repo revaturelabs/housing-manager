@@ -9,6 +9,7 @@ namespace HousingManager.Business.Service.Interfaces
     public interface IBroker<T> where T : IModel
     {
         T Get(int id );
+        T Get(Guid guid);
         List<T> GetAll( );
         bool Add(T model);
         bool Delete(int id);

@@ -13,36 +13,38 @@ namespace HousingManager.Business.Service.Controllers
     [Route("api/Address")]
     public class AddressController : Controller
     {
-        // GET: api/Address
-        [HttpGet]
+        ServiceBroker<Address> _broker = BrokerFactory<Address>.GetInstance();
+
+        [HttpGet(Name ="GetAll", Order = 3)]
         public IEnumerable<Address> Get()
         {
-            return new DataBroker().GetAddresses();
+            return _broker.GetAll();
         }
 
-        // GET: api/Address/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{id}", Name = "Get", Order = 2)]
+        public Address Get(int id)
         {
-            return "value";
+            return _broker.Get(id);
         }
+
+        [HttpGet(Name ="GetGuid", Order =1)]
         
-        // POST: api/Address
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Address value)
         {
+            _broker.Add(value);
         }
         
-        // PUT: api/Address/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
+
         }
         
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+
         }
     }
 }
