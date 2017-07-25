@@ -9,6 +9,8 @@ using HousingManager.Data.Library.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
 using HousingManager.Data.Service.DAOs;
+using HousingManager.Data.Service.DTOs;
+using HousingManager.Data.Service.Mapper;
 
 namespace HousingManager.Data.Service.Controllers
 {
@@ -18,6 +20,7 @@ namespace HousingManager.Data.Service.Controllers
   {
     protected static HousingManagerDBContext _Context;
     private IDataAccess<Address> _AdrData;
+    private MyMapper _Mapper = new MyMapper();
 
     public AddressController(HousingManagerDBContext context)
     {
@@ -26,9 +29,17 @@ namespace HousingManager.Data.Service.Controllers
     }
     // GET: api/Address
     [HttpGet]
-    public List<Address> Get()
+    public List<AddressDTO> Get()
     {
-      return _AdrData.Read();
+      var listofaddresses = _AdrData.Read();
+      var listofaddressdto = new List<AddressDTO>();
+
+      for (int i = 0; i < listofaddresses.Count; i++)
+      {
+        listofaddressdto.Add(_Mapper.AddressEntitytoAddressDTO<AddressDTO>(listofaddresses[i]));
+      }
+
+      return listofaddressdto;
     }
 
     // GET: api/Address/5

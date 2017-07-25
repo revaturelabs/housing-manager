@@ -10,7 +10,6 @@ namespace HousingManager.Data.Service.DTOs
 
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public bool Active { get; set; }
-
+    public Guid Guid { get; set; }
   }
 }
