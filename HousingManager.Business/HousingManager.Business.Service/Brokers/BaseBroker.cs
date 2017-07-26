@@ -13,6 +13,7 @@ namespace HousingManager.Business.Service.Brokers
         internal HttpClient client = new HttpClient();
         internal string Url;
         public abstract T Get(int id );
+        public abstract T Get(Guid guid);
         public abstract List<T> GetAll( );
         public abstract bool Add(T model);
         public abstract bool Delete(int id);

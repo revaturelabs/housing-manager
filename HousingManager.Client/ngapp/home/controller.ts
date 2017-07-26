@@ -1,6 +1,5 @@
-import { home as h } from './module';
+import {homeService as h} from './service';
 import * as ng from 'angular';
-import './service';
 
 class Entity {
   text: string;
@@ -21,12 +20,14 @@ class Person {
     this.lastName = "N/A";
   }
 
-  getPerson(id: number, res: any){
+  getPerson(id: number, res: any) {
     this.firstName = res.data[id].firstName;
     this.lastName = res.data[id].lastName;
   }
-
-  insertPerson(person: any) {
+  getPeople(res: any) {
+    res.data
+  }
+  insertPerson(person) {
     this.firstName = person.firstName;
     this.lastName = person.lastName;
   }
@@ -64,6 +65,9 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     new Entity('Person', 'Person'),
   ];
 
+  $scope.user = null;
+  $scope.users = [{ firstName: 'Scooby', lastName: 'Doo' },{ firstName: 'Shaggy', lastName: 'Rodgers' }];
+
   $scope.processAddress = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
   }
@@ -77,24 +81,21 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
       templateUrl: 'ngapp/home/partials/createPersonTemplate.html',
       parent: ng.element(document.body),
       targetEvent: ev,
-      clickOutsideToClose:false,
+      clickOutsideToClose:true
     })
     .then(function(person) {
-      $scope.insertPerson(person);
+      homeFactory.postPerson(person);
+      $scope.status = person.firstName + " " + person.lastName + ' has been added!';
     }, function(error) {
       $scope.status = 'Creating a Person was cancelled: ' + error.message;
     });
   };
 
-  $scope.insertPerson = function(person) {
-    homeFactory.insertPerson(person, $scope.myPerson)
-      .then(function (response) {
-        $scope.status = person.firstName + " " + person.lastName + ' has been added!';
-      }, function(error) {
-        $scope.status = 'Unable to Create Person: ' + error.message;
-      });
+  $scope.getPeople = function() {
+    $scope.users = [];
+    homeFactory.getPeople($scope.users);
   }
-
+  
   function DialogController($scope, $mdDialog) {
     $scope.hide = function() {
       $mdDialog.hide();

@@ -1,10 +1,10 @@
-import { home as h } from './module';
+import { homeModule } from './module';
 
 function failure (err) {
   console.log(err);
 }
 
-h.factory('homeFactory', ['$http', function ($http) {
+homeModule.factory('homeFactory', ['$http', function ($http) {
   return {
     getAddress: function (id: number, obj) {
       $http.get('http://housingmanagerbusiness.azurewebsites.net/api/values/').then(function (res) {
@@ -16,17 +16,35 @@ h.factory('homeFactory', ['$http', function ($http) {
         obj.getPerson(id, res);
       }, failure);
     },
-    insertPerson: function (person, obj) {
-    //   return $http.post('http://housingmanagerbusiness.azurewebsites.net/api/Person/', JSON.stringify(person), {headers: {'Content-Type': 'application/json'}}).then(function(res){
-    //     console.log("WE DID IT!")
-    //   }, failure);
-    // }
-      return $http({
+    getPeople: function (obj) {
+      $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
+        //obj.push(res.data);
+        res.data.forEach(element => {
+          obj.push(element);
+        });
+        console.log(obj[2].firstName);
+      }, failure);
+    },
+    postPerson: function (person) {
+      $http({
         method: 'POST',
         url: 'http://housingmanagerbusiness.azurewebsites.net/api/Person/',
-        data: person,
-        headers: {'Content-Type': 'application/json'}
-      });
+        withCredentials: true,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Access-Control-Allow-Credentials' : 'true',
+          'Access-Control-Allow-Methods' : 'POST'
+        },
+        data: JSON.stringify(person)
+        }).then(function(res){
+          console.log(res);
+        }, function(err){
+          console.log(err);
+        });
     }
   }
 }]);
+
+export{homeModule as homeService};

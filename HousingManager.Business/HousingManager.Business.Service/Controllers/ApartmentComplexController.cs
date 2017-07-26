@@ -11,7 +11,7 @@ namespace HousingManager.Business.Service.Brokers
     [Route("api/ApartmentComplex")]
     public class ApartmentComplexController : Controller
     {
-        ApartmentComplexBroker _broker = new ApartmentComplexBroker();
+        ServiceBroker<ApartmentComplex> _broker = BrokerFactory<ApartmentComplex>.GetInstance();
 
         [HttpGet]
         public IEnumerable<ApartmentComplex> GetAll( )
@@ -21,10 +21,9 @@ namespace HousingManager.Business.Service.Brokers
 
 
         [HttpPost]
-        public async void Post([FromBody]ApartmentComplex value)
+        public void Post([FromBody]ApartmentComplex value)
         {
-            var response = await _broker.AddComplex(value);
-            
+            _broker.Add(value); 
         }
         
         public void Delete()

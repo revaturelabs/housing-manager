@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using HousingManager.Data.Service.Interfaces;
 using HousingManager.Data.Library.Models;
 using HousingManager.Data.Service.DAOs;
+using HousingManager.Data.Service.DTOs;
+using HousingManager.Data.Service.Mapper;
 
 namespace HousingManager.Data.Service.Controllers
 {
@@ -15,6 +17,7 @@ namespace HousingManager.Data.Service.Controllers
   public class ApartmentComplexController : Controller
   {
     protected static HousingManagerDBContext _Context;
+    private MyMapper _Mapper = new MyMapper();
     private IDataAccess<ApartmentComplex> _AptCpx;
 
     public ApartmentComplexController(HousingManagerDBContext context)
@@ -25,13 +28,26 @@ namespace HousingManager.Data.Service.Controllers
 
     // GET: api/ApartmentComplex
     [HttpGet]
-    public List<ApartmentComplex> Get()
+    public List<ApartmentComplexDTO> Get()
     {
-      return _AptCpx.Read();
+      var Apartments = _AptCpx.Read();
+      var AptDTO = new List<ApartmentComplexDTO>();
+
+      foreach(var item in Apartments)
+      {
+        AptDTO.Add(_Mapper.ApartmentComplexEntityToApartmentComplexDTO<ApartmentComplexDTO>(item));
+        foreach (var thing in item.ApartmentUnit)
+        {
+          AptDTO[AptDTO.Count - 1].AptUnitDTO.Add(_Mapper.ApartmentUnitEntityToApartmentUnitDTO<ApartmentUnitDTO>(thing));
+          AptDTO[AptDTO.Count - 1].AptUnitDTO[AptDTO[AptDTO.Count - 1].AptUnitDTO.Count - 1].Addr = _Mapper.AddressEntitytoAddressDTO<AddressDTO>(thing.Address); 
+         }
+      }
+
+      return AptDTO;
     }
 
     // GET: api/ApartmentComplex/5
-    [HttpGet("{id}", Name = "Get")]
+    [HttpGet("{id}")]
     public string Get(int id)
     {
       return "value";

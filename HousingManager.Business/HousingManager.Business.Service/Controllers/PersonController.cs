@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using HousingManager.Business.Service.Brokers;
 using HousingManager.Business.Library.Models;
 using HousingManager.Business.Service.Interfaces;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace HousingManager.Business.Service.Controllers
 {
@@ -17,7 +19,6 @@ namespace HousingManager.Business.Service.Controllers
         
         IBroker<Person> _broker = BrokerFactory<Person>.GetInstance();
 
-        // GET: api/Person
         [HttpGet]
         public List<Person> Get()
         {
@@ -30,16 +31,72 @@ namespace HousingManager.Business.Service.Controllers
         {
             return _broker.Get(id);
         }
-        
 
-        // POST: api/Person
+        [HttpGet]
+        [Route("{first}/{last}")]
+        public Person Get(string first, string last)
+        {
+            // Get Person by first/last
+            var route = new ServiceBroker<Person>().GetRoute();
+
+            route += first + "/" + last;
+            try
+            {
+                HttpClient client = new HttpClient();
+                var response = client.GetAsync(route).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Person obj =
+                        JsonConvert.DeserializeObject<Person>(response.Content.ReadAsStringAsync().Result);
+                    return obj;
+                }
+
+                else return null;
+            }
+
+            catch { return null; }
+
+        }
+        
+        
         [HttpPost]
         public void Post([FromBody]Person per)
         {
             _broker.Add(per);
         }
+
+
+        [HttpPost]
+        [Route("assign")]
+        public bool PostToApt([FromBody] PersonAptGuid toAssign)
+        {
+            var route = new ServiceBroker<Person>().GetRoute();
+            route += "apartmentunit/";
+
+            try
+            {
+                HttpClient client = new HttpClient();
+                var content = new StringContent(JsonConvert.SerializeObject(toAssign), System.Text.Encoding.UTF8, "application/json");
+                var response = client.PostAsync(route, content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+
+            catch
+            {
+                return false;
+            }
+
+        }
+
+
         
-        // PUT: api/Person/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
