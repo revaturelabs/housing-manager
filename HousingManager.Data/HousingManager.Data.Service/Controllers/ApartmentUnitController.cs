@@ -58,12 +58,12 @@ namespace HousingManager.Data.Service.Controllers
     {
       var myTenantInfo = new TenantInfo();
 
-      myTenantInfo.ApartmentUnitId = _Context.Batch.Where(b => b.Guid == pbDTO.ApartmentGuid).FirstOrDefault().BatchId;
+      myTenantInfo.ApartmentUnitId = _Context.ApartmentUnit.Where(b => b.Guid == pbDTO.ApartmentGuid).FirstOrDefault().ApartmentUnitId;
       myTenantInfo.PersonId = _Context.Person.Where(p => p.Guid == pbDTO.PersonGuid).FirstOrDefault().PersonId;
       myTenantInfo.Gender = "Male";
       myTenantInfo.MoveOutDate = DateTime.Now;
       myTenantInfo.MoveInDate = DateTime.Now;
-      myTenantInfo.BatchId = 1;
+      myTenantInfo.BatchId = 3;
       
       _ApartmentUnitData.Create(myTenantInfo);
     }
