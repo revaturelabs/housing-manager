@@ -6,24 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.4/angular-material.min.css">
+    <link rel="stylesheet" type="text/css" media="all" href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/cache/autoptimize/1/css/autoptimize_b94a729cbec59fa296c8ea598dda8632.css"/>
     <link href="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/favicon.ico" rel="icon" type="image/x-icon" />
   </head>
 
   <body data-ng-app="ngApp">
     <header>
-      <h1>Revature Housing</h1>
+      <div class="navbar-wrapper hero-bm">
+        <div class="container">
+          <nav class="navbar navbar-revature navbar-bg"> <!-- navbar-static-top   -->
+            <div class="container">
+              <div class="navbar-header">
+                <div class="logo">
+                  <a href="https://revature.com">
+                    <img src="https://3g4d13k75x47q7v53surz1gi-wpengine.netdna-ssl.com/wp-content/themes/revature/imgs/logo.png" alt="Revature">
+                  </a>
+                </div>
+              </div>
+              <div id="navbar" class="navbar-collapse rev-menu">
+                <ul id="menu-header-menu" class="nav navbar-nav">
+                  <li id="menu-item-1795" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1795">
+                    <a title="Test 1" href="">Test 1</a>
+                  </li>
+                  <li id="menu-item-1795" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1795">
+                    <a title="Test 2" href="">Test 2</a>
+                  </li>
+                  <li id="menu-item-1795" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1795">
+                    <a title="Test 3" href="">Test 3</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
     </header>
 
     <main>
-      <p>Housing Manager</p>
-      
-      <div data-ng-view style="padding:40px" ng-cloak>></div>
+      <div data-ng-view style="padding:40px" ng-cloak></div>
     </main>
 
     <br>
-    
-    <footer class="col-md-12" align="center">
-      <small>copyright &copy; 2017 Josh Brewster, Daniel Larner, Jon Vette, Sam Oates, Grant Taylor, all rights reserved.</small>
+
+    <footer class="col-md-12">
+      <div class="container">
+        <hr>
+        <div class="padding-top-20" layout="column" layout-align="center center">
+          <small>copyright &copy; 2017 Josh Brewster, Daniel Larner, Jon Vette, Sam Oates, Grant Taylor, all rights reserved.</small>
+        </div>
+      </div>
       <script src="js/script.bundle.js"></script>
     </footer>
   </body>
