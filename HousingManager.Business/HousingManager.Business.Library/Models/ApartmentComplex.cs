@@ -25,13 +25,13 @@ namespace HousingManager.Business.Library.Models
 
     public override bool Equals(object obj)
     {
-      if (obj == null && obj.GetType() != GetType())
+      if (obj == null || obj.GetType() != GetType())
       {
         return false;
       }
 
       var o = obj as ApartmentComplex;
-
+            if (o == null) return false;
       return (o.ApartmentName == ApartmentName && o.Guid == Guid && o.ApartmentAddress.Equals(ApartmentAddress));
     }
 
