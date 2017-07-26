@@ -12,6 +12,7 @@ namespace HousingManager.Business.Library.Models
         public Guid Guid { get; set; }
         public Address Addr { get; set; }
 
+
         //private Provider _UnitProvider = new Provider();
         //public Provider UnitProvider
         //{

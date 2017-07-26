@@ -11,6 +11,7 @@ namespace HousingManager.Business.Library.Models
     public Address ApartmentAddress { get; set; }
     private List<ApartmentUnit> _ApartmentUnit = new List<ApartmentUnit>();
 
+
     public List<ApartmentUnit> AptUnitDTO
     {
       get

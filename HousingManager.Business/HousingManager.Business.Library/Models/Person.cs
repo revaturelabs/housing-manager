@@ -13,6 +13,7 @@ namespace HousingManager.Business.Library.Models
     public Guid Guid { get; set; }
     public ContactInfo ContactInformation = new ContactInfo();
 
+
     public string GetPhoneNumber()
     {
       return ContactInformation.GetPhoneNumber();

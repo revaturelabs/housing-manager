@@ -13,6 +13,7 @@ namespace HousingManager.Business.Library.Models
     public string ZipCode { get; set; }
     public Guid Guid { get; set; }
 
+
     public override bool Equals(object obj) 
     {
       if (obj == null || obj.GetType() != GetType())
