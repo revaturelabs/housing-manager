@@ -19,7 +19,10 @@ namespace HousingManager.Data.Service.DAOs
 
     public override List<ApartmentComplex> Read()
     {
-      return _Context.Set<ApartmentComplex>().Include(a => a.ApartmentUnit).ToList();
+      return _Context.Set<ApartmentComplex>()
+        .Include(a => a.ApartmentUnit)
+          .ThenInclude(ad => ad.Address)
+        .ToList();
     }
   }
 }
