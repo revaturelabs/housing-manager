@@ -18,7 +18,7 @@ namespace HousingManager.Business.Service.Brokers
 
         public override T Get(int id )
         {
-            string uri = Url + typeof(T).Name;
+            string uri = GetRouteWithObject();
             var response = client.GetAsync(uri).Result;
 
             if(response.IsSuccessStatusCode)
@@ -37,7 +37,7 @@ namespace HousingManager.Business.Service.Brokers
 
         public override T Get(Guid guid)
         {
-            string uri = Url + typeof(T).Name;
+            string uri = GetRouteWithObject();
             string what = guid.ToString("D");
             var response = client.GetAsync(uri).Result;
 
@@ -57,7 +57,7 @@ namespace HousingManager.Business.Service.Brokers
 
         public override List<T> GetAll( )
         {            
-            string temp = Url + typeof(T).Name;
+            string temp = GetRouteWithObject();
 
             var response = client.GetAsync(temp).Result;
 
@@ -70,9 +70,9 @@ namespace HousingManager.Business.Service.Brokers
 
         public override bool Add(T model)
         {
-            string connect = Url + typeof(T).Name;
+            string connect = GetRouteWithObject();
             var content = new StringContent(JsonConvert.SerializeObject(model), System.Text.Encoding.UTF8, "application/json");
-            var response = client.PostAsync(Url, content).Result;
+            var response = client.PostAsync(connect, content).Result;
 
             if(response.IsSuccessStatusCode)
             {
@@ -92,7 +92,7 @@ namespace HousingManager.Business.Service.Brokers
 
         public override string TestGet( )
         { 
-            string temp = Url + typeof(T).Name;
+            string temp = GetRouteWithObject();
 
             var response = client.GetAsync(temp).Result;
 
@@ -107,6 +107,11 @@ namespace HousingManager.Business.Service.Brokers
         public string GetRoute()
         {
             return Url;
+        }
+
+        public string GetRouteWithObject()
+        {
+            return Url + typeof(T).Name;
         }
     }
 }

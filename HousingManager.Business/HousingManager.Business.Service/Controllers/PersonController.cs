@@ -69,7 +69,31 @@ namespace HousingManager.Business.Service.Controllers
 
         [HttpPost]
         [Route("assign")]
-        public void PostToApt([FromBody] PersonAptGuid)
+        public bool PostToApt([FromBody] PersonAptGuid toAssign)
+        {
+            var route = new ServiceBroker<Person>().GetRoute();
+            route += "apartmentunit/";
+
+            try
+            {
+                HttpClient client = new HttpClient();
+                var content = new StringContent(JsonConvert.SerializeObject(toAssign), System.Text.Encoding.UTF8, "application/json");
+                var response = client.PostAsync(route, content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+
+            catch
+            {
+                return false;
+            }
+
+        }
 
 
         
