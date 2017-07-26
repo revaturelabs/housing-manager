@@ -50,8 +50,21 @@ namespace HousingManager.Data.Service.Controllers
 
     // POST: api/Tenant
     [HttpPost]
-    public void Post([FromBody]string value)
+    public void Post([FromBody]PersonBatchDTO pb)
     {
+
+      var myTenantInfo = new TenantInfo();
+
+      myTenantInfo.BatchId = _Context.Batch.Where(b => b.Guid == pb.BatchGuid).FirstOrDefault().BatchId;
+      myTenantInfo.PersonId = _Context.Person.Where(p => p.Guid == pb.PersonGuid).FirstOrDefault().PersonId;
+      myTenantInfo.Gender = "Male";
+      myTenantInfo.MoveOutDate = DateTime.Now;
+      myTenantInfo.MoveInDate = DateTime.Now;
+      myTenantInfo.ApartmentUnitId = 3;
+
+
+      _TenantData.Create(myTenantInfo);
+
     }
 
     // PUT: api/Tenant/5
