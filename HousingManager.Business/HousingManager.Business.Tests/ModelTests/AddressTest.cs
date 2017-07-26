@@ -30,7 +30,8 @@ namespace HousingManager.Business.Tests
       var chash = c.GetHashCode();
       var c1hash = c1.GetHashCode();
 
-      Assert.IsTrue(c.Equals(c1) && chash == c1hash);
+      Assert.IsTrue(c.Equals(c1));
+      Assert.IsTrue(chash == c1hash);
     }
 
     [Test]
