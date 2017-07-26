@@ -16,6 +16,15 @@ homeModule.factory('homeFactory', ['$http', function ($http) {
         obj.getPerson(id, res);
       }, failure);
     },
+    getPeople: function (obj) {
+      $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
+        //obj.push(res.data);
+        res.data.forEach(element => {
+          obj.push(element);
+        });
+        console.log(obj[2].firstName);
+      }, failure);
+    },
     postPerson: function (person) {
       $http({
         method: 'POST',

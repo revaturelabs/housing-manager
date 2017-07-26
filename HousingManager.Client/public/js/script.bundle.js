@@ -33956,6 +33956,9 @@ var Person = (function () {
         this.firstName = res.data[id].firstName;
         this.lastName = res.data[id].lastName;
     };
+    Person.prototype.getPeople = function (res) {
+        res.data;
+    };
     Person.prototype.insertPerson = function (person) {
         this.firstName = person.firstName;
         this.lastName = person.lastName;
@@ -33986,6 +33989,8 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
             new Entity('Address', 'Address'),
             new Entity('Person', 'Person'),
         ];
+        $scope.user = null;
+        $scope.users = [{ firstName: 'Scooby', lastName: 'Doo' }, { firstName: 'Shaggy', lastName: 'Rodgers' }];
         $scope.processAddress = function (id) {
             homeFactory.getAddress(id, $scope.myAddress);
         };
@@ -34001,12 +34006,17 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
                 clickOutsideToClose: true
             })
                 .then(function (person) {
+                homeFactory.postPerson(person);
                 $scope.status = person.firstName + " " + person.lastName + ' has been added!';
             }, function (error) {
                 $scope.status = 'Creating a Person was cancelled: ' + error.message;
             });
         };
-        function DialogController($scope, $mdDialog, homeFactory) {
+        $scope.getPeople = function () {
+            $scope.users = [];
+            homeFactory.getPeople($scope.users);
+        };
+        function DialogController($scope, $mdDialog) {
             $scope.hide = function () {
                 $mdDialog.hide();
             };
@@ -34015,10 +34025,6 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
             };
             $scope.answer = function (answer) {
                 $mdDialog.hide(answer);
-            };
-            $scope.insertPerson = function (person) {
-                $mdDialog.hide(person);
-                homeFactory.postPerson(person);
             };
         }
         ;
@@ -34049,6 +34055,15 @@ module_1.homeModule.factory('homeFactory', ['$http', function ($http) {
                     obj.getPerson(id, res);
                 }, failure);
             },
+            getPeople: function (obj) {
+                $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
+                    //obj.push(res.data);
+                    res.data.forEach(function (element) {
+                        obj.push(element);
+                    });
+                    console.log(obj[2].firstName);
+                }, failure);
+            },
             postPerson: function (person) {
                 $http({
                     method: 'POST',
@@ -34056,7 +34071,7 @@ module_1.homeModule.factory('homeFactory', ['$http', function ($http) {
                     withCredentials: true,
                     headers: {
                         'Access-Control-Allow-Origin': '*',
-                        // 'Content-Type': 'application/json',
+                        'Content-Type': 'application/json',
                         'Accept': 'application/json',
                         'Access-Control-Allow-Credentials': 'true',
                         'Access-Control-Allow-Methods': 'POST'

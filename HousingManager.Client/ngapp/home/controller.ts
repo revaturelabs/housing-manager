@@ -20,11 +20,13 @@ class Person {
     this.lastName = "N/A";
   }
 
-  getPerson(id: number, res: any){
+  getPerson(id: number, res: any) {
     this.firstName = res.data[id].firstName;
     this.lastName = res.data[id].lastName;
   }
-
+  getPeople(res: any) {
+    res.data
+  }
   insertPerson(person) {
     this.firstName = person.firstName;
     this.lastName = person.lastName;
@@ -63,6 +65,9 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     new Entity('Person', 'Person'),
   ];
 
+  $scope.user = null;
+  $scope.users = [{ firstName: 'Scooby', lastName: 'Doo' },{ firstName: 'Shaggy', lastName: 'Rodgers' }];
+
   $scope.processAddress = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
   }
@@ -79,13 +84,19 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
       clickOutsideToClose:true
     })
     .then(function(person) {
+      homeFactory.postPerson(person);
       $scope.status = person.firstName + " " + person.lastName + ' has been added!';
     }, function(error) {
       $scope.status = 'Creating a Person was cancelled: ' + error.message;
     });
   };
 
-  function DialogController($scope, $mdDialog, homeFactory) {
+  $scope.getPeople = function() {
+    $scope.users = [];
+    homeFactory.getPeople($scope.users);
+  }
+  
+  function DialogController($scope, $mdDialog) {
     $scope.hide = function() {
       $mdDialog.hide();
     };
@@ -97,10 +108,5 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     $scope.answer = function(answer) {
       $mdDialog.hide(answer);
     };
-
-    $scope.insertPerson = function(person) {
-      $mdDialog.hide(person);
-      homeFactory.postPerson(person);
-    }
   };
 }]);

@@ -30,14 +30,18 @@
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
-        <p>First Name: {{myPerson.firstName}}</p>
-        <p>Last Name: {{myPerson.lastName}}</p> 
-        <p>{{status}}</p>
+        <div layout="column" layout-align="center center">
+          <md-select placeholder="Select a User" ng-model="user" md-on-open="getPeople()" style="min-width: 200px;">
+            <md-option ng-value="user" ng-repeat="user in users">{{user.firstName}} {{user.lastName}}</md-option>
+          </md-select>
+          <br>
+          <p>First Name: {{ user ? user.firstName : 'No one has' }}</p>
+          <p>Last Name: {{ user ? user.lastName : 'been selected' }}</p> 
+          <!-- <p>GUID: {{user ? user.guid : 'Unique Identifier!'}}</p> -->
+          <p>{{status}}</p>
+        </div>
       </md-card-content>
-      <md-card-actions layout="row" layout-align="end center">
-        <label>Person Selector</label>
-        <input type="number" id="number" data-ng-model="personNumber">
-        <md-button class="md-raised md-primary" data-ng-click="processPerson((personNumber-1))">Get Person</md-button>
+      <md-card-actions layout="row" layout-align="center center">
         <br>
          <md-button class="md-primary md-raised" ng-click="createPersonDialog($event)">Create Person</md-button> 
       </md-card-actions>
