@@ -18,8 +18,7 @@ namespace HousingManager.Business.Service.Brokers
 
         public override T Get(int id )
         {
-            var type = new T();
-            string uri = Url + type.GetType().Name;
+            string uri = Url + typeof(T).Name;
             var response = client.GetAsync(uri).Result;
 
             if(response.IsSuccessStatusCode)
@@ -36,17 +35,34 @@ namespace HousingManager.Business.Service.Brokers
             }
         }
 
-        public override List<T> GetAll( )
+        public override T Get(Guid guid)
         {
-            var type = new T();
-            
-            string temp = Url + type.GetType().Name;
+            string uri = Url + typeof(T).Name;
+            string what = guid.ToString("D");
+            var response = client.GetAsync(uri).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                T obj = new T();
+                obj =
+                JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
+                return obj;
+            }
+
+            else
+            {
+                return null;
+            }
+        }
+
+        public override List<T> GetAll( )
+        {            
+            string temp = Url + typeof(T).Name;
 
             var response = client.GetAsync(temp).Result;
 
             List<T> obj = new List<T>();
             obj = JsonConvert.DeserializeObject<List<T>>(response.Content.ReadAsStringAsync().Result);
-            //obj = JsonConvert.DeserializeAnonymousType<List<T>>(response.Content.ReadAsStringAsync().Result, obj);
             
             return obj;
             
@@ -54,8 +70,7 @@ namespace HousingManager.Business.Service.Brokers
 
         public override bool Add(T model)
         {
-            T type = new T();
-            Url += type.GetType().Name;
+            string connect = Url + typeof(T).Name;
             var content = new StringContent(JsonConvert.SerializeObject(model), System.Text.Encoding.UTF8, "application/json");
             var response = client.PostAsync(Url, content).Result;
 
@@ -76,10 +91,8 @@ namespace HousingManager.Business.Service.Brokers
 
 
         public override string TestGet( )
-        {
-            var blah = new T();
-
-            string temp = Url + blah.GetType().Name;
+        { 
+            string temp = Url + typeof(T).Name;
 
             var response = client.GetAsync(temp).Result;
 
@@ -89,6 +102,11 @@ namespace HousingManager.Business.Service.Brokers
             }
 
             return "Lol, wrong";
+        }
+
+        public string GetRoute()
+        {
+            return Url;
         }
     }
 }
