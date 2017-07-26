@@ -59,12 +59,19 @@ namespace HousingManager.Business.Service.Controllers
 
         }
         
-
+        
         [HttpPost]
         public void Post([FromBody]Person per)
         {
             _broker.Add(per);
         }
+
+
+        [HttpPost]
+        [Route("assign")]
+        public void PostToApt([FromBody] PersonAptGuid)
+
+
         
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
