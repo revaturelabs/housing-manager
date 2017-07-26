@@ -32,5 +32,22 @@ namespace HousingManager.Business.Library.Models
     {
       return PersonAddress.Equals(a);
     }
+
+    public override bool Equals(object obj)
+    {
+      if (obj == null && obj.GetType() != GetType())
+      {
+        return false;
+      }
+
+      var o = obj as Person;
+
+      return (o.FirstName == FirstName && o.LastName == LastName && o.PersonAddress == PersonAddress && o.Gender == Gender && o.ContactInformation == ContactInformation);
+    }
+
+    public override int GetHashCode()
+    {
+      return (FirstName.GetHashCode() + LastName.GetHashCode());
+    }
   }
 }

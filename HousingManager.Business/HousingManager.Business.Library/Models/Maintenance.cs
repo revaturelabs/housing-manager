@@ -33,5 +33,22 @@ namespace HousingManager.Business.Library.Models
         _SubmissionDate = SubmissionDate;
       }
     }
+
+    public override bool Equals(object obj)
+    {
+      if (obj == null && obj.GetType() != GetType())
+      {
+        return false;
+      }
+
+      var o = obj as Maintenance;
+
+      return (o.Issue == Issue && o.Guid == Guid && o.ApartmentUnitNumber == ApartmentUnitNumber && o.SubmissionDate == SubmissionDate);
+    }
+
+    public override int GetHashCode()
+    {
+      return (Issue.GetHashCode());
+    }
   }
 }

@@ -23,7 +23,7 @@ namespace HousingManager.Business.Tests
         b.BatchName = "dotnet";
       b.StartDate = DateTime.Now;
       b.EndDate = DateTime.Now;
-      b.size = 15;
+      b.Size = 15;
       b.People.Add(p);
       b.People.Add(p1);
 
@@ -44,7 +44,7 @@ namespace HousingManager.Business.Tests
       b.BatchName = "dotnet";
       b.StartDate = DateTime.Now;
       b.EndDate = DateTime.Now;
-      b.size = 15;
+      b.Size = 15;
       b.People.Add(p);
       b.People.Add(p1);
       var person = b.FindPerson(p1);
@@ -69,7 +69,7 @@ namespace HousingManager.Business.Tests
       b.BatchName = "dotnet";
       b.StartDate = DateTime.Now;
       b.EndDate = DateTime.Now;
-      b.size = 15;
+      b.Size = 15;
       b.People.Add(p);
       b.People.Add(p1);
       var person = b.FindPerson(p2);

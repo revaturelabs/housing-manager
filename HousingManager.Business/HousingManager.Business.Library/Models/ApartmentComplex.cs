@@ -11,7 +11,7 @@ namespace HousingManager.Business.Library.Models
     public Address ApartmentAddress { get; set; }
     private List<ApartmentUnit> _ApartmentUnit = new List<ApartmentUnit>();
 
-    public List<ApartmentUnit> ApartmentUnit
+    public List<ApartmentUnit> AptUnitDTO
     {
       get
       {
@@ -19,9 +19,25 @@ namespace HousingManager.Business.Library.Models
       }
       set
       {
-        _ApartmentUnit = ApartmentUnit;
+        _ApartmentUnit = AptUnitDTO;
+      }
+    }
+
+    public override bool Equals(object obj)
+    {
+      if (obj == null && obj.GetType() != GetType())
+      {
+        return false;
       }
 
+      var o = obj as ApartmentComplex;
+
+      return (o.ApartmentName == ApartmentName && o.Guid == Guid && o.ApartmentAddress.Equals(ApartmentAddress));
+    }
+
+    public override int GetHashCode()
+    {
+      return (ApartmentName.GetHashCode());
     }
   }
 }

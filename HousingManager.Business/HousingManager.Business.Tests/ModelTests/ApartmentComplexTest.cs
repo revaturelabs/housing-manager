@@ -17,25 +17,43 @@ namespace HousingManager.Business.Tests
 
       Assert.IsNotNull(ac.ApartmentName);
       Assert.IsNotNull(ac.ApartmentAddress);
-      Assert.IsNotNull(ac.ApartmentUnit);
+      Assert.IsNotNull(ac.AptUnitDTO);
     }
 
-    //[Test]
-    //public void TestApartmentComplexGetAll()
-    //{
-    //  //var a = new ApartmentComplexBroker();
+    [Test]
+    public void TestApartmentComplexEqualsMethod()
+    {
+      Guid ID = Guid.NewGuid();
 
-    //  List<ApartmentComplex> ac = new List<ApartmentComplex>();
+      var c = new Address();
+      c.AptNum = "112";
+      c.StreetName = "222 somewhere else";
+      c.City = "Houston";
+      c.State = "Texas";
+      c.ZipCode = "11111";
 
-    //  ApartmentComplex apt = new ApartmentComplex();
+      var c1 = new Address();
+      c1.AptNum = "112";
+      c1.StreetName = "222 somewhere else";
+      c1.City = "Houston";
+      c1.State = "Texas";
+      c1.ZipCode = "11111";
 
-    //  apt.ApartmentName = "Test Dummy";
+      var ac = new ApartmentComplex();
+      ac.ApartmentName = "Worldgate Apartments";
+      ac.Guid = ID;
+      ac.ApartmentAddress = c;
 
-    //  ac.Add(apt);
+      var acx = new ApartmentComplex();
+      acx.ApartmentName = "Worldgate Apartments";
+      acx.Guid = ID;
+      acx.ApartmentAddress = c1;
 
-    //  //var aptcomp = a.GetAll(ac);
+      var chash = ac.GetHashCode();
+      var c1hash = acx.GetHashCode();
 
-    //  Assert.IsTrue(aptcomp[0].ApartmentName == "Test Dummy");
-    //}
+      Assert.IsTrue(ac.Equals(acx));
+      Assert.IsTrue(chash == c1hash);
+    }
   }
 }

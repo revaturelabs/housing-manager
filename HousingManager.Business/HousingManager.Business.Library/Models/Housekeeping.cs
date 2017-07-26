@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HousingManager.Business.Library.Models
 {
-  public class Housekeeping
+  public class Housekeeping : IModel
   {
     public Guid Guid { get; set; }
     private DateTime _CurrentDate = new DateTime();
@@ -31,6 +31,23 @@ namespace HousingManager.Business.Library.Models
       {
         _NextDate = NextDate;
       }
+    }
+
+    public override bool Equals(object obj)
+    {
+      if (obj == null && obj.GetType() != GetType())
+      {
+        return false;
+      }
+
+      var o = obj as Housekeeping;
+
+      return (o.Guid == Guid && o.CurrentDate == CurrentDate && o.NextDate == NextDate);
+    }
+
+    public override int GetHashCode()
+    {
+      return (Guid.GetHashCode());
     }
   }
 }

@@ -13,7 +13,7 @@ namespace HousingManager.Business.Library.Models
     public string ZipCode { get; set; }
     public Guid Guid { get; set; }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object obj) 
     {
       if (obj == null && obj.GetType() != GetType())
       {
@@ -22,13 +22,12 @@ namespace HousingManager.Business.Library.Models
 
       var o = obj as Address;
 
-      return (o.AptNum == AptNum && o.StreetName == StreetName && o.City == City && o.State == State && o.ZipCode == ZipCode);
+      return (o.AptNum == AptNum && o.StreetName == StreetName && o.City == City && o.State == State && o.ZipCode == ZipCode && o.Guid == Guid);
     }
 
     public override int GetHashCode()
-    {
+    { 
       return (AptNum.GetHashCode() + StreetName.GetHashCode());
     }
-
-  }
+  }      
 }

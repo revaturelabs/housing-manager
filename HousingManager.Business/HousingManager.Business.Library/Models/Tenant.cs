@@ -6,27 +6,44 @@ namespace HousingManager.Business.Library.Models
 {
   public class Tenant : IModel
   {
-    private Person _person = new Person();
+    private Person _Person = new Person();
         
     public Person tenant {
-        get { return _person; }
-        set { _person = tenant; }
+        get { return _Person; }
+        set { _Person = tenant; }
     }
 
     public DateTime MoveIn { get; set; }
     public DateTime MoveOut { get; set; }
 
-    private Address _address = new Address();
-    public Address address
+    private Address _Address = new Address();
+    public Address Address
     {
-        get { return _address; }
-        set { _address = address; }
+        get { return _Address; }
+        set { _Address = Address; }
     }
         
-    public bool hasCar { get; set; }
+    public bool HasCar { get; set; }
 
-    public string batchName { get; set; }
+    public string BatchName { get; set; }
 
     public Guid Guid { get; set; }
+
+    public override bool Equals(object obj)
+    {
+      if (obj == null && obj.GetType() != GetType())
+      {
+        return false;
+      }
+
+      var o = obj as Tenant;
+
+      return (o.tenant == tenant && o.MoveIn == MoveIn && o.MoveOut == MoveOut && o.Address == Address && o.HasCar == HasCar && o.BatchName == BatchName && o.Guid == Guid);
+    }
+
+    public override int GetHashCode()
+    {
+      return (MoveIn.GetHashCode() + MoveOut.GetHashCode());
+    }
   }
 }

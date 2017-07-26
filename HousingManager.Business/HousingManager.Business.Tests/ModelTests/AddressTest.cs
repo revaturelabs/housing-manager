@@ -7,25 +7,9 @@ using HousingManager.Business.Library.Models;
 
 namespace HousingManager.Business.Tests
 {
-    [TestFixture]
-    public class AddressTest
-    {
-        //[Test]
-        //public void TestAddressModelSuccess()
-        //{
-        //    //var a = new Broker();
-        //    var address = a.AddAddress();
-        //    Assert.IsNotNull(address);   
-        //}
-
-        //[Test]
-        //public void TestAddressModelFail()
-        //{
-        //   // var a = new Broker();
-        //    var address = a.AddAddress2();
-        //    Assert.IsNull(address);
-        //}
-
+  [TestFixture]
+  public class AddressTest
+  {
     [Test]
     public void ContactInfoIsEqualPositive()
     {
@@ -46,7 +30,8 @@ namespace HousingManager.Business.Tests
       var chash = c.GetHashCode();
       var c1hash = c1.GetHashCode();
 
-      Assert.IsTrue(c.Equals(c1) && chash == c1hash);
+      Assert.IsTrue(c.Equals(c1));
+      Assert.IsTrue(chash == c1hash);
     }
 
     [Test]

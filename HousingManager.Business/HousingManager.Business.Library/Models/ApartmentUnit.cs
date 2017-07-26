@@ -23,5 +23,22 @@ namespace HousingManager.Business.Library.Models
         _UnitProvider = UnitProvider;
       }
     }
+
+    public override bool Equals(object obj)
+    {
+      if (obj == null && obj.GetType() != GetType())
+      {
+        return false;
+      }
+
+      var o = obj as ApartmentUnit;
+
+      return (o.UnitNumber == UnitNumber && o.ComplexName == ComplexName && o.Capacity == Capacity && o.Guid == Guid && o.UnitProvider == UnitProvider);
+    }
+
+    public override int GetHashCode()
+    {
+      return (UnitNumber.GetHashCode() + Capacity.GetHashCode());
+    }
   }
 }
