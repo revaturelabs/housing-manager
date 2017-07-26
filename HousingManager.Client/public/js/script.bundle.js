@@ -33990,12 +33990,23 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
             new Entity('Person', 'Person'),
         ];
         $scope.user = null;
-        $scope.users = [{ firstName: 'Scooby', lastName: 'Doo' }, { firstName: 'Shaggy', lastName: 'Rodgers' }];
+        $scope.users = [];
+        $scope.complexes = [];
+        $scope.units = [];
         $scope.processAddress = function (id) {
             homeFactory.getAddress(id, $scope.myAddress);
         };
         $scope.processPerson = function (id) {
             homeFactory.getPerson(id, $scope.myPerson);
+        };
+        $scope.getPeople = function () {
+            $scope.users = [];
+            homeFactory.getPeople($scope.users);
+        };
+        $scope.getComplexes = function () {
+            $scope.complexes = [];
+            $scope.units = [];
+            homeFactory.getComplexes($scope.complexes, $scope.units);
         };
         $scope.createPersonDialog = function (ev) {
             $mdDialog.show({
@@ -34011,10 +34022,6 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
             }, function () {
                 $scope.personStatus = 'Creating a Person was cancelled';
             });
-        };
-        $scope.getPeople = function () {
-            $scope.users = [];
-            homeFactory.getPeople($scope.users);
         };
         function DialogController($scope, $mdDialog) {
             $scope.hide = function () {
@@ -34057,11 +34064,16 @@ module_1.homeModule.factory('homeFactory', ['$http', function ($http) {
             },
             getPeople: function (obj) {
                 $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
-                    //obj.push(res.data);
                     res.data.forEach(function (element) {
                         obj.push(element);
                     });
-                    console.log(obj[2].firstName);
+                }, failure);
+            },
+            getComplexes: function (complexes, units) {
+                $http.get('http://housingmanagerbusiness.azurewebsites.net/api/ApartmentComplex/').then(function (res) {
+                    res.data.forEach(function (element) {
+                        complexes.push(element);
+                    });
                 }, failure);
             },
             postPerson: function (person) {

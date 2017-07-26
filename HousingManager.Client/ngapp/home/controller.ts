@@ -67,6 +67,8 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
 
   $scope.user = null;
   $scope.users = [];
+  $scope.complexes = [];
+  $scope.units = [];
 
   $scope.processAddress = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
@@ -80,7 +82,8 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
   }
   $scope.getComplexes = function() {
     $scope.complexes = [];
-    homeFactory.getComplexes($scope.complexes, $scope.);
+    $scope.units = [];
+    homeFactory.getComplexes($scope.complexes, $scope.units);
   }
 
   $scope.createPersonDialog = function(ev) {

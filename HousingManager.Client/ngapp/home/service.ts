@@ -23,10 +23,10 @@ homeModule.factory('homeFactory', ['$http', function ($http) {
         });
       }, failure);
     },
-    getComplexes: function (obj) {
+    getComplexes: function (complexes, units) {
       $http.get('http://housingmanagerbusiness.azurewebsites.net/api/ApartmentComplex/').then(function (res) {
         res.data.forEach(element => {
-          obj.push(element);
+          complexes.push(element);
         });
       }, failure);
     },
