@@ -36,7 +36,7 @@ namespace HousingManager.Data.Service.Controllers
         TenantDTOs.Add(_Mapper.TenantEntitytoTenantDTO<TenantDTO>(item));
         TenantDTOs[TenantDTOs.Count -1].FirstName = item.Person.FirstName;
         TenantDTOs[TenantDTOs.Count - 1].LastName = item.Person.LastName;
-        TenantDTOs[TenantDTOs.Count - 1].Batch = item.Batch.BatchType.Type;
+        //TenantDTOs[TenantDTOs.Count - 1].Batch = item.Batch.BatchType.Type;
       }
       return TenantDTOs;
     }
@@ -55,7 +55,7 @@ namespace HousingManager.Data.Service.Controllers
 
       var myTenantInfo = new TenantInfo();
 
-      myTenantInfo.BatchId = _Context.Batch.Where(b => b.Guid == pb.BatchGuid).FirstOrDefault().BatchId;
+      //myTenantInfo.BatchId = _Context.Batch.Where(b => b.Guid == pb.BatchGuid).FirstOrDefault().BatchId;
       myTenantInfo.PersonId = _Context.Person.Where(p => p.Guid == pb.PersonGuid).FirstOrDefault().PersonId;
       myTenantInfo.Gender = "Male";
       myTenantInfo.MoveOutDate = DateTime.Now;
