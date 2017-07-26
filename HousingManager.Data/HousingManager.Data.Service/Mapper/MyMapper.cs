@@ -14,6 +14,8 @@ namespace HousingManager.Data.Service.Mapper
     private MapperConfiguration PersonEntity_PersonDTO = new MapperConfiguration(c => c.CreateMap<Person, PersonDTO>());
     private MapperConfiguration BatchEntity_BatchDTO = new MapperConfiguration(c => c.CreateMap<Batch, BatchDTO>());
     private MapperConfiguration TenantEntity_TenantDTO = new MapperConfiguration(c => c.CreateMap<TenantInfo, TenantDTO>());
+    private MapperConfiguration ApartmentComplexEntity_ApartmentComplexDTO = new MapperConfiguration(c => c.CreateMap<ApartmentComplex, ApartmentComplexDTO>());
+    private MapperConfiguration ApartmentUnitEntity_ApartmentUnitDTO = new MapperConfiguration(c => c.CreateMap<ApartmentUnit, ApartmentUnitDTO>());
 
 
     public T AddressEntitytoAddressDTO<T>(Address la)
@@ -34,6 +36,16 @@ namespace HousingManager.Data.Service.Mapper
     public T TenantEntitytoTenantDTO<T>(TenantInfo t)
     {
       return TenantEntity_TenantDTO.CreateMapper().Map<T>(t);
+    }
+
+    public T ApartmentComplexEntityToApartmentComplexDTO<T>(ApartmentComplex ac)
+    {
+      return ApartmentComplexEntity_ApartmentComplexDTO.CreateMapper().Map<T>(ac);
+    }
+
+    public T ApartmentUnitEntityToApartmentUnitDTO<T>(ApartmentUnit au)
+    {
+      return ApartmentUnitEntity_ApartmentUnitDTO.CreateMapper().Map<T>(au);
     }
   }
 }

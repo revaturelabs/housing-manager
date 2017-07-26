@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace HousingManager.Data.Service.DTOs
 {
-    public class PersonBatchDTO
-    {
+  public class PersonBatchDTO
+  {
 
     public Guid PersonGuid { get; set; }
     public Guid BatchGuid { get; set; }
@@ -14,5 +14,5 @@ namespace HousingManager.Data.Service.DTOs
     public DateTime MoveOutDate { get; set; }
     public string Gender { get; set; }
 
-    }
+  }
 }
