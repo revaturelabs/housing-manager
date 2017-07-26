@@ -34007,9 +34007,9 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
             })
                 .then(function (person) {
                 homeFactory.postPerson(person);
-                $scope.status = person.firstName + " " + person.lastName + ' has been added!';
-            }, function (error) {
-                $scope.status = 'Creating a Person was cancelled: ' + error.message;
+                $scope.personStatus = person.firstName + " " + person.lastName + ' has been added!';
+            }, function () {
+                $scope.personStatus = 'Creating a Person was cancelled';
             });
         };
         $scope.getPeople = function () {

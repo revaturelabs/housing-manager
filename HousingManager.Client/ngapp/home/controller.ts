@@ -25,7 +25,7 @@ class Person {
     this.lastName = res.data[id].lastName;
   }
   getPeople(res: any) {
-    res.data
+    res.data;
   }
   insertPerson(person) {
     this.firstName = person.firstName;
@@ -66,7 +66,7 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
   ];
 
   $scope.user = null;
-  $scope.users = [{ firstName: 'Scooby', lastName: 'Doo' },{ firstName: 'Shaggy', lastName: 'Rodgers' }];
+  $scope.users = [];
 
   $scope.processAddress = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
@@ -74,6 +74,14 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
   $scope.processPerson = function (id) {
     homeFactory.getPerson(id, $scope.myPerson);
   } 
+  $scope.getPeople = function() {
+    $scope.users = [];
+    homeFactory.getPeople($scope.users);
+  }
+  $scope.getComplexes = function() {
+    $scope.complexes = [];
+    homeFactory.getComplexes($scope.complexes, $scope.);
+  }
 
   $scope.createPersonDialog = function(ev) {
     $mdDialog.show({
@@ -85,17 +93,12 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     })
     .then(function(person) {
       homeFactory.postPerson(person);
-      $scope.status = person.firstName + " " + person.lastName + ' has been added!';
-    }, function(error) {
-      $scope.status = 'Creating a Person was cancelled: ' + error.message;
+      $scope.personStatus = person.firstName + " " + person.lastName + ' has been added!';
+    }, function() {
+      $scope.personStatus = 'Creating a Person was cancelled';
     });
   };
 
-  $scope.getPeople = function() {
-    $scope.users = [];
-    homeFactory.getPeople($scope.users);
-  }
-  
   function DialogController($scope, $mdDialog) {
     $scope.hide = function() {
       $mdDialog.hide();
