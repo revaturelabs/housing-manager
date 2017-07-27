@@ -81,16 +81,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(3);
 __webpack_require__(8);
-__webpack_require__(14);
-var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome']);
+__webpack_require__(13);
+__webpack_require__(19);
+var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson']);
 ngApp.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-            .when('/', {
+            .when('/home', {
             controller: 'homeController',
             templateUrl: 'ngapp/home/partials/template.html'
         })
+            .when('/person', {
+            controller: 'personController',
+            templateUrl: 'ngapp/person/partials/template.html'
+        })
             .otherwise({
-            redirectTo: '/'
+            redirectTo: '/home'
         });
     }]);
 
@@ -33952,17 +33957,6 @@ var Person = (function () {
         this.firstName = "N/A";
         this.lastName = "N/A";
     }
-    Person.prototype.getPerson = function (id, res) {
-        this.firstName = res.data[id].firstName;
-        this.lastName = res.data[id].lastName;
-    };
-    Person.prototype.getPeople = function (res) {
-        res.data;
-    };
-    Person.prototype.insertPerson = function (person) {
-        this.firstName = person.firstName;
-        this.lastName = person.lastName;
-    };
     return Person;
 }());
 var Address = (function () {
@@ -33973,33 +33967,14 @@ var Address = (function () {
         this.state = "N/A";
         this.zipCode = 0;
     }
-    Address.prototype.getAddress = function (id, res) {
-        this.streetName = res.data[id].streetName;
-        this.aptNum = res.data[id].aptNum;
-        this.city = res.data[id].city;
-        this.state = res.data[id].state;
-        this.zipCode = res.data[id].zipCode;
-    };
     return Address;
 }());
 service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function ($scope, $mdDialog, homeFactory) {
-        $scope.myAddress = new Address();
-        $scope.myPerson = new Person();
-        $scope.entities = [
-            new Entity('Address', 'Address'),
-            new Entity('Person', 'Person'),
-        ];
         $scope.aptLoading = true;
         $scope.perLoading = true;
         $scope.users = [];
         $scope.complexes = [];
         $scope.units = [];
-        $scope.processAddress = function (id) {
-            homeFactory.getAddress(id, $scope.myAddress);
-        };
-        $scope.processPerson = function (id) {
-            homeFactory.getPerson(id, $scope.myPerson);
-        };
         $scope.getPeople = function () {
             $scope.users = [];
             $scope.perLoading = true;
@@ -34013,9 +33988,9 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
         $scope.getUnits = function () {
             $scope.units = [];
             $scope.complex.aptUnitDTO.forEach(function (element) {
+                //add capacity check
                 $scope.units.push(element);
             });
-            //console.log('Street Name: ' + $scope.units[0].addr.streetName);
         };
         $scope.createPersonDialog = function (ev) {
             $mdDialog.show({
@@ -34061,16 +34036,6 @@ function failure(err) {
 }
 module_1.homeModule.factory('homeFactory', ['$http', function ($http) {
         return {
-            getAddress: function (id, obj) {
-                $http.get('http://housingmanagerbusiness.azurewebsites.net/api/values/').then(function (res) {
-                    obj.getAddress(id, res);
-                }, failure);
-            },
-            getPerson: function (id, obj) {
-                $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
-                    obj.getPerson(id, res);
-                }, failure);
-            },
             getPeople: function ($scope) {
                 $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
                     res.data.forEach(function (element) {
@@ -34140,30 +34105,171 @@ module.exports = __webpack_require__.p + "ngapp/home/partials/createPersonTempla
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// Should already be required, here for clarity
-__webpack_require__(0);
+"use strict";
 
-// Load Angular and dependent libs
-__webpack_require__(9);
-__webpack_require__(11);
-
-// Now load Angular Material
-__webpack_require__(13);
-
-// Export namespace
-module.exports = 'ngMaterial';
+Object.defineProperty(exports, "__esModule", { value: true });
+var service_1 = __webpack_require__(9);
+var ng = __webpack_require__(0);
+var Entity = (function () {
+    function Entity(t, v) {
+        this.text = t;
+        this.value = v;
+    }
+    return Entity;
+}());
+var Person = (function () {
+    function Person() {
+        this.firstName = "N/A";
+        this.lastName = "N/A";
+    }
+    return Person;
+}());
+service_1.personService.controller('personController', ['$scope', '$mdDialog', 'personFactory', function ($scope, $mdDialog, personFactory) {
+        $scope.perLoading = true;
+        $scope.getPeople = function () {
+            $scope.users = [];
+            $scope.perLoading = true;
+            personFactory.getPeople($scope);
+        };
+        $scope.navigateTo = function (user, event) {
+            $mdDialog.show($mdDialog.alert()
+                .title(user.firstName + ' ' + user.lastName)
+                .textContent(user.guid)
+                .ariaLabel('Test')
+                .ok('Close')
+                .openFrom('#user.guid')
+                .closeTo('#user.guid')
+                .targetEvent(event));
+        };
+        $scope.createPersonDialog = function (ev) {
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'ngapp/home/partials/createPersonTemplate.html',
+                parent: ng.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true
+            })
+                .then(function (person) {
+                personFactory.postPerson(person);
+                $scope.personStatus = person.firstName + " " + person.lastName + ' has been added!';
+            }, function () {
+                $scope.personStatus = 'Creating a Person was cancelled';
+            });
+        };
+        function DialogController($scope, $mdDialog) {
+            $scope.hide = function () {
+                $mdDialog.hide();
+            };
+            $scope.cancel = function () {
+                $mdDialog.cancel();
+            };
+            $scope.answer = function (answer) {
+                $mdDialog.hide(answer);
+            };
+        }
+        ;
+    }]);
 
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(10);
-module.exports = 'ngAnimate';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var module_1 = __webpack_require__(10);
+exports.personService = module_1.personModule;
+function failure(err) {
+    console.log(err);
+}
+module_1.personModule.factory('personFactory', ['$http', function ($http) {
+        return {
+            getPeople: function ($scope) {
+                $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
+                    res.data.forEach(function (element) {
+                        $scope.users.push(element);
+                    });
+                    $scope.perLoading = false;
+                }, failure);
+            },
+            postPerson: function (person) {
+                $http({
+                    method: 'POST',
+                    url: 'http://housingmanagerbusiness.azurewebsites.net/api/Person/',
+                    withCredentials: true,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Access-Control-Allow-Credentials': 'true',
+                        'Access-Control-Allow-Methods': 'POST'
+                    },
+                    data: JSON.stringify(person)
+                }).then(function (res) {
+                    console.log(res);
+                }, function (err) {
+                    console.log(err);
+                });
+            }
+        };
+    }]);
 
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ng = __webpack_require__(0);
+__webpack_require__(11);
+__webpack_require__(12);
+var personModule = ng.module('ngPerson', []);
+exports.personModule = personModule;
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/person/partials/template.html";
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/person/partials/createPersonTemplate.html";
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Should already be required, here for clarity
+__webpack_require__(0);
+
+// Load Angular and dependent libs
+__webpack_require__(14);
+__webpack_require__(16);
+
+// Now load Angular Material
+__webpack_require__(18);
+
+// Export namespace
+module.exports = 'ngMaterial';
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(15);
+module.exports = 'ngAnimate';
+
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports) {
 
 /**
@@ -38323,15 +38429,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 11 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(12);
+__webpack_require__(17);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 12 */
+/* 17 */
 /***/ (function(module, exports) {
 
 /**
@@ -38740,7 +38846,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 13 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /*!
@@ -74750,15 +74856,15 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 14 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(15);
+__webpack_require__(20);
 module.exports = 'ngRoute';
 
 
 /***/ }),
-/* 15 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /**

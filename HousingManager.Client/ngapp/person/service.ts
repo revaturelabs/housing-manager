@@ -1,10 +1,10 @@
-import { homeModule } from './module';
+import { personModule } from './module';
 
 function failure (err) {
   console.log(err);
 }
 
-homeModule.factory('homeFactory', ['$http', function ($http) {
+personModule.factory('personFactory', ['$http',function ($http){
   return {
     getPeople: function ($scope) {
       $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
@@ -12,14 +12,6 @@ homeModule.factory('homeFactory', ['$http', function ($http) {
           $scope.users.push(element);
         });
         $scope.perLoading = false;
-      }, failure);
-    },
-    getComplexes: function ($scope) {
-      $http.get('http://housingmanagerbusiness.azurewebsites.net/api/ApartmentComplex/').then(function (res) {
-        res.data.forEach(element => {
-          $scope.complexes.push(element);
-        });
-        $scope.aptLoading = false;
       }, failure);
     },
     postPerson: function (person) {
@@ -44,4 +36,4 @@ homeModule.factory('homeFactory', ['$http', function ($http) {
   }
 }]);
 
-export{homeModule as homeService};
+export{personModule as personService};

@@ -10,12 +10,12 @@
       </md-card-title>
       <md-card-content>
         <div layout="column" layout-align="center center">
-          <md-select placeholder="Select a Complex" ng-model="complex" md-on-open="getComplexes()" style="min-width: 150px;">
+          <md-select placeholder="Select a Complex" ng-model="complex" md-on-open="getComplexes()" style="min-width: 150px;" ng-cloak>
             <md-progress-linear ng-show="aptLoading" md-mode="indeterminate"></md-progress-linear>
             <md-option ng-value="complex" ng-repeat="complex in complexes">{{complex.apartmentName}}</md-option>
           </md-select>
           <br>
-          <md-select placeholder="Select an Apartment Unit" ng-model="unit" md-on-open="getUnits()" style="min-width: 150px;">
+          <md-select placeholder="Select an Apartment Unit" ng-model="unit" md-on-open="getUnits()" style="min-width: 150px;" ng-cloak>
             <md-option ng-value="unit" ng-repeat="unit in units">{{unit.addr.streetName}}</md-option>
           </md-select>
           <br>

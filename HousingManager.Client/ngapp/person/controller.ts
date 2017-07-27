@@ -1,4 +1,4 @@
-import {homeService as h} from './service';
+import {personService as p} from './service';
 import * as ng from 'angular';
 
 class Entity {
@@ -21,45 +21,26 @@ class Person {
   }
 }
 
-class Address {
-  streetName: string;
-  aptNum: number;
-  city: string;
-  state: string;
-  zipCode: number;
-
-  constructor() {
-    this.streetName = "N/A";
-    this.aptNum = 0;
-    this.city = "N/A";
-    this.state = "N/A";
-    this.zipCode = 0;
-  }
-}
-
-h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function ($scope, $mdDialog, homeFactory) {
-  $scope.aptLoading = true;
+p.controller('personController', ['$scope', '$mdDialog','personFactory', function($scope, $mdDialog, personFactory){
   $scope.perLoading = true;
-  $scope.users = [];
-  $scope.complexes = [];
-  $scope.units = [];
 
   $scope.getPeople = function() {
     $scope.users = [];
     $scope.perLoading = true;
-    homeFactory.getPeople($scope);
+    personFactory.getPeople($scope);
   };
-  $scope.getComplexes = function() {
-    $scope.complexes = [];
-    $scope.aptLoading = true;
-    homeFactory.getComplexes($scope);
-  };
-  $scope.getUnits = function() {
-    $scope.units = [];
-    $scope.complex.aptUnitDTO.forEach(element => {
-      //add capacity check
-      $scope.units.push(element);
-    });
+
+  $scope.navigateTo = function(user, event) {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .title(user.firstName + ' ' + user.lastName)
+        .textContent(user.guid)
+        .ariaLabel('Test')
+        .ok('Close')
+        .openFrom('#user.guid')
+        .closeTo('#user.guid')
+        .targetEvent(event)
+    );
   };
 
   $scope.createPersonDialog = function(ev) {
@@ -71,7 +52,7 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
       clickOutsideToClose:true
     })
     .then(function(person) {
-      homeFactory.postPerson(person);
+      personFactory.postPerson(person);
       $scope.personStatus = person.firstName + " " + person.lastName + ' has been added!';
     }, function() {
       $scope.personStatus = 'Creating a Person was cancelled';
@@ -91,4 +72,4 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
       $mdDialog.hide(answer);
     };
   };
-}]);
+}])
