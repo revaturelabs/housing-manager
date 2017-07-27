@@ -39,7 +39,8 @@ namespace HousingManager.Data.Service.Controllers
         foreach (var thing in item.ApartmentUnit)
         {
           AptDTO[AptDTO.Count - 1].AptUnitDTO.Add(_Mapper.ApartmentUnitEntityToApartmentUnitDTO<ApartmentUnitDTO>(thing));
-          AptDTO[AptDTO.Count - 1].AptUnitDTO[AptDTO[AptDTO.Count - 1].AptUnitDTO.Count - 1].Addr = _Mapper.AddressEntitytoAddressDTO<AddressDTO>(thing.Address); 
+          AptDTO[AptDTO.Count - 1].AptUnitDTO[AptDTO[AptDTO.Count - 1].AptUnitDTO.Count - 1].Capacity = 6 - thing.TenantInfo.Count;
+          AptDTO[AptDTO.Count - 1].AptUnitDTO[AptDTO[AptDTO.Count - 1].AptUnitDTO.Count - 1].Addr = _Mapper.AddressEntitytoAddressDTO<AddressDTO>(thing.Address);
          }
       }
 
