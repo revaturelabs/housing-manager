@@ -7,29 +7,49 @@ using System.Text;
 
 namespace HousingManager.Business.Tests
 {
-  [TestFixture]
-  public class HousingManagerLibraryTests
-  {
-    [Test]
-    public void ValidatePersonMethodTestPos()
+    [TestFixture]
+    public class HousingManagerLibraryTests
     {
-      Person p = new Person();
+        [Test]
+        public void ValidatePersonMethodTestPos( )
+        {
+            Person p = new Person();
 
-      p.FirstName = "Daniel";
-      p.LastName = "Larner";
+            p.FirstName = "Daniel";
+            p.LastName = "Larner";
 
-      Assert.IsTrue(HousingManagerLibrary.ValidatePerson(p));
+            Assert.IsTrue(HousingManagerLibrary.ValidatePerson(p));
+        }
+
+        [Test]
+        public void ValidatePersonMethodTestNeg( )
+        {
+            Person p = new Person();
+
+            p.FirstName = "";
+            p.LastName = "string";
+
+            Assert.IsFalse(HousingManagerLibrary.ValidatePerson(p));
+        }
+
+        [Test]
+        public void ValidateApartmentUnitTestPos( )
+        {
+            ApartmentUnit testSubject = new ApartmentUnit();
+
+            testSubject.Capacity = 4;
+
+            Assert.IsTrue(HousingManagerLibrary.ValidateApartmentUnit(testSubject));
+        }
+
+        [Test]
+        public void ValidateApartumentUnitTestNeg( )
+        {
+            ApartmentUnit testSubject = new ApartmentUnit();
+
+            testSubject.Capacity = 0;
+
+            Assert.IsFalse(HousingManagerLibrary.ValidateApartmentUnit(testSubject));
+        }
     }
-
-    [Test]
-    public void ValidatePersonMethodTestNeg()
-    {
-      Person p = new Person();
-
-      p.FirstName = "";
-      p.LastName = "string";
-
-      Assert.IsFalse(HousingManagerLibrary.ValidatePerson(p));
-    }
-  }
 }
