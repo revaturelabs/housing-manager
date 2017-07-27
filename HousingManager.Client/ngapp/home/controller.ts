@@ -25,7 +25,7 @@ class Person {
     this.lastName = res.data[id].lastName;
   }
   getPeople(res: any) {
-    res.data
+    res.data;
   }
   insertPerson(person) {
     this.firstName = person.firstName;
@@ -65,15 +65,35 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     new Entity('Person', 'Person'),
   ];
 
-  $scope.user = null;
-  $scope.users = [{ firstName: 'Scooby', lastName: 'Doo' },{ firstName: 'Shaggy', lastName: 'Rodgers' }];
+  $scope.aptLoading = true;
+  $scope.perLoading = true;
+  $scope.users = [];
+  $scope.complexes = [];
+  $scope.units = [];
 
   $scope.processAddress = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
-  }
+  };
   $scope.processPerson = function (id) {
     homeFactory.getPerson(id, $scope.myPerson);
-  } 
+  };
+  $scope.getPeople = function() {
+    $scope.users = [];
+    $scope.perLoading = true;
+    homeFactory.getPeople($scope);
+  };
+  $scope.getComplexes = function() {
+    $scope.complexes = [];
+    $scope.aptLoading = true;
+    homeFactory.getComplexes($scope);
+  };
+  $scope.getUnits = function() {
+    $scope.units = [];
+    $scope.complex.aptUnitDTO.forEach(element => {
+      $scope.units.push(element);
+    });
+    //console.log('Street Name: ' + $scope.units[0].addr.streetName);
+  };
 
   $scope.createPersonDialog = function(ev) {
     $mdDialog.show({
@@ -85,17 +105,12 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     })
     .then(function(person) {
       homeFactory.postPerson(person);
-      $scope.status = person.firstName + " " + person.lastName + ' has been added!';
-    }, function(error) {
-      $scope.status = 'Creating a Person was cancelled: ' + error.message;
+      $scope.personStatus = person.firstName + " " + person.lastName + ' has been added!';
+    }, function() {
+      $scope.personStatus = 'Creating a Person was cancelled';
     });
   };
 
-  $scope.getPeople = function() {
-    $scope.users = [];
-    homeFactory.getPeople($scope.users);
-  }
-  
   function DialogController($scope, $mdDialog) {
     $scope.hide = function() {
       $mdDialog.hide();
