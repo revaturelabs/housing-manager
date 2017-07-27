@@ -73,27 +73,27 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
 
   $scope.processAddress = function (id) {
     homeFactory.getAddress(id, $scope.myAddress);
-  }
+  };
   $scope.processPerson = function (id) {
     homeFactory.getPerson(id, $scope.myPerson);
-  } 
+  };
   $scope.getPeople = function() {
     $scope.users = [];
     $scope.perLoading = true;
-    homeFactory.getPeople($scope.users);
-  }
+    homeFactory.getPeople($scope);
+  };
   $scope.getComplexes = function() {
     $scope.complexes = [];
-    homeFactory.getComplexes($scope.complexes, $scope.aptLoading);
-    console.log($scope.aptLoading);
-  }
+    $scope.aptLoading = true;
+    homeFactory.getComplexes($scope);
+  };
   $scope.getUnits = function() {
     $scope.units = [];
     $scope.complex.aptUnitDTO.forEach(element => {
       $scope.units.push(element);
     });
     //console.log('Street Name: ' + $scope.units[0].addr.streetName);
-  }
+  };
 
   $scope.createPersonDialog = function(ev) {
     $mdDialog.show({

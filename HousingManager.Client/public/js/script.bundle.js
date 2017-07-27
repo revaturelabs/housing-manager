@@ -34003,12 +34003,12 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
         $scope.getPeople = function () {
             $scope.users = [];
             $scope.perLoading = true;
-            homeFactory.getPeople($scope.users);
+            homeFactory.getPeople($scope);
         };
         $scope.getComplexes = function () {
             $scope.complexes = [];
-            homeFactory.getComplexes($scope.complexes, $scope.aptLoading);
-            console.log($scope.aptLoading);
+            $scope.aptLoading = true;
+            homeFactory.getComplexes($scope);
         };
         $scope.getUnits = function () {
             $scope.units = [];
@@ -34071,20 +34071,20 @@ module_1.homeModule.factory('homeFactory', ['$http', function ($http) {
                     obj.getPerson(id, res);
                 }, failure);
             },
-            getPeople: function (obj) {
+            getPeople: function ($scope) {
                 $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
                     res.data.forEach(function (element) {
-                        obj.push(element);
+                        $scope.users.push(element);
                     });
+                    $scope.perLoading = false;
                 }, failure);
             },
-            getComplexes: function (complexes, aptLoading) {
+            getComplexes: function ($scope) {
                 $http.get('http://housingmanagerbusiness.azurewebsites.net/api/ApartmentComplex/').then(function (res) {
                     res.data.forEach(function (element) {
-                        complexes.push(element);
+                        $scope.complexes.push(element);
                     });
-                    aptLoading = false;
-                    console.log("i set it to false!");
+                    $scope.aptLoading = false;
                 }, failure);
             },
             postPerson: function (person) {

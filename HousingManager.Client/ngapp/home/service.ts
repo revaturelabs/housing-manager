@@ -16,20 +16,20 @@ homeModule.factory('homeFactory', ['$http', function ($http) {
         obj.getPerson(id, res);
       }, failure);
     },
-    getPeople: function (obj) {
+    getPeople: function ($scope) {
       $http.get('http://housingmanagerbusiness.azurewebsites.net/api/Person/').then(function (res) {
         res.data.forEach(element => {
-          obj.push(element);
+          $scope.users.push(element);
         });
+        $scope.perLoading = false;
       }, failure);
     },
-    getComplexes: function (complexes, aptLoading) {
+    getComplexes: function ($scope) {
       $http.get('http://housingmanagerbusiness.azurewebsites.net/api/ApartmentComplex/').then(function (res) {
         res.data.forEach(element => {
-          complexes.push(element);
+          $scope.complexes.push(element);
         });
-        aptLoading = false;
-        console.log("i set it to false!");
+        $scope.aptLoading = false;
       }, failure);
     },
     postPerson: function (person) {

@@ -10,10 +10,8 @@
       </md-card-title>
       <md-card-content>
         <div layout="column" layout-align="center center">
-
-          <md-progress-linear ng-show="aptLoading" md-mode="indeterminate"></md-progress-linear>
-
           <md-select placeholder="Select a Complex" ng-model="complex" md-on-open="getComplexes()" style="min-width: 150px;">
+            <md-progress-linear ng-show="aptLoading" md-mode="indeterminate"></md-progress-linear>
             <md-option ng-value="complex" ng-repeat="complex in complexes">{{complex.apartmentName}}</md-option>
           </md-select>
           <br>
@@ -39,6 +37,7 @@
         <div layout="column" layout-align="center center">
           <p>{{personStatus}}</p>
           <md-select placeholder="Select a User" ng-model="user" md-on-open="getPeople()" style="min-width: 200px;">
+            <md-progress-linear ng-show="perLoading" md-mode="indeterminate"></md-progress-linear>
             <md-option ng-value="user" ng-repeat="user in users">{{user.firstName}} {{user.lastName}}</md-option>
           </md-select>
           <br>
