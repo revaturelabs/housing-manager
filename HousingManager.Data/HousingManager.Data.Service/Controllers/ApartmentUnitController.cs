@@ -38,7 +38,7 @@ namespace HousingManager.Data.Service.Controllers
         tad[tad.Count - 1].FirstName = item.Person.FirstName;
         tad[tad.Count - 1].LastName = item.Person.LastName;
         tad[tad.Count - 1].ApartmentComplexName = item.ApartmentUnit.ApartmentComplex.ApartmentName;
-        tad[tad.Count - 1].Capacity = item.ApartmentUnit.Capacity;
+        tad[tad.Count - 1].Capacity = 6 - item.ApartmentUnit.TenantInfo.Count;
         tad[tad.Count - 1].Address = _Mapper.AddressEntitytoAddressDTO<AddressDTO>(item.ApartmentUnit.Address);
       }
 
