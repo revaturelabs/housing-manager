@@ -71,9 +71,21 @@ namespace HousingManager.Business.Service.Controllers
         [Route("assign")]
         public bool PostToApt([FromBody] PersonAptGuid toAssign)
         {
+            var PBroker = new ServiceBroker<Person>();
+            var ABroker = new ServiceBroker<ApartmentUnit>();
+
+            var person = PBroker.Get(toAssign.Person);
+            var apt = ABroker.Get(toAssign.ApartmentUnit);
+
+            // Call Manager
+            if(!ValidatePerson(person) || !ValidateApartmentUnit(apt))
+            {
+                return false;
+            }
+
             var route = new ServiceBroker<Person>().GetRoute();
             route += "apartmentunit/";
-
+            
             try
             {
                 HttpClient client = new HttpClient();
