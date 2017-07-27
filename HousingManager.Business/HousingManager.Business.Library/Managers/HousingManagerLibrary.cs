@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HousingManager.Business.Library.Managers
 {
-  public class HousingManager
+  public static class HousingManagerLibrary
   {
     public static bool ValidatePerson(Person person)
     {

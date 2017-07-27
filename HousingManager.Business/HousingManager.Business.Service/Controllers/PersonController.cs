@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using HousingManager.Business.Service.Brokers;
 using HousingManager.Business.Library.Models;
 using HousingManager.Business.Service.Interfaces;
+using HousingManager.Business.Library.Managers;
 using System.Net.Http;
 using Newtonsoft.Json;
 
@@ -77,8 +78,9 @@ namespace HousingManager.Business.Service.Controllers
             var person = PBroker.Get(toAssign.Person);
             var apt = ABroker.Get(toAssign.ApartmentUnit);
 
+            
             // Call Manager
-            if(!ValidatePerson(person) || !ValidateApartmentUnit(apt))
+            if(!HousingManagerLibrary.ValidatePerson(person) || !HousingManagerLibrary.ValidateApartmentUnit(apt))
             {
                 return false;
             }
