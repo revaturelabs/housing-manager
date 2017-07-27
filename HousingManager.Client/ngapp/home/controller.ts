@@ -65,7 +65,8 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     new Entity('Person', 'Person'),
   ];
 
-  $scope.user = null;
+  $scope.aptLoading = true;
+  $scope.perLoading = true;
   $scope.users = [];
   $scope.complexes = [];
   $scope.units = [];
@@ -78,12 +79,20 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
   } 
   $scope.getPeople = function() {
     $scope.users = [];
+    $scope.perLoading = true;
     homeFactory.getPeople($scope.users);
   }
   $scope.getComplexes = function() {
     $scope.complexes = [];
+    homeFactory.getComplexes($scope.complexes, $scope.aptLoading);
+    console.log($scope.aptLoading);
+  }
+  $scope.getUnits = function() {
     $scope.units = [];
-    homeFactory.getComplexes($scope.complexes, $scope.units);
+    $scope.complex.aptUnitDTO.forEach(element => {
+      $scope.units.push(element);
+    });
+    //console.log('Street Name: ' + $scope.units[0].addr.streetName);
   }
 
   $scope.createPersonDialog = function(ev) {

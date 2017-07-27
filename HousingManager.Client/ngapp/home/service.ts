@@ -23,11 +23,13 @@ homeModule.factory('homeFactory', ['$http', function ($http) {
         });
       }, failure);
     },
-    getComplexes: function (complexes, units) {
+    getComplexes: function (complexes, aptLoading) {
       $http.get('http://housingmanagerbusiness.azurewebsites.net/api/ApartmentComplex/').then(function (res) {
         res.data.forEach(element => {
           complexes.push(element);
         });
+        aptLoading = false;
+        console.log("i set it to false!");
       }, failure);
     },
     postPerson: function (person) {

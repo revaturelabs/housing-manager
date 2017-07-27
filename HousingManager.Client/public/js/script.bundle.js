@@ -33989,7 +33989,8 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
             new Entity('Address', 'Address'),
             new Entity('Person', 'Person'),
         ];
-        $scope.user = null;
+        $scope.aptLoading = true;
+        $scope.perLoading = true;
         $scope.users = [];
         $scope.complexes = [];
         $scope.units = [];
@@ -34001,12 +34002,20 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
         };
         $scope.getPeople = function () {
             $scope.users = [];
+            $scope.perLoading = true;
             homeFactory.getPeople($scope.users);
         };
         $scope.getComplexes = function () {
             $scope.complexes = [];
+            homeFactory.getComplexes($scope.complexes, $scope.aptLoading);
+            console.log($scope.aptLoading);
+        };
+        $scope.getUnits = function () {
             $scope.units = [];
-            homeFactory.getComplexes($scope.complexes, $scope.units);
+            $scope.complex.aptUnitDTO.forEach(function (element) {
+                $scope.units.push(element);
+            });
+            //console.log('Street Name: ' + $scope.units[0].addr.streetName);
         };
         $scope.createPersonDialog = function (ev) {
             $mdDialog.show({
@@ -34069,11 +34078,13 @@ module_1.homeModule.factory('homeFactory', ['$http', function ($http) {
                     });
                 }, failure);
             },
-            getComplexes: function (complexes, units) {
+            getComplexes: function (complexes, aptLoading) {
                 $http.get('http://housingmanagerbusiness.azurewebsites.net/api/ApartmentComplex/').then(function (res) {
                     res.data.forEach(function (element) {
                         complexes.push(element);
                     });
+                    aptLoading = false;
+                    console.log("i set it to false!");
                 }, failure);
             },
             postPerson: function (person) {

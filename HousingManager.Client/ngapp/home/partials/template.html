@@ -10,18 +10,22 @@
       </md-card-title>
       <md-card-content>
         <div layout="column" layout-align="center center">
-          <md-select placeholder="Select a Complex" ng-model="complex" md-on-open="getComplexes()" style="min-width: 200px;">
-            <md-option ng-value="complex" ng-repeat="complex in complexes">{{complex.ApartmentName}}</md-option>
+
+          <md-progress-linear ng-show="aptLoading" md-mode="indeterminate"></md-progress-linear>
+
+          <md-select placeholder="Select a Complex" ng-model="complex" md-on-open="getComplexes()" style="min-width: 150px;">
+            <md-option ng-value="complex" ng-repeat="complex in complexes">{{complex.apartmentName}}</md-option>
           </md-select>
           <br>
-          <p>Apartment Complex: {{ complex ? complex.ApartmentName : 'An Apartment Complex has not been selected' }}</p>
-          <!-- <p>GUID: {{complex ? complex.guid : 'Unique Identifier!'}}</p> -->
-          <p>{{status}}</p>
+          <md-select placeholder="Select an Apartment Unit" ng-model="unit" md-on-open="getUnits()" style="min-width: 150px;">
+            <md-option ng-value="unit" ng-repeat="unit in units">{{unit.addr.streetName}}</md-option>
+          </md-select>
+          <br>
+          <p>Complex: {{ complex ? complex.apartmentName : 'A Complex has not been selected' }}</p>
+          <p>Apartment Unit: {{ unit ? unit.addr.streetName : 'An Apartment Unit has not been selected' }}</p>
+          <!-- <p>GUID: {{unit ? unit.guid : 'Unique Identifier!'}}</p>  -->
         </div>
       </md-card-content>
-      <md-card-actions layout="row" layout-align="end center">
-
-      </md-card-actions>
     </md-card>
   </div>
   <div class="col-md-3">
