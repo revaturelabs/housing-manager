@@ -82,7 +82,8 @@ var ng = __webpack_require__(0);
 __webpack_require__(3);
 __webpack_require__(8);
 __webpack_require__(13);
-__webpack_require__(19);
+__webpack_require__(17);
+__webpack_require__(23);
 var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson']);
 ngApp.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
@@ -93,6 +94,10 @@ ngApp.config(['$routeProvider', function ($routeProvider) {
             .when('/person', {
             controller: 'personController',
             templateUrl: 'ngapp/person/partials/template.html'
+        })
+            .when('/complex', {
+            controller: 'complexController',
+            templateUrl: 'ngapp/complex/partials/template.html'
         })
             .otherwise({
             redirectTo: '/home'
@@ -34246,30 +34251,162 @@ module.exports = __webpack_require__.p + "ngapp/person/partials/createPersonTemp
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// Should already be required, here for clarity
-__webpack_require__(0);
+"use strict";
 
-// Load Angular and dependent libs
-__webpack_require__(14);
-__webpack_require__(16);
-
-// Now load Angular Material
-__webpack_require__(18);
-
-// Export namespace
-module.exports = 'ngMaterial';
+Object.defineProperty(exports, "__esModule", { value: true });
+var service_1 = __webpack_require__(14);
+var Entity = (function () {
+    function Entity(t, v) {
+        this.text = t;
+        this.value = v;
+    }
+    return Entity;
+}());
+var Address = (function () {
+    function Address() {
+        this.streetName = "N/A";
+        this.aptNum = 0;
+        this.city = "N/A";
+        this.state = "N/A";
+        this.zipCode = 0;
+    }
+    return Address;
+}());
+var ApartmentUnit = (function () {
+    function ApartmentUnit() {
+        this.capacity = 0;
+        this.address = new Address();
+    }
+    return ApartmentUnit;
+}());
+var complex = (function () {
+    function complex() {
+        this.apartmentName = "N/A";
+        this.address = new Address();
+        this.aptUnitDTO = 0;
+    }
+    return complex;
+}());
+service_1.complexService.controller('complexController', ['$scope', '$mdDialog', 'complexFactory', function ($scope, $mdDialog, complexFactory) {
+        $scope.perLoading = true;
+        $scope.getComplexes = function () {
+            $scope.items = [];
+            $scope.perLoading = true;
+            complexFactory.getComplexes($scope);
+        };
+        $scope.navigateTo = function (item, event) {
+            $mdDialog.show($mdDialog.alert()
+                .title(item.apartmentName)
+                .textContent(item.guid)
+                .ariaLabel('Test')
+                .ok('Close')
+                .openFrom('#item.guid')
+                .closeTo('#item.guid')
+                .targetEvent(event));
+        };
+        //   $scope.createcomplexDialog = function(ev) {
+        //     $mdDialog.show({
+        //       controller: DialogController,
+        //       templateUrl: 'ngapp/complex/partials/createcomplexTemplate.html',
+        //       parent: ng.element(document.body),
+        //       targetEvent: ev,
+        //       clickOutsideToClose:true
+        //     })
+        //     .then(function(complex) {
+        //       complexFactory.postcomplex(complex);
+        //       $scope.complexStatus = complex.firstName + " " + complex.lastName + ' has been added!';
+        //     }, function() {
+        //       $scope.complexStatus = 'Creating a complex was cancelled';
+        //     });
+        //   };
+        function DialogController($scope, $mdDialog) {
+            $scope.hide = function () {
+                $mdDialog.hide();
+            };
+            $scope.cancel = function () {
+                $mdDialog.cancel();
+            };
+            $scope.answer = function (answer) {
+                $mdDialog.hide(answer);
+            };
+        }
+        ;
+    }]);
 
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(15);
-module.exports = 'ngAnimate';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var module_1 = __webpack_require__(15);
+exports.complexService = module_1.complexModule;
+function failure(err) {
+    console.log(err);
+}
+module_1.complexModule.factory('complexFactory', ['$http', function ($http) {
+        return {
+            getComplexes: function ($scope) {
+                $http.get('http://housingmanagerbusiness.azurewebsites.net/api/complex/').then(function (res) {
+                    res.data.forEach(function (element) {
+                        $scope.items.push(element);
+                    });
+                    $scope.perLoading = false;
+                }, failure);
+            }
+        };
+    }]);
 
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ng = __webpack_require__(0);
+__webpack_require__(16);
+var complexModule = ng.module('ngPerson', []);
+exports.complexModule = complexModule;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/person/partials/template.html";
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Should already be required, here for clarity
+__webpack_require__(0);
+
+// Load Angular and dependent libs
+__webpack_require__(18);
+__webpack_require__(20);
+
+// Now load Angular Material
+__webpack_require__(22);
+
+// Export namespace
+module.exports = 'ngMaterial';
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(19);
+module.exports = 'ngAnimate';
+
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports) {
 
 /**
@@ -38429,15 +38566,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 16 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(17);
+__webpack_require__(21);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 17 */
+/* 21 */
 /***/ (function(module, exports) {
 
 /**
@@ -38846,7 +38983,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 18 */
+/* 22 */
 /***/ (function(module, exports) {
 
 /*!
@@ -74856,15 +74993,15 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 19 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(20);
+__webpack_require__(24);
 module.exports = 'ngRoute';
 
 
 /***/ }),
-/* 20 */
+/* 24 */
 /***/ (function(module, exports) {
 
 /**

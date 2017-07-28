@@ -1,6 +1,7 @@
 import * as ng from 'angular';
 import './home/controller';
 import './person/controller';
+import './complex/controller';
 import 'angular-material';
 import 'angular-route';
 
@@ -15,6 +16,10 @@ ngApp.config(['$routeProvider', function ($routeProvider) {
     .when('/person', {
       controller: 'personController',
       templateUrl: 'ngapp/person/partials/template.html'
+    })
+    .when('/complex', {
+      controller: 'complexController',
+      templateUrl: 'ngapp/complex/partials/template.html'
     })
     .otherwise({
       redirectTo: '/home'
