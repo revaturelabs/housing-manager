@@ -83,25 +83,31 @@ __webpack_require__(3);
 __webpack_require__(8);
 __webpack_require__(13);
 __webpack_require__(17);
-__webpack_require__(23);
-var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson', 'ngComplex']);
-ngApp.config(['$routeProvider', function ($routeProvider) {
+__webpack_require__(21);
+__webpack_require__(27);
+var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson', 'ngComplex', 'ngSignin']);
+ngApp.config(['$routeProvider', '$httpProvider', '$locationProvider', function ($routeProvider, $httpProvider, $locationProvider) {
         $routeProvider
-            .when('/home', {
+            .when('/signin/', {
+            controller: 'signinController',
+            templateUrl: 'ngapp/signin/partials/template.html'
+        })
+            .when('/home/', {
             controller: 'homeController',
             templateUrl: 'ngapp/home/partials/template.html'
         })
-            .when('/person', {
+            .when('/person/', {
             controller: 'personController',
             templateUrl: 'ngapp/person/partials/template.html'
         })
-            .when('/complex', {
+            .when('/complex/', {
             controller: 'complexController',
             templateUrl: 'ngapp/complex/partials/template.html'
         })
             .otherwise({
-            redirectTo: '/home'
+            redirectTo: '/signin/'
         });
+        $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 
 
@@ -34334,30 +34340,82 @@ module.exports = __webpack_require__.p + "ngapp/complex/partials/template.html";
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// Should already be required, here for clarity
-__webpack_require__(0);
+"use strict";
 
-// Load Angular and dependent libs
-__webpack_require__(18);
-__webpack_require__(20);
-
-// Now load Angular Material
-__webpack_require__(22);
-
-// Export namespace
-module.exports = 'ngMaterial';
+Object.defineProperty(exports, "__esModule", { value: true });
+var service_1 = __webpack_require__(18);
+service_1.signinService.controller('signinController', ['$scope', 'signinFactory', function ($scope, signinFactory) {
+        $scope.sigin = function () {
+        };
+        $scope.signout = function () {
+        };
+    }]);
 
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(19);
-module.exports = 'ngAnimate';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var module_1 = __webpack_require__(19);
+exports.signinService = module_1.signinModule;
+function failure(err) {
+    console.log(err);
+}
+module_1.signinModule.factory('signinFactory', ['$http', function ($http) {
+        return {};
+    }]);
 
 
 /***/ }),
 /* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ng = __webpack_require__(0);
+__webpack_require__(20);
+var signinModule = ng.module('ngSignin', []);
+exports.signinModule = signinModule;
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/signin/partials/template.html";
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Should already be required, here for clarity
+__webpack_require__(0);
+
+// Load Angular and dependent libs
+__webpack_require__(22);
+__webpack_require__(24);
+
+// Now load Angular Material
+__webpack_require__(26);
+
+// Export namespace
+module.exports = 'ngMaterial';
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(23);
+module.exports = 'ngAnimate';
+
+
+/***/ }),
+/* 23 */
 /***/ (function(module, exports) {
 
 /**
@@ -38517,15 +38575,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 20 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(21);
+__webpack_require__(25);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 21 */
+/* 25 */
 /***/ (function(module, exports) {
 
 /**
@@ -38934,7 +38992,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 22 */
+/* 26 */
 /***/ (function(module, exports) {
 
 /*!
@@ -74944,15 +75002,15 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 23 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(24);
+__webpack_require__(28);
 module.exports = 'ngRoute';
 
 
 /***/ }),
-/* 24 */
+/* 28 */
 /***/ (function(module, exports) {
 
 /**
