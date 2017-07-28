@@ -85,23 +85,24 @@ __webpack_require__(13);
 __webpack_require__(17);
 __webpack_require__(23);
 var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson', 'ngSignin']);
-ngApp.config(['$routeProvider', function ($routeProvider) {
+ngApp.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
-            .when('/signin', {
+            .when('/signin/', {
             controller: 'signinController',
             templateUrl: 'ngapp/signin/partials/template.html'
         })
-            .when('/home', {
+            .when('/home/', {
             controller: 'homeController',
             templateUrl: 'ngapp/home/partials/template.html'
         })
-            .when('/person', {
+            .when('/person/', {
             controller: 'personController',
             templateUrl: 'ngapp/person/partials/template.html'
         })
             .otherwise({
-            redirectTo: '/signin'
+            redirectTo: '/signin/'
         });
+        $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 
 
