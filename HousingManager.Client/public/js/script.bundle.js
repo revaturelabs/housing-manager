@@ -84,25 +84,24 @@ __webpack_require__(8);
 __webpack_require__(13);
 __webpack_require__(17);
 __webpack_require__(23);
-var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson', 'ngSignin']);
-ngApp.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
+var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson', 'ngComplex']);
+ngApp.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
-            .when('/signin/', {
-            controller: 'signinController',
-            templateUrl: 'ngapp/signin/partials/template.html'
-        })
-            .when('/home/', {
+            .when('/home', {
             controller: 'homeController',
             templateUrl: 'ngapp/home/partials/template.html'
         })
-            .when('/person/', {
+            .when('/person', {
             controller: 'personController',
             templateUrl: 'ngapp/person/partials/template.html'
         })
+            .when('/complex', {
+            controller: 'complexController',
+            templateUrl: 'ngapp/complex/partials/template.html'
+        })
             .otherwise({
-            redirectTo: '/signin/'
+            redirectTo: '/home'
         });
-        $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 
 
@@ -34256,10 +34255,32 @@ module.exports = __webpack_require__.p + "ngapp/person/partials/createPersonTemp
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var service_1 = __webpack_require__(14);
-service_1.signinService.controller('signinController', ['$scope', 'signinFactory', function ($scope, signinFactory) {
-        $scope.sigin = function () {
+service_1.complexService.controller('complexController', ['$scope', '$mdDialog', 'complexFactory', function ($scope, $mdDialog, complexFactory) {
+        $scope.aptLoading = true;
+        $scope.complexes = [];
+        $scope.units = [];
+        $scope.getComplexes = function () {
+            $scope.complexes = [];
+            $scope.aptLoading = true;
+            complexFactory.getComplexes($scope);
         };
-        $scope.signout = function () {
+        $scope.getUnits = function (complex) {
+            $scope.complexName = complex.apartmentName;
+            $scope.units = [];
+            complex.aptUnitDTO.forEach(function (element) {
+                //add capacity check
+                $scope.units.push(element);
+            });
+        };
+        $scope.navigateTo = function (unit, event) {
+            $mdDialog.show($mdDialog.alert()
+                .title(unit.streetName)
+                .textContent('Number of Beds Available: ' + unit.capacity)
+                .ariaLabel('Test')
+                .ok('Close')
+                .openFrom('#item.guid')
+                .closeTo('#item.guid')
+                .targetEvent(event));
         };
     }]);
 
@@ -34272,12 +34293,21 @@ service_1.signinService.controller('signinController', ['$scope', 'signinFactory
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var module_1 = __webpack_require__(15);
-exports.signinService = module_1.signinModule;
+exports.complexService = module_1.complexModule;
 function failure(err) {
     console.log(err);
 }
-module_1.signinModule.factory('signinFactory', ['$http', function ($http) {
-        return {};
+module_1.complexModule.factory('complexFactory', ['$http', function ($http) {
+        return {
+            getComplexes: function ($scope) {
+                $http.get('http://housingmanagerbusiness.azurewebsites.net/api/ApartmentComplex/').then(function (res) {
+                    res.data.forEach(function (element) {
+                        $scope.complexes.push(element);
+                    });
+                    $scope.aptLoading = false;
+                }, failure);
+            }
+        };
     }]);
 
 
@@ -34290,15 +34320,15 @@ module_1.signinModule.factory('signinFactory', ['$http', function ($http) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(16);
-var signinModule = ng.module('ngSignin', []);
-exports.signinModule = signinModule;
+var complexModule = ng.module('ngComplex', []);
+exports.complexModule = complexModule;
 
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ngapp/signin/partials/template.html";
+module.exports = __webpack_require__.p + "ngapp/complex/partials/template.html";
 
 /***/ }),
 /* 17 */

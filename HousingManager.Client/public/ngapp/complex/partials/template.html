@@ -1,0 +1,41 @@
+<section>
+  <div class="col-md-3"> </div>
+
+  <div class="col-md-6">
+     <md-toolbar layout="row" class="md-hue-3">
+      <div class="md-toolbar-tools" layout="row" layout-align="space-around center">
+        <span>List of Complexes</span>
+      </div>
+    </md-toolbar>
+    <md-content flex>
+      <md-list ng-init="getComplexes()">
+        <md-progress-linear ng-show="aptLoading" md-mode="indeterminate"></md-progress-linear>
+        <md-list-item id="complex.guid" class="md-3-line" ng-value="complex" ng-repeat="complex in complexes" ng-click="getUnits(complex)">
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ complex.apartmentName }}</h3>
+            <h4></h4>
+            <p>Number of Units: {{ complex.aptUnitDTO.length }}</p>
+          </div>
+        </md-list-item>
+
+        <md-divider ></md-divider>
+
+        <md-list>
+          <md-toolbar layout="row" class="md-hue-3">
+            <div class="md-toolbar-tools">
+              <span>{{complexName}}</span>
+            </div>
+          </md-toolbar>
+          <md-list-item id="unit.guid" class="md-3-line" ng-value="unit" ng-repeat="unit in units" ng-click="navigateTo(unit, $event)">
+            <div class="md-list-item-text" layout="column">
+            <h3>Apartment #{{unit.addr.aptNum}}</h3>
+            <p>{{ unit.addr.streetName }}</p>
+            <p>{{ unit.addr.city }}, {{ unit.addr.state }} {{ unit.addr.zipCode }} </p>
+          </md-list-item>
+        </md-list>
+      </md-list>
+    </md-content> 
+  </div>
+
+  <div class="col-md-3"> </div>
+</section>
