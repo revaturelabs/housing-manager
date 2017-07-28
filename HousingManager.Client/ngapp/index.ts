@@ -5,7 +5,7 @@ import './complex/controller';
 import 'angular-material';
 import 'angular-route';
 
-var ngApp = ng.module('ngApp',['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson']);
+var ngApp = ng.module('ngApp',['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson', 'ngComplex']);
 
 ngApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider

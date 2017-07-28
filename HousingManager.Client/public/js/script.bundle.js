@@ -84,7 +84,7 @@ __webpack_require__(8);
 __webpack_require__(13);
 __webpack_require__(17);
 __webpack_require__(23);
-var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson']);
+var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson', 'ngComplex']);
 ngApp.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
             .when('/home', {
@@ -34255,82 +34255,32 @@ module.exports = __webpack_require__.p + "ngapp/person/partials/createPersonTemp
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var service_1 = __webpack_require__(14);
-var Entity = (function () {
-    function Entity(t, v) {
-        this.text = t;
-        this.value = v;
-    }
-    return Entity;
-}());
-var Address = (function () {
-    function Address() {
-        this.streetName = "N/A";
-        this.aptNum = 0;
-        this.city = "N/A";
-        this.state = "N/A";
-        this.zipCode = 0;
-    }
-    return Address;
-}());
-var ApartmentUnit = (function () {
-    function ApartmentUnit() {
-        this.capacity = 0;
-        this.address = new Address();
-    }
-    return ApartmentUnit;
-}());
-var complex = (function () {
-    function complex() {
-        this.apartmentName = "N/A";
-        this.address = new Address();
-        this.aptUnitDTO = 0;
-    }
-    return complex;
-}());
 service_1.complexService.controller('complexController', ['$scope', '$mdDialog', 'complexFactory', function ($scope, $mdDialog, complexFactory) {
-        $scope.perLoading = true;
+        $scope.aptLoading = true;
+        $scope.complexes = [];
+        $scope.units = [];
         $scope.getComplexes = function () {
-            $scope.items = [];
-            $scope.perLoading = true;
+            $scope.complexes = [];
+            $scope.aptLoading = true;
             complexFactory.getComplexes($scope);
         };
-        $scope.navigateTo = function (item, event) {
+        $scope.getUnits = function () {
+            $scope.units = [];
+            $scope.complex.aptUnitDTO.forEach(function (element) {
+                //add capacity check
+                $scope.units.push(element);
+            });
+        };
+        $scope.navigateTo = function (complex, event) {
             $mdDialog.show($mdDialog.alert()
-                .title(item.apartmentName)
-                .textContent(item.guid)
+                .title(complex.apartmentName)
+                .textContent('Number of Units: ' + complex.aptUnitDTO.length)
                 .ariaLabel('Test')
                 .ok('Close')
                 .openFrom('#item.guid')
                 .closeTo('#item.guid')
                 .targetEvent(event));
         };
-        //   $scope.createcomplexDialog = function(ev) {
-        //     $mdDialog.show({
-        //       controller: DialogController,
-        //       templateUrl: 'ngapp/complex/partials/createcomplexTemplate.html',
-        //       parent: ng.element(document.body),
-        //       targetEvent: ev,
-        //       clickOutsideToClose:true
-        //     })
-        //     .then(function(complex) {
-        //       complexFactory.postcomplex(complex);
-        //       $scope.complexStatus = complex.firstName + " " + complex.lastName + ' has been added!';
-        //     }, function() {
-        //       $scope.complexStatus = 'Creating a complex was cancelled';
-        //     });
-        //   };
-        function DialogController($scope, $mdDialog) {
-            $scope.hide = function () {
-                $mdDialog.hide();
-            };
-            $scope.cancel = function () {
-                $mdDialog.cancel();
-            };
-            $scope.answer = function (answer) {
-                $mdDialog.hide(answer);
-            };
-        }
-        ;
     }]);
 
 
@@ -34349,11 +34299,11 @@ function failure(err) {
 module_1.complexModule.factory('complexFactory', ['$http', function ($http) {
         return {
             getComplexes: function ($scope) {
-                $http.get('http://housingmanagerbusiness.azurewebsites.net/api/complex/').then(function (res) {
+                $http.get('http://housingmanagerbusiness.azurewebsites.net/api/ApartmentComplex/').then(function (res) {
                     res.data.forEach(function (element) {
-                        $scope.items.push(element);
+                        $scope.complexes.push(element);
                     });
-                    $scope.perLoading = false;
+                    $scope.aptLoading = false;
                 }, failure);
             }
         };
@@ -34369,7 +34319,7 @@ module_1.complexModule.factory('complexFactory', ['$http', function ($http) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(16);
-var complexModule = ng.module('ngPerson', []);
+var complexModule = ng.module('ngComplex', []);
 exports.complexModule = complexModule;
 
 
@@ -34377,7 +34327,7 @@ exports.complexModule = complexModule;
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ngapp/person/partials/template.html";
+module.exports = __webpack_require__.p + "ngapp/complex/partials/template.html";
 
 /***/ }),
 /* 17 */

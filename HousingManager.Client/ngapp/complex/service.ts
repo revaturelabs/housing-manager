@@ -7,12 +7,12 @@ function failure (err) {
 complexModule.factory('complexFactory', ['$http',function ($http){
   return {
     getComplexes: function ($scope) {
-      $http.get('http://housingmanagerbusiness.azurewebsites.net/api/complex/').then(function (res) {
+      $http.get('http://housingmanagerbusiness.azurewebsites.net/api/ApartmentComplex/').then(function (res) {
         res.data.forEach(element => {
-          $scope.items.push(element);
+          $scope.complexes.push(element);
         });
-        $scope.perLoading = false;
-      }, failure)
+        $scope.aptLoading = false;
+      }, failure);
     }
   }
 }]);
