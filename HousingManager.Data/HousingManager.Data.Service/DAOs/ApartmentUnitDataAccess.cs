@@ -23,6 +23,7 @@ namespace HousingManager.Data.Service.DAOs
       return _Context.Set<TenantInfo>()
         .Include(au => au.ApartmentUnit)
           .ThenInclude(ac => ac.ApartmentComplex)
+          .ThenInclude(au2 => au2.ApartmentUnit)
           .ThenInclude(ad => ad.Address)
         .Include(p => p.Person)
         .ToList();
