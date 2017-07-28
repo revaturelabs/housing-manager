@@ -34264,17 +34264,18 @@ service_1.complexService.controller('complexController', ['$scope', '$mdDialog',
             $scope.aptLoading = true;
             complexFactory.getComplexes($scope);
         };
-        $scope.getUnits = function () {
+        $scope.getUnits = function (complex) {
+            $scope.complexName = complex.apartmentName;
             $scope.units = [];
-            $scope.complex.aptUnitDTO.forEach(function (element) {
+            complex.aptUnitDTO.forEach(function (element) {
                 //add capacity check
                 $scope.units.push(element);
             });
         };
-        $scope.navigateTo = function (complex, event) {
+        $scope.navigateTo = function (unit, event) {
             $mdDialog.show($mdDialog.alert()
-                .title(complex.apartmentName)
-                .textContent('Number of Units: ' + complex.aptUnitDTO.length)
+                .title(unit.streetName)
+                .textContent('Number of Beds Available: ' + unit.capacity)
                 .ariaLabel('Test')
                 .ok('Close')
                 .openFrom('#item.guid')
