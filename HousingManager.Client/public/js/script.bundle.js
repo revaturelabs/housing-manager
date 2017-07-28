@@ -82,10 +82,15 @@ var ng = __webpack_require__(0);
 __webpack_require__(3);
 __webpack_require__(8);
 __webpack_require__(13);
-__webpack_require__(19);
-var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson']);
+__webpack_require__(17);
+__webpack_require__(23);
+var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson', 'ngSignin']);
 ngApp.config(['$routeProvider', function ($routeProvider) {
         $routeProvider
+            .when('/signin', {
+            controller: 'signinController',
+            templateUrl: 'ngapp/signin/partials/template.html'
+        })
             .when('/home', {
             controller: 'homeController',
             templateUrl: 'ngapp/home/partials/template.html'
@@ -95,7 +100,7 @@ ngApp.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'ngapp/person/partials/template.html'
         })
             .otherwise({
-            redirectTo: '/home'
+            redirectTo: '/signin'
         });
     }]);
 
@@ -34246,30 +34251,82 @@ module.exports = __webpack_require__.p + "ngapp/person/partials/createPersonTemp
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// Should already be required, here for clarity
-__webpack_require__(0);
+"use strict";
 
-// Load Angular and dependent libs
-__webpack_require__(14);
-__webpack_require__(16);
-
-// Now load Angular Material
-__webpack_require__(18);
-
-// Export namespace
-module.exports = 'ngMaterial';
+Object.defineProperty(exports, "__esModule", { value: true });
+var service_1 = __webpack_require__(14);
+service_1.signinService.controller('signinController', ['$scope', 'signinFactory', function ($scope, signinFactory) {
+        $scope.sigin = function () {
+        };
+        $scope.signout = function () {
+        };
+    }]);
 
 
 /***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(15);
-module.exports = 'ngAnimate';
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var module_1 = __webpack_require__(15);
+exports.signinService = module_1.signinModule;
+function failure(err) {
+    console.log(err);
+}
+module_1.signinModule.factory('signinFactory', ['$http', function ($http) {
+        return {};
+    }]);
 
 
 /***/ }),
 /* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ng = __webpack_require__(0);
+__webpack_require__(16);
+var signinModule = ng.module('ngSignin', []);
+exports.signinModule = signinModule;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/signin/partials/template.html";
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Should already be required, here for clarity
+__webpack_require__(0);
+
+// Load Angular and dependent libs
+__webpack_require__(18);
+__webpack_require__(20);
+
+// Now load Angular Material
+__webpack_require__(22);
+
+// Export namespace
+module.exports = 'ngMaterial';
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(19);
+module.exports = 'ngAnimate';
+
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports) {
 
 /**
@@ -38429,15 +38486,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 16 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(17);
+__webpack_require__(21);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 17 */
+/* 21 */
 /***/ (function(module, exports) {
 
 /**
@@ -38846,7 +38903,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 18 */
+/* 22 */
 /***/ (function(module, exports) {
 
 /*!
@@ -74856,15 +74913,15 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 19 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(20);
+__webpack_require__(24);
 module.exports = 'ngRoute';
 
 
 /***/ }),
-/* 20 */
+/* 24 */
 /***/ (function(module, exports) {
 
 /**
