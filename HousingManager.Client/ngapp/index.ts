@@ -1,6 +1,7 @@
 import * as ng from 'angular';
 import './home/controller';
 import './person/controller';
+import './signin/controller';
 import 'angular-material';
 import 'angular-route';
 
@@ -8,6 +9,10 @@ var ngApp = ng.module('ngApp',['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson']);
 
 ngApp.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
+    .when('/signin', {
+      controller: 'signinController',
+      templateUrl: 'ngapp/signin/partials/template.html'
+    })
     .when('/home', {
       controller: 'homeController',
       templateUrl: 'ngapp/home/partials/template.html'
@@ -17,6 +22,6 @@ ngApp.config(['$routeProvider', function ($routeProvider) {
       templateUrl: 'ngapp/person/partials/template.html'
     })
     .otherwise({
-      redirectTo: '/home'
+      redirectTo: '/signin'
     });
 }]);
