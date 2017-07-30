@@ -13,6 +13,7 @@ ngApp.config(['$routeProvider', '$httpProvider', '$locationProvider', function (
     .when('/signin/', {
       controller: 'signinController',
       templateUrl: 'ngapp/signin/partials/template.html'
+      
     })
     .when('/home/', {
       controller: 'homeController',
