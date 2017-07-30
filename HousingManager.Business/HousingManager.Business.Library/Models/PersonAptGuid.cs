@@ -6,7 +6,7 @@ namespace HousingManager.Business.Library.Models
 {
     public class PersonAptGuid
     {
-        public Guid Person { get; set; }
-        public Guid ApartmentUnit { get; set; }
+        public Guid PersonGuid { get; set; }
+        public Guid ApartmentGuid { get; set; }
     }
 }
