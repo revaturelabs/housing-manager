@@ -5,27 +5,31 @@ import './complex/controller';
 import './signin/controller';
 import 'angular-material';
 import 'angular-route';
+import 'adal-angular/lib/adal-angular';
 
-var ngApp = ng.module('ngApp',['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson', 'ngComplex', 'ngSignin']);
+var ngApp = ng.module('ngApp',['ngRoute', 'ngMaterial', 'AdalAngular', 'ngHome', 'ngPerson', 'ngComplex', 'ngSignin']);
 
-ngApp.config(['$routeProvider', '$httpProvider', '$locationProvider', function ($routeProvider, $httpProvider, $locationProvider) {
+ngApp.config(['$routeProvider', '$httpProvider', '$locationProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, $httpProvider, $locationProvider, adalProvider) {
   $routeProvider
     .when('/signin/', {
       controller: 'signinController',
-      templateUrl: 'ngapp/signin/partials/template.html'
-      
+      templateUrl: 'ngapp/signin/partials/template.html',
+      requireADLogin: false
     })
     .when('/home/', {
       controller: 'homeController',
-      templateUrl: 'ngapp/home/partials/template.html'
+      templateUrl: 'ngapp/home/partials/template.html',
+      requireADLogin: true
     })
     .when('/person/', {
       controller: 'personController',
-      templateUrl: 'ngapp/person/partials/template.html'
+      templateUrl: 'ngapp/person/partials/template.html',
+      requireADLogin: true
     })
     .when('/complex/', {
       controller: 'complexController',
-      templateUrl: 'ngapp/complex/partials/template.html'
+      templateUrl: 'ngapp/complex/partials/template.html',
+      requireADLogin: true
     })
     .otherwise({
       redirectTo: '/signin/'
