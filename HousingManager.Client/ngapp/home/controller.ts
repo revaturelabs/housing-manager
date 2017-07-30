@@ -78,6 +78,22 @@ h.controller('homeController', ['$scope', '$mdDialog', 'homeFactory', function (
     });
   };
 
+  $scope.assignmentDialog = function(ev) {
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: 'ngapp/home/partials/assignmentTemplate.html',
+      parent: ng.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true
+    })
+    .then(function() {
+      homeFactory.postAssignment($scope.user, $scope.unit);
+      $scope.assignmentStatus = $scope.user.firstName + " has been assigned to " + $scope.complex.apartmentName + " in Apartment #" + $scope.unit.addr.aptNum;
+    }, function() {
+      $scope.assignmentStatus = 'Assigning a Person to an Apartment was cancelled';
+    });
+  };
+
   function DialogController($scope, $mdDialog) {
     $scope.hide = function() {
       $mdDialog.hide();

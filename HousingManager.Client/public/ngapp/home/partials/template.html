@@ -1,11 +1,11 @@
 <section>
-  <div class="col-md-3"> </div>
+  <div class="col-sm-3"> </div>
 
-  <div class="col-md-3">
+  <div class="col-sm-3">
     <md-card>
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">Apartments</span>
+          <span class="md-headline">Select an Apartment</span>
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
@@ -19,18 +19,16 @@
             <md-option ng-value="unit" ng-repeat="unit in units">{{unit.addr.streetName}}</md-option>
           </md-select>
           <br>
-          <p>Complex: {{ complex ? complex.apartmentName : 'A Complex has not been selected' }}</p>
-          <p>Apartment Unit: {{ unit ? unit.addr.streetName : 'An Apartment Unit has not been selected' }}</p>
-          <!-- <p>GUID: {{unit ? unit.guid : 'Unique Identifier!'}}</p>  -->
         </div>
       </md-card-content>
     </md-card>
   </div>
-  <div class="col-md-3">
+
+  <div class="col-sm-3">
     <md-card>
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">Person</span>
+          <span class="md-headline">Select a Person</span>
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
@@ -41,9 +39,6 @@
             <md-option ng-value="user" ng-repeat="user in users">{{user.firstName}} {{user.lastName}}</md-option>
           </md-select>
           <br>
-          <p>First Name: {{ user ? user.firstName : 'No one has' }}</p>
-          <p>Last Name: {{ user ? user.lastName : 'been selected' }}</p> 
-          <!-- <p>GUID: {{user ? user.guid : 'Unique Identifier!'}}</p> -->
         </div>
       </md-card-content>
       <md-card-actions layout="row" layout-align="center center">
@@ -52,6 +47,37 @@
       </md-card-actions>
     </md-card>
   </div>
+  <div class="col-sm-3"> </div>
 
-  <div class="col-md-3"> </div>
+  <div class="col-sm-6 col-sm-offset-3">
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Assign Person to Apartment</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <div class="col-sm-3" layout="column" layout-align="center center">
+          <p> <b>Complex:</b> {{ complex ? complex.apartmentName : 'A Complex has not been selected' }}</p>
+        </div>
+        <div class="col-sm-3" layout="column" layout-align="center center">
+          <p> <b>Apartment #</b>{{unit ? unit.addr.aptNum : 'A Unit has not been selected'}} </p>
+          <p>{{ unit.addr.streetName }}</p>
+          <p>{{ unit.addr.city }}, {{ unit.addr.state }} {{ unit.addr.zipCode }} </p>
+          <p> <b>Number of beds:</b> {{unit.capacity}}</p>
+        </div>
+        <div class="col-sm-6" layout="column" layout-align="center center">
+          <p> <b>First Name: </b>{{ user ? user.firstName : 'No one has' }}</p>
+          <p> <b>Last Name: </b>{{ user ? user.lastName : 'been selected' }}</p>
+        </div>
+      </md-card-content>
+      <div class="col-sm-12" layout="column" layout-align="center center">
+        <p>{{assignmentStatus}}</p>
+      </div>
+      <md-card-actions layout="row" layout-align="center center">
+        <br>
+        <md-button class="md-primary md-raised" ng-click="assignmentDialog($event)">Assign Person</md-button> 
+      </md-card-actions>
+    </md-card>
+  </div>
 </section>

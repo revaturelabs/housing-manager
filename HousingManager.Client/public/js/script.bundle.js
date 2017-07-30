@@ -80,11 +80,11 @@ module.exports = angular;
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(3);
-__webpack_require__(8);
-__webpack_require__(13);
-__webpack_require__(17);
-__webpack_require__(21);
-__webpack_require__(27);
+__webpack_require__(9);
+__webpack_require__(14);
+__webpack_require__(18);
+__webpack_require__(22);
+__webpack_require__(28);
 var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'ngHome', 'ngPerson', 'ngComplex', 'ngSignin']);
 ngApp.config(['$routeProvider', '$httpProvider', '$locationProvider', function ($routeProvider, $httpProvider, $locationProvider) {
         $routeProvider
@@ -34018,6 +34018,21 @@ service_1.homeService.controller('homeController', ['$scope', '$mdDialog', 'home
                 $scope.personStatus = 'Creating a Person was cancelled';
             });
         };
+        $scope.assignmentDialog = function (ev) {
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'ngapp/home/partials/assignmentTemplate.html',
+                parent: ng.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true
+            })
+                .then(function () {
+                homeFactory.postAssignment($scope.user, $scope.unit);
+                $scope.assignmentStatus = $scope.user.firstName + " has been assigned to " + $scope.complex.apartmentName + " in Apartment #" + $scope.unit.addr.aptNum;
+            }, function () {
+                $scope.assignmentStatus = 'Assigning a Person to an Apartment was cancelled';
+            });
+        };
         function DialogController($scope, $mdDialog) {
             $scope.hide = function () {
                 $mdDialog.hide();
@@ -34081,6 +34096,26 @@ module_1.homeModule.factory('homeFactory', ['$http', function ($http) {
                 }, function (err) {
                     console.log(err);
                 });
+            },
+            postAssignment: function (user, unit) {
+                var guids = { Person: user.guid, ApartmentUnit: unit.guid };
+                $http({
+                    method: 'POST',
+                    url: 'http://housingmanagerbusiness.azurewebsites.net/api/Person/assign/',
+                    withCredentials: true,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Access-Control-Allow-Credentials': 'true',
+                        'Access-Control-Allow-Methods': 'POST'
+                    },
+                    data: JSON.stringify(guids)
+                }).then(function (res) {
+                    console.log(res);
+                }, function (err) {
+                    console.log(err);
+                });
             }
         };
     }]);
@@ -34096,6 +34131,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
 __webpack_require__(6);
 __webpack_require__(7);
+__webpack_require__(8);
 var homeModule = ng.module('ngHome', []);
 exports.homeModule = homeModule;
 
@@ -34116,10 +34152,16 @@ module.exports = __webpack_require__.p + "ngapp/home/partials/createPersonTempla
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "ngapp/home/partials/assignmentTemplate.html";
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var service_1 = __webpack_require__(9);
+var service_1 = __webpack_require__(10);
 var ng = __webpack_require__(0);
 var Entity = (function () {
     function Entity(t, v) {
@@ -34183,13 +34225,13 @@ service_1.personService.controller('personController', ['$scope', '$mdDialog', '
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(10);
+var module_1 = __webpack_require__(11);
 exports.personService = module_1.personModule;
 function failure(err) {
     console.log(err);
@@ -34228,39 +34270,39 @@ module_1.personModule.factory('personFactory', ['$http', function ($http) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(11);
 __webpack_require__(12);
+__webpack_require__(13);
 var personModule = ng.module('ngPerson', []);
 exports.personModule = personModule;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/person/partials/template.html";
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "ngapp/person/partials/createPersonTemplate.html";
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var service_1 = __webpack_require__(14);
+var service_1 = __webpack_require__(15);
 service_1.complexService.controller('complexController', ['$scope', '$mdDialog', 'complexFactory', function ($scope, $mdDialog, complexFactory) {
         $scope.aptLoading = true;
         $scope.complexes = [];
@@ -34292,13 +34334,13 @@ service_1.complexService.controller('complexController', ['$scope', '$mdDialog',
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(15);
+var module_1 = __webpack_require__(16);
 exports.complexService = module_1.complexModule;
 function failure(err) {
     console.log(err);
@@ -34318,39 +34360,23 @@ module_1.complexModule.factory('complexFactory', ['$http', function ($http) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var ng = __webpack_require__(0);
-__webpack_require__(16);
+__webpack_require__(17);
 var complexModule = ng.module('ngComplex', []);
 exports.complexModule = complexModule;
 
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "ngapp/complex/partials/template.html";
-
-/***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var service_1 = __webpack_require__(18);
-service_1.signinService.controller('signinController', ['$scope', 'signinFactory', function ($scope, signinFactory) {
-        $scope.sigin = function () {
-        };
-        $scope.signout = function () {
-        };
-    }]);
-
+module.exports = __webpack_require__.p + "ngapp/complex/partials/template.html";
 
 /***/ }),
 /* 18 */
@@ -34359,13 +34385,12 @@ service_1.signinService.controller('signinController', ['$scope', 'signinFactory
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var module_1 = __webpack_require__(19);
-exports.signinService = module_1.signinModule;
-function failure(err) {
-    console.log(err);
-}
-module_1.signinModule.factory('signinFactory', ['$http', function ($http) {
-        return {};
+var service_1 = __webpack_require__(19);
+service_1.signinService.controller('signinController', ['$scope', 'signinFactory', function ($scope, signinFactory) {
+        $scope.sigin = function () {
+        };
+        $scope.signout = function () {
+        };
     }]);
 
 
@@ -34376,46 +34401,63 @@ module_1.signinModule.factory('signinFactory', ['$http', function ($http) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var ng = __webpack_require__(0);
-__webpack_require__(20);
-var signinModule = ng.module('ngSignin', []);
-exports.signinModule = signinModule;
+var module_1 = __webpack_require__(20);
+exports.signinService = module_1.signinModule;
+function failure(err) {
+    console.log(err);
+}
+module_1.signinModule.factory('signinFactory', ['$http', function ($http) {
+        return {};
+    }]);
 
 
 /***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "ngapp/signin/partials/template.html";
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ng = __webpack_require__(0);
+__webpack_require__(21);
+var signinModule = ng.module('ngSignin', []);
+exports.signinModule = signinModule;
+
 
 /***/ }),
 /* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "ngapp/signin/partials/template.html";
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Should already be required, here for clarity
 __webpack_require__(0);
 
 // Load Angular and dependent libs
-__webpack_require__(22);
-__webpack_require__(24);
+__webpack_require__(23);
+__webpack_require__(25);
 
 // Now load Angular Material
-__webpack_require__(26);
+__webpack_require__(27);
 
 // Export namespace
 module.exports = 'ngMaterial';
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(23);
+__webpack_require__(24);
 module.exports = 'ngAnimate';
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 /**
@@ -38575,15 +38617,15 @@ angular.module('ngAnimate', [], function initAngularHelpers() {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(25);
+__webpack_require__(26);
 module.exports = 'ngAria';
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 /**
@@ -38992,7 +39034,7 @@ ngAriaModule.directive('ngShow', ['$aria', function($aria) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 /*!
@@ -75002,15 +75044,15 @@ angular.module("material.core").constant("$MD_THEME_CSS", "md-autocomplete.md-TH
 })(window, window.angular);;window.ngMaterial={version:{full: "1.1.4"}};
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(28);
+__webpack_require__(29);
 module.exports = 'ngRoute';
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 /**
