@@ -42,7 +42,7 @@ homeModule.factory('homeFactory', ['$http', function ($http) {
         });
     },
     postAssignment: function (user, unit) {
-      var guids = {Person: user.guid, ApartmentUnit: unit.guid};
+      var guids = {PersonGuid: user.guid, ApartmentGuid: unit.guid};
       $http({
         method: 'POST',
         url: 'http://housingmanagerbusiness.azurewebsites.net/api/Person/assign/',
