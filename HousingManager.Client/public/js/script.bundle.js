@@ -34395,10 +34395,12 @@ module.exports = __webpack_require__.p + "ngapp/complex/partials/template.html";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var service_1 = __webpack_require__(19);
-service_1.signinService.controller('signinController', ['$scope', 'signinFactory', function ($scope, signinFactory) {
-        $scope.sigin = function () {
+service_1.signinService.controller('signinController', ['$scope', 'signinFactory', 'adalAuthenticationService', function ($scope, signinFactory, adalService) {
+        $scope.signin = function () {
+            adalService.login();
         };
         $scope.signout = function () {
+            adalService.logout();
         };
     }]);
 
