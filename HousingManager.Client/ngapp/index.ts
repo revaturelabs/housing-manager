@@ -38,7 +38,7 @@ ngApp.config(['$routeProvider', '$httpProvider', '$locationProvider', 'adalAuthe
     $locationProvider.html5Mode(true).hashPrefix('!');
 
     adalProvider.init({
-      manager: 'fredBelotterevature.onMicrosoft.com',
+      tenant: 'fredbelotterevature.onmicrosoft.com',
       clientId: '335ca58a-4c5f-404e-8a36-65aad238091b'
     }, $httpProvider);
 }]);
