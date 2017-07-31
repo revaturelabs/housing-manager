@@ -11,28 +11,33 @@ var ngApp = ng.module('ngApp',['ngRoute', 'ngMaterial', 'AdalAngular', 'ngHome',
 
 ngApp.config(['$routeProvider', '$httpProvider', '$locationProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, $httpProvider, $locationProvider, adalProvider) {
   $routeProvider
-    .when('/signin/', {
+    .when('/', {
       controller: 'signinController',
       templateUrl: 'ngapp/signin/partials/template.html',
       requireADLogin: false
     })
-    .when('/home/', {
+    .when('/signin', {
+      controller: 'signinController',
+      templateUrl: 'ngapp/signin/partials/template.html',
+      requireADLogin: false
+    })
+    .when('/home', {
       controller: 'homeController',
       templateUrl: 'ngapp/home/partials/template.html',
       requireADLogin: true
     })
-    .when('/person/', {
+    .when('/person', {
       controller: 'personController',
       templateUrl: 'ngapp/person/partials/template.html',
       requireADLogin: true
     })
-    .when('/complex/', {
+    .when('/complex', {
       controller: 'complexController',
       templateUrl: 'ngapp/complex/partials/template.html',
       requireADLogin: true
     })
     .otherwise({
-      redirectTo: '/signin/'
+      redirectTo: '/'
     });
 
     $locationProvider.html5Mode(true).hashPrefix('!');

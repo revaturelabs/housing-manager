@@ -89,28 +89,33 @@ __webpack_require__(30);
 var ngApp = ng.module('ngApp', ['ngRoute', 'ngMaterial', 'AdalAngular', 'ngHome', 'ngPerson', 'ngComplex', 'ngSignin']);
 ngApp.config(['$routeProvider', '$httpProvider', '$locationProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, $httpProvider, $locationProvider, adalProvider) {
         $routeProvider
-            .when('/signin/', {
+            .when('/', {
             controller: 'signinController',
             templateUrl: 'ngapp/signin/partials/template.html',
             requireADLogin: false
         })
-            .when('/home/', {
+            .when('/signin', {
+            controller: 'signinController',
+            templateUrl: 'ngapp/signin/partials/template.html',
+            requireADLogin: false
+        })
+            .when('/home', {
             controller: 'homeController',
             templateUrl: 'ngapp/home/partials/template.html',
             requireADLogin: true
         })
-            .when('/person/', {
+            .when('/person', {
             controller: 'personController',
             templateUrl: 'ngapp/person/partials/template.html',
             requireADLogin: true
         })
-            .when('/complex/', {
+            .when('/complex', {
             controller: 'complexController',
             templateUrl: 'ngapp/complex/partials/template.html',
             requireADLogin: true
         })
             .otherwise({
-            redirectTo: '/signin/'
+            redirectTo: '/'
         });
         $locationProvider.html5Mode(true).hashPrefix('!');
         adalProvider.init({
@@ -34395,12 +34400,12 @@ module.exports = __webpack_require__.p + "ngapp/complex/partials/template.html";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var service_1 = __webpack_require__(19);
-service_1.signinService.controller('signinController', ['$scope', 'signinFactory', 'adalAuthenticationService', function ($scope, signinFactory, adalService) {
+service_1.signinService.controller('signinController', ['$scope', 'adalAuthenticationService', function ($scope, adalService) {
         $scope.signin = function () {
             adalService.login();
         };
         $scope.signout = function () {
-            adalService.logout();
+            adalService.logOut();
         };
     }]);
 
